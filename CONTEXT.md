@@ -22,7 +22,7 @@ Build a long-lived personal portfolio and blog with Astro, Tailwind CSS, Markdow
 
 ## Current Status
 
-Phase 6 is in progress. Cloudflare Pages configuration and GitHub connection instructions are documented in `DEPLOYMENT.md`; the production URL remains pending until a Pages project or custom domain is created. Site identity and personal content have been added.
+Phases 1 through 5 are complete; Phase 6 is ready for the external Cloudflare Pages setup. The site includes personal identity and contact details, responsive portfolio/blog pages, YouTube playlist previews, automatic blog tag counts, local Space Grotesk headings, and SEO essentials.
 
 ## Decisions Log
 
@@ -39,7 +39,10 @@ Phase 6 is in progress. Cloudflare Pages configuration and GitHub connection ins
 
 ## Known Issues / TODO
 
-- Create/push the GitHub repository, connect it to Cloudflare Pages, choose the production domain, and set `SITE_URL` in the Pages dashboard.
+- Connect the pushed GitHub repository to Cloudflare Pages.
+- Choose a `*.pages.dev` or custom production domain and set `SITE_URL` in the Pages dashboard.
+- Deploy, verify the production URL, then record it here and rebuild so canonical URLs, sitemap, RSS, robots, and JSON-LD use it.
+- Optional: replace sample posts, generic playlist labels, and the favicon with final content/assets.
 
 ## How to Run Locally
 
@@ -51,3 +54,5 @@ Run `npm install`, then `npm run dev`. Use `npm run check` for Astro and TypeScr
 - Output directory: `dist`
 - Production URL: pending user deployment
 - Full setup instructions: `DEPLOYMENT.md`
+- GitHub repository: `https://github.com/therealdumbprogrammer/Vivek.dev`
+- Initial commit: `129d0aa` (`Initial portfolio and blog site`) on `main`, pushed to `origin/main`
