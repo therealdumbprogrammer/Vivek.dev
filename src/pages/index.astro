@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const playlists = [
+  {
+    id: 'PLpxcSt9FGVVGN-R6obf6ICr5m4SbvwgOo',
+    label: 'YouTube playlist 1',
+    url: 'https://www.youtube.com/playlist?list=PLpxcSt9FGVVGN-R6obf6ICr5m4SbvwgOo',
+  },
+  {
+    id: 'PLpxcSt9FGVVFaGNMP2t4egMom6ziSejah',
+    label: 'YouTube playlist 2',
+    url: 'https://www.youtube.com/playlist?list=PLpxcSt9FGVVFaGNMP2t4egMom6ziSejah',
+  },
+];
+---
+
+<BaseLayout title="Vivek.dev — Engineering Notes">
+  <section class="max-w-3xl py-6 sm:py-12">
+    <p class="mb-5 text-sm font-semibold tracking-wide text-blue-700 uppercase">Engineering Notes</p>
+    <h1 class="max-w-2xl text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">Java Engineer. Problem Solver.</h1>
+    <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl sm:leading-9">
+      Software engineer with 15+ years of experience building Java applications and cloud-native systems. I write about Spring Boot, Kubernetes, JVM internals, and software architecture.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" href="https://www.youtube.com/@the_codealchemist" target="_blank" rel="noopener noreferrer">Visit my channel</a>
+      <a class="rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" href="/blog">Read Articles</a>
+    </div>
+  </section>
+
+  <section class="mt-16 border-t border-slate-200 pt-12 sm:mt-20 sm:pt-16">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold tracking-wide text-blue-700 uppercase">Watch</p>
+      <h2 class="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">Featured playlists</h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">Explore videos from my YouTube channel.</p>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-2">
+      {playlists.map((playlist) => (
+        <article class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div class="aspect-video bg-slate-100">
+            <iframe
+              class="h-full w-full"
+              src={`https://www.youtube-nocookie.com/embed/videoseries?list=${playlist.id}`}
+              title={playlist.label}
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="flex items-center justify-between gap-4 p-5">
+            <h3 class="font-semibold text-slate-900">{playlist.label}</h3>
+            <a class="shrink-0 text-sm font-medium text-blue-700 underline decoration-blue-300 underline-offset-4 transition hover:text-blue-900 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" href={playlist.url} target="_blank" rel="noopener noreferrer">Open on YouTube</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

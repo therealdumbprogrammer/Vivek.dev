@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const tagCounts = new Map<string, number>();
+
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+
+const tags = [...tagCounts.entries()].sort(([firstTag], [secondTag]) => firstTag.localeCompare(secondTag));
+---
+
+<BaseLayout title="Blog — Vivek.dev" description="Engineering notes from Vivek.dev.">
+  <section class="py-6 sm:py-12">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold tracking-wide text-blue-700 uppercase">Writing</p>
+      <h1 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Blog</h1>
+      <p class="mt-5 text-lg leading-8 text-slate-600">Notes, ideas, and work in progress.</p>
+    </div>
+
+    <div class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start">
+      {tags.length > 0 && (
+        <aside class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm lg:sticky lg:top-6 lg:order-2" aria-labelledby="topics-heading">
+          <h2 id="topics-heading" class="text-sm font-semibold tracking-wide text-slate-900 uppercase">Browse by topic</h2>
+          <ul class="mt-4 space-y-1.5">
+            {tags.map(([tag, count]) => (
+              <li class="flex items-center justify-between gap-4 rounded-md px-2 py-1.5 text-sm text-slate-700">
+                <span>{tag}</span>
+                <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">{count}</span>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
+
+      <ul class="divide-y divide-slate-200 border-t border-slate-200 lg:order-1">
+        {posts.map((post) => (
+          <li class="py-8 first:pt-0">
+            <article>
+              <time class="text-sm text-slate-500" datetime={post.data.publishDate.toISOString()}>
+                {post.data.publishDate.toLocaleDateString('en-US', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </time>
+              <h2 class="mt-2 text-2xl font-semibold tracking-tight">
+                <a class="outline-none transition hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4" href={`/blog/${post.id}/`}>{post.data.title}</a>
+              </h2>
+              <p class="mt-2 text-slate-600">{post.data.description}</p>
+              {post.data.tags.length > 0 && (
+                <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tags">
+                  {post.data.tags.map((tag) => <li class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">{tag}</li>)}
+                </ul>
+              )}
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
