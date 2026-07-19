@@ -30,9 +30,11 @@ const tags = [...tagCounts.entries()].sort(([firstTag], [secondTag]) => firstTag
           <h2 id="topics-heading" class="text-sm font-semibold tracking-wide text-slate-900 uppercase">Browse by topic</h2>
           <ul class="mt-4 space-y-1.5">
             {tags.map(([tag, count]) => (
-              <li class="flex items-center justify-between gap-4 rounded-md px-2 py-1.5 text-sm text-slate-700">
-                <span>{tag}</span>
-                <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">{count}</span>
+              <li>
+                <a href={`/blog/tags/${tag}/`} class="flex items-center justify-between gap-4 rounded-md px-2 py-1.5 text-sm text-slate-700 transition hover:bg-blue-50 hover:text-blue-800">
+                  <span>{tag}</span>
+                  <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">{count}</span>
+                </a>
               </li>
             ))}
           </ul>
@@ -56,7 +58,7 @@ const tags = [...tagCounts.entries()].sort(([firstTag], [secondTag]) => firstTag
               <p class="mt-2 text-slate-600">{post.data.description}</p>
               {post.data.tags.length > 0 && (
                 <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tags">
-                  {post.data.tags.map((tag) => <li class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">{tag}</li>)}
+                  {post.data.tags.map((tag) => <li><a href={`/blog/tags/${tag}/`} class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 transition hover:bg-blue-100 hover:text-blue-800">{tag}</a></li>)}
                 </ul>
               )}
             </article>

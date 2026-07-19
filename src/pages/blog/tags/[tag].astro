@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const tags = new Set<string>();
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      tags.add(tag);
+    }
+  }
+
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => p.data.tags.includes(tag))
+        .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`Posts tagged "${tag}" — Vivek.dev`} description={`Articles tagged with ${tag}.`}>
+  <section class="py-6 sm:py-12">
+    <div class="max-w-3xl">
+      <a class="text-sm font-medium text-slate-600 transition hover:text-blue-700" href="/blog">&larr; All posts</a>
+      <h1 class="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">Tag: {tag}</h1>
+      <p class="mt-4 text-lg text-slate-600">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
+    </div>
+
+    <ul class="mt-12 max-w-3xl divide-y divide-slate-200 border-t border-slate-200">
+      {posts.map((post) => (
+        <li class="py-8 first:pt-0">
+          <article>
+            <time class="text-sm text-slate-500" datetime={post.data.publishDate.toISOString()}>
+              {post.data.publishDate.toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </time>
+            <h2 class="mt-2 text-2xl font-semibold tracking-tight">
+              <a class="outline-none transition hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4" href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </h2>
+            <p class="mt-2 text-slate-600">{post.data.description}</p>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

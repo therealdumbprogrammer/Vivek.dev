@@ -4,27 +4,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const playlists = [
   {
     id: 'PLpxcSt9FGVVGN-R6obf6ICr5m4SbvwgOo',
-    label: 'YouTube playlist 1',
+    label: 'Hands-on Kubernetes with Spring Boot',
     url: 'https://www.youtube.com/playlist?list=PLpxcSt9FGVVGN-R6obf6ICr5m4SbvwgOo',
   },
   {
     id: 'PLpxcSt9FGVVFaGNMP2t4egMom6ziSejah',
-    label: 'YouTube playlist 2',
+    label: 'Master Spring / Spring Boot',
     url: 'https://www.youtube.com/playlist?list=PLpxcSt9FGVVFaGNMP2t4egMom6ziSejah',
   },
 ];
 ---
 
 <BaseLayout title="Vivek.dev — Engineering Notes">
-  <section class="max-w-3xl py-6 sm:py-12">
-    <p class="mb-5 text-sm font-semibold tracking-wide text-blue-700 uppercase">Engineering Notes</p>
-    <h1 class="max-w-2xl text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">Java Engineer. Problem Solver.</h1>
-    <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl sm:leading-9">
-      Software engineer with 15+ years of experience building Java applications and cloud-native systems. I write about Spring Boot, Kubernetes, JVM internals, and software architecture.
-    </p>
-    <div class="mt-10 flex flex-wrap gap-3">
-      <a class="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" href="https://www.youtube.com/@the_codealchemist" target="_blank" rel="noopener noreferrer">Visit my channel</a>
-      <a class="rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" href="/blog">Read Articles</a>
+  <section class="relative -mx-5 overflow-hidden px-5 py-6 sm:-mx-8 sm:px-8 sm:py-12">
+    <div class="bg-dot-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div class="relative max-w-3xl">
+      <div class="mb-8 flex items-center gap-4">
+        <img src="/avatar.svg" alt="" class="h-14 w-14 rounded-full" width="56" height="56" />
+        <p class="text-sm font-medium text-slate-600">Hi, I'm Vivek</p>
+      </div>
+      <h1 class="max-w-2xl text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">I build Java & cloud-native systems.</h1>
+      <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl sm:leading-9">
+        Software engineer with 15+ years of experience. I write about Spring Boot, Kubernetes, JVM internals, and software architecture.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a class="rounded-md bg-blue-700 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-blue-800 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" href="https://www.youtube.com/@the_codealchemist" target="_blank" rel="noopener noreferrer">Visit my channel</a>
+        <a class="rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2" href="/blog">Read Articles</a>
+      </div>
     </div>
   </section>
 

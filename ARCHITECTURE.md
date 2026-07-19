@@ -10,11 +10,11 @@ Astro’s file-based routing maps files in `src/pages/` to static routes. This k
 
 ## Styling
 
-Tailwind CSS is connected through its official Vite plugin. Styles live in one global entry point and are expressed next to the markup they affect, avoiding a custom design-system layer until the site needs one. The visual language uses neutral surfaces, slate text, and one blue accent; responsive utility variants keep the same layout readable from small screens through desktop. Space Grotesk is bundled locally for headings, while body copy uses the system font stack for reading comfort and no third-party font request.
+Tailwind CSS is connected through its official Vite plugin. Styles live in one global entry point and are expressed next to the markup they affect, avoiding a custom design-system layer until the site needs one. The visual language uses neutral surfaces, slate text, and one blue accent; responsive utility variants keep the same layout readable from small screens through desktop. Space Grotesk is bundled locally for headings, while body copy uses the system font stack for reading comfort and no third-party font request. A reusable `.prose` layer in `global.css` styles rendered Markdown (headings, code blocks, blockquotes, lists, images) for blog posts. A `.bg-dot-grid` utility provides a masked, radial-gradient dot pattern used behind the homepage hero only, fading toward the edges so it reads as texture rather than a decorative background.
 
 ## Content
 
-Blog posts live in `src/content/blog/` as Markdown. Astro Content Collections validate each post’s frontmatter at build time and expose typed data to the index and post routes. Public routes and the blog index exclude entries marked as drafts, allowing unfinished posts to stay versioned without publishing them.
+Blog posts live in `src/content/blog/` as Markdown, migrated from the author's Medium export. Astro Content Collections validate each post's frontmatter (`title`, `description`, `publishDate`, `tags`, `draft`) at build time and expose typed data to the index and post routes. Public routes and the blog index exclude entries marked as drafts, allowing unfinished posts to stay versioned without publishing them. Each post's tags render as links to `/blog/tags/[tag]/`, a statically generated page (`src/pages/blog/tags/[tag].astro`) listing every published post under that tag. Reading time is estimated from word count at render time rather than stored.
 
 ## SEO and discoverability
 

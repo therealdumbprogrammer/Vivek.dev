@@ -17,23 +17,39 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const words = post.body?.split(/\s+/).length ?? 0;
+const readingTime = Math.max(1, Math.ceil(words / 230));
 ---
 
 <BaseLayout title={`${post.data.title} — Vivek.dev`} description={post.data.description}>
   <article class="mx-auto max-w-3xl py-6 sm:py-12">
-    <a class="text-sm font-medium text-slate-600 outline-none transition hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4" href="/blog">← Back to blog</a>
+    <a class="text-sm font-medium text-slate-600 outline-none transition hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4" href="/blog">&larr; Back to blog</a>
     <header class="mt-10">
-      <time class="text-sm text-slate-500" datetime={post.data.publishDate.toISOString()}>
-        {post.data.publishDate.toLocaleDateString('en-US', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        })}
-      </time>
+      <div class="flex items-center gap-3 text-sm text-slate-500">
+        <time datetime={post.data.publishDate.toISOString()}>
+          {post.data.publishDate.toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          })}
+        </time>
+        <span aria-hidden="true">&middot;</span>
+        <span>{readingTime} min read</span>
+      </div>
       <h1 class="mt-4 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">{post.data.title}</h1>
       <p class="mt-5 text-lg leading-8 text-slate-600">{post.data.description}</p>
+      {post.data.tags.length > 0 && (
+        <ul class="mt-5 flex flex-wrap gap-2" aria-label="Tags">
+          {post.data.tags.map((tag: string) => (
+            <li>
+              <a class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 transition hover:bg-blue-100 hover:text-blue-800" href={`/blog/tags/${tag}/`}>{tag}</a>
+            </li>
+          ))}
+        </ul>
+      )}
     </header>
-    <div class="mt-12 text-lg leading-8 text-slate-700 [&_p]:mt-6 [&_p:first-child]:mt-0 [&_a]:font-medium [&_a]:text-blue-700 [&_a]:underline [&_a]:underline-offset-4">
+    <div class="prose mt-12">
       <Content />
     </div>
   </article>
