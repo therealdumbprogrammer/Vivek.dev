@@ -61,7 +61,7 @@ Run `npm install`, then `npm run dev`. Use `npm run check` for Astro and TypeScr
 
 - Build command: `npm run build`
 - Output directory: `dist`
-- Production URL: pending user deployment
+- Production URL: https://vivek-dev.therealdumbprogrammer.workers.dev
 - Full setup instructions: `DEPLOYMENT.md`
 - GitHub repository: `https://github.com/therealdumbprogrammer/Vivek.dev`
 - Initial commit: `129d0aa` (`Initial portfolio and blog site`) on `main`, pushed to `origin/main`

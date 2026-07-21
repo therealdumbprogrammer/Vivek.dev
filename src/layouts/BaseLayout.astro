@@ -21,6 +21,9 @@ const jsonLd = JSON.stringify({
   url: Astro.site?.href,
   description,
 }).replace(/</g, '\\u003c');
+
+const googleAnalyticsId = 'G-TKMYBCXRWW';
+const isProduction = import.meta.env.PROD;
 ---
 
 <!doctype html>
@@ -45,6 +48,19 @@ const jsonLd = JSON.stringify({
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL('/og-image.svg', Astro.site)} />
     <script type="application/ld+json" is:inline set:html={jsonLd}></script>
+    {
+      isProduction && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
+          <script is:inline define:vars={{ googleAnalyticsId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { window.dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', googleAnalyticsId);
+          </script>
+        </>
+      )
+    }
     <title>{title}</title>
   </head>
   <body class="flex min-h-screen flex-col bg-stone-50 text-slate-900 antialiased">
