@@ -65,3 +65,21 @@ Run `npm install`, then `npm run dev`. Use `npm run check` for Astro and TypeScr
 - Full setup instructions: `DEPLOYMENT.md`
 - GitHub repository: `https://github.com/therealdumbprogrammer/Vivek.dev`
 - Initial commit: `129d0aa` (`Initial portfolio and blog site`) on `main`, pushed to `origin/main`
+
+## Learning UI experiment — 2026-09-06
+
+- Goal: validate a Learning section inside the personal blog, with a card-based hub and a persistent course contents sidebar inspired by fanout.sh, backend-from-first-principle.vercel.app, and the local Thinking in English handbook.
+- Branch: `feature/learning-ui-experiment`. Local UI review only; no deployment.
+- Scope: `/courses`, three sample track overviews (Course / Path / Collection), and seven short sample lessons. Shared sidebar, breadcrumbs, desktop on-page TOC, and previous/next navigation.
+- Decisions: reuse Astro static routes, Tailwind utilities, existing typography/colors and BaseLayout. Small typed local data file; no CMS, accounts, completion tracking, or backend. Sidebar is sticky on desktop and collapsible on mobile; active lesson is marked on every page. Keep existing uppercase CONTEXT.md rather than create a duplicate context.md.
+- Next: review desktop/mobile reading flow locally, settle naming and density, then replace samples with reviewed Markdown/content collections. Decide publishing/indexing behavior before shipping dummy routes.
+- Local review: `npm run dev -- --host 127.0.0.1`; start at `/courses` and `/courses/jvm/runtime`.
+- Verification: Astro check returned 0 errors/warnings/hints; production build passed (64 pages). All 11 learning routes return HTTP 200; internal learning links and TOC targets resolve. Browser checked hub → overview → lesson → next, TOC anchor, desktop layout and mobile contents collapse with no horizontal overflow. Dev server left running at http://127.0.0.1:4321.
+
+- Visual iteration: learning hub now uses blue (JVM), green (Kubernetes), and warm amber (agents) cards with original stacked-card SVG illustrations and topic icons. Retains the existing fonts; no icon package or external image dependency.
+
+- Visual direction revised after review: replace reference-like stacked cards with white editorial cards and original runtime pipeline, cluster topology, and agent decision-loop diagrams. Shared muted blue/teal/clay track accents carry into overview headers, active sidebar entries, lesson labels and callouts; body text and reading backgrounds stay neutral.
+
+- Homepage discovery: added a Learning section between the introduction and featured playlists, with an Explore learning button and compact links to all three sample tracks using shared track data/colors.
+
+- Homepage prominence pass: Learning now shares the hero with the personal introduction on desktop, using a navy panel and saturated blue/teal/apricot track links. Explore learning is the primary hero action (also visible before the panel on mobile). Reader page palettes stay restrained.

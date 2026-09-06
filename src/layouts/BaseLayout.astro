@@ -6,9 +6,11 @@ import Header from '../components/Header.astro';
 interface Props {
   title?: string;
   description?: string;
+  wide?: boolean;
 }
 
 const {
+  wide = false,
   title = 'Vivek.dev',
   description = 'Software engineer with 15+ years of experience building Java applications and cloud-native systems.',
 } = Astro.props;
@@ -65,7 +67,7 @@ const isProduction = import.meta.env.PROD;
   </head>
   <body class="flex min-h-screen flex-col bg-stone-50 text-slate-900 antialiased">
     <Header />
-    <main class="mx-auto w-full max-w-6xl flex-1 px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
+    <main class:list={["mx-auto w-full flex-1 px-5 sm:px-8", wide ? "max-w-[1440px] py-8 lg:py-10" : "max-w-6xl py-12 sm:py-16 lg:py-20"]}>
       <slot />
     </main>
     <Footer />
