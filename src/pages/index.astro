@@ -1,6 +1,7 @@
 ---
 import '../styles/learning.css';
-import { tracks } from '../data/learning';
+import { getTracks } from '../data/learning';
+const tracks = await getTracks();
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const playlists = [
@@ -24,10 +25,10 @@ const playlists = [
         <img src="/avatar.svg" alt="" class="h-11 w-11 rounded-full" width="44" height="44" />
         <p class="text-sm font-medium text-slate-600">Hi, I'm Vivek</p>
       </div>
-      <h1 class="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">I build Java & cloud-native systems.</h1>
+      <h1 class="text-4xl font-semibold text-balance sm:text-5xl lg:text-6xl">I build Java & cloud-native systems.</h1>
       <p class="mt-5 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">15+ years building software. Sharing what I learn about Java, Kubernetes, and the systems underneath.</p>
       <div class="mt-6 flex flex-wrap items-center gap-4">
-        <a class="hero-cta rounded-lg bg-blue-700 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700" href="/courses">Explore learning <span aria-hidden="true">↗</span></a>
+        <a class="hero-cta rounded-lg bg-[#d65c3c] px-5 py-3 text-sm font-semibold text-white hover:bg-[#b9472e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d65c3c]" href="/courses">Explore learning <span aria-hidden="true">↗</span></a>
         <a class="text-sm font-medium text-slate-600 underline underline-offset-4 hover:text-blue-700" href="/blog">Read articles</a>
         <a class="text-sm font-medium text-slate-600 underline underline-offset-4 hover:text-blue-700" href="https://www.youtube.com/@the_codealchemist" target="_blank" rel="noopener noreferrer">Watch videos</a>
       </div>
@@ -35,7 +36,7 @@ const playlists = [
     <section aria-labelledby="learning-title" class="learning-feature rounded-2xl p-6 sm:p-7">
       <div class="flex items-center justify-between gap-3"><p class="text-xs font-semibold uppercase tracking-[.18em] text-cyan-300">Learning</p><span class="rounded-full border border-white/20 px-2.5 py-1 text-[10px] font-medium text-slate-300">EARLY PREVIEW</span></div>
       <h2 id="learning-title" class="mt-4 text-3xl font-semibold tracking-tight text-white">Understand what’s underneath.</h2>
-      <p class="mt-3 text-sm leading-6 text-slate-300">Pick a topic. Connect the dots. Go deeper.</p>
+      <p class="mt-3 text-sm leading-6 text-slate-300">Start with the JVM. Connect the dots. Go deeper.</p>
       <div class="mt-6 grid gap-3">
         {tracks.map((track,i) => <a href={`/courses/${track.slug}`} class:list={['learning-preview flex items-center gap-4 rounded-xl p-4 transition focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white', `feature-${track.slug}`]}>
           <span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white/15 font-mono text-lg" aria-hidden="true">{['{ }','⬡','↗'][i]}</span>
@@ -44,7 +45,7 @@ const playlists = [
         </a>)}
       </div>
       <a href="/courses" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Browse all learning <span aria-hidden="true">→</span></a>
-      <p class="mt-2 text-xs text-slate-400">Short sample lessons to explore.</p>
+      <p class="mt-2 text-xs text-slate-400">A growing course, available as it takes shape.</p>
     </section>
   </div>
 
@@ -79,7 +80,7 @@ const playlists = [
 </BaseLayout>
 
 <style>
-  .learning-feature { background: #101e36; box-shadow: 0 20px 48px -24px #183e70; }
+  .learning-feature { background: linear-gradient(145deg, #17243c, #274e8b); box-shadow: 0 24px 52px -26px #17243c; }
   .feature-jvm { background: #2458cb; color: white; }
   .feature-kubernetes { background: #08796d; color: white; }
   .feature-agentic-systems { background: #f3a858; color: #38220e; }

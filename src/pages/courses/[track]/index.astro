@@ -1,17 +1,17 @@
 ---
 import LearningLayout from '../../../layouts/LearningLayout.astro';
-import { tracks, lessonUrl } from '../../../data/learning';
-export function getStaticPaths() { return tracks.map(track => ({ params: { track: track.slug }, props: { track } })); }
+import { getTracks, trackCount, lessonUrl } from '../../../data/learning';
+export async function getStaticPaths() { return (await getTracks()).map(track => ({ params: { track: track.slug }, props: { track } })); }
 const { track } = Astro.props;
 ---
 <LearningLayout track={track} title={track.title} toc={[{id:'about',title:'About this track'},{id:'lessons',title:'The learning map'}]}>
   <div class="course-intro">
-  <p class="track-label text-sm font-semibold uppercase tracking-wide">{track.type} · {track.lessons.length} sample lessons</p>
+  <p class="track-label text-sm font-semibold uppercase tracking-wide">{track.type} · {trackCount(track)}</p>
   <h1 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">{track.title}</h1>
   <p class="mt-6 text-lg leading-8 text-slate-600">{track.description}</p>
   <a class="course-start mt-8 inline-flex rounded-md px-5 py-3 text-sm font-medium text-white hover:bg-blue-800" href={lessonUrl(track.slug,track.lessons[0].slug)}>Start exploring →</a>
   </div>
   <div class="prose"><h2 id="about">About this track</h2><p>This is a small preview of a connected learning experience. Use the contents to move between ideas without losing sight of the bigger picture. {track.note}.</p></div>
   <h2 id="lessons" class="mt-10 text-2xl font-semibold">The learning map</h2>
-  <div class="mt-5 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">{track.lessons.map((lesson,i) => <a href={lessonUrl(track.slug,lesson.slug)} class="lesson-row flex items-start gap-4 p-5"><span class="lesson-number shrink-0 font-mono text-xs">0{i+1}</span><div><p class="text-xs text-slate-500">{lesson.group}</p><h3 class="mt-1 font-semibold">{lesson.title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{lesson.summary}</p></div><span aria-hidden="true" class="ml-auto text-blue-700">→</span></a>)}</div>
+  <div class="mt-5 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">{track.lessons.map((lesson,i) => <a href={lessonUrl(track.slug,lesson.slug)} class="lesson-row flex items-start gap-4 p-5"><span class="lesson-number shrink-0 font-mono text-xs">0{i+1}</span><div><p class="text-xs text-slate-500">{lesson.group}</p><h3 class="mt-1 font-semibold">{lesson.title}{lesson.draft && <span class="ml-2 text-xs text-blue-700">Draft</span>}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{lesson.summary}</p></div><span aria-hidden="true" class="ml-auto text-blue-700">→</span></a>)}</div>
 </LearningLayout>

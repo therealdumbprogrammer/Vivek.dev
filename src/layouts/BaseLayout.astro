@@ -65,7 +65,7 @@ const isProduction = import.meta.env.PROD;
     }
     <title>{title}</title>
   </head>
-  <body class="flex min-h-screen flex-col bg-stone-50 text-slate-900 antialiased">
+  <body class="flex min-h-screen flex-col text-slate-900 antialiased">
     <Header />
     <main class:list={["mx-auto w-full flex-1 px-5 sm:px-8", wide ? "max-w-[1440px] py-8 lg:py-10" : "max-w-6xl py-12 sm:py-16 lg:py-20"]}>
       <slot />

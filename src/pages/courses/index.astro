@@ -2,22 +2,23 @@
 import '../../styles/learning.css';
 import TrackArtwork from '../../components/TrackArtwork.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { tracks } from '../../data/learning';
+import { getTracks, trackCount } from '../../data/learning';
+const tracks = await getTracks();
 ---
 <BaseLayout title="Learning — Vivek.dev" description="Courses, paths, and collections for curious engineers.">
   <section>
     <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">Learning / The engineering shelf</p>
     <h1 class="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">Go deeper, one idea at a time.</h1>
-    <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">Connected notes for understanding the systems we build. Pick a course, follow a path, or explore a collection at your own pace.</p>
-    <p class="mt-6 inline-block rounded-md border border-blue-100 bg-blue-50 px-3 py-2 text-sm text-blue-800">UI preview · All tracks use short sample content.</p>
-    <div class="mt-12 grid gap-6 md:grid-cols-3">
+    <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">A growing course for understanding the JVM from the inside out, one connected idea at a time.</p>
+    <p class="mt-6 inline-block rounded-md border border-blue-100 bg-blue-50 px-3 py-2 text-sm text-blue-800">Early preview · Includes local drafts and planned lessons.</p>
+    <div class:list={['mt-12 grid gap-6', tracks.length === 1 ? 'max-w-xl' : 'md:grid-cols-3']}>
       {tracks.map((track, i) => <a href={`/courses/${track.slug}`} class:list={['track-card group flex flex-col overflow-hidden rounded-xl border p-6 transition focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700', `track-${track.slug}`]}>
         <div class="flex items-center justify-between text-xs font-medium uppercase tracking-wider"><span class="type-badge rounded-md px-2.5 py-1.5">{track.type}</span><span class="opacity-60 font-mono">0{i + 1}</span></div>
         
         <h2 class="mt-6 text-2xl font-semibold tracking-tight">{track.title}</h2>
         <p class="mt-4 flex-1 text-sm leading-7 opacity-90">{track.description}</p>
         <div class="diagram my-6 rounded-lg px-3 py-2"><TrackArtwork track={track.slug} /></div>
-        <p class="text-xs font-medium">{track.lessons.length} sample lessons</p>
+        <p class="text-xs font-medium">{trackCount(track)}</p>
         <p class="mt-2 text-xs opacity-75">{track.note}</p>
         <span class="card-footer mt-6 flex items-center justify-between border-t pt-5 text-sm font-semibold">Explore {track.type.toLowerCase()} <span aria-hidden="true" class="text-xl">→</span></span>
       </a>)}

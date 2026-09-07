@@ -83,3 +83,37 @@ Run `npm install`, then `npm run dev`. Use `npm run check` for Astro and TypeScr
 - Homepage discovery: added a Learning section between the introduction and featured playlists, with an Explore learning button and compact links to all three sample tracks using shared track data/colors.
 
 - Homepage prominence pass: Learning now shares the hero with the personal introduction on desktop, using a navy panel and saturated blue/teal/apricot track links. Explore learning is the primary hero action (also visible before the panel on mobile). Reader page palettes stay restrained.
+
+## Daily JVM Byte pipeline — first lesson, 2026-09-06
+
+- Byte #1 now replaces the runtime sample at `/courses/jvm/runtime`, under Foundations. The original is preserved verbatim in `sources/daily-jvm/byte-001.md`; the authored draft lives in `src/content/lessons/jvm/runtime.md`.
+- Added a typed `lessons` Markdown collection. Shared `getTracks()` merges authored entries with remaining samples; one visibility rule controls routes, counts, sidebar and previous/next links. Drafts are visible in development and excluded from production, including the old sample route they replace.
+- Lesson tone follows the dedicated ai-toolkit course writing profile. Two original SVG diagrams explain runtime responsibilities and the route to compiled execution; full-size links support phone reading. Primary sources distinguish JVM specification guarantees from HotSpot behavior.
+- The example was compiled, disassembled and run on OpenJDK 25.0.2 with a bounded heap. Source, actual compilation output and editorial review notes are retained under `sources/daily-jvm/byte-001/`.
+- Verification: Astro check has zero errors/warnings/hints; build succeeds (63 production pages). All 11 local learning routes and lesson anchors resolve; draft route and links are absent from production HTML/sitemap. Desktop/mobile inspected, with no mobile page overflow.
+- Next: review the lesson prose, depth and diagrams locally. Keep `draft: true` until publication is explicitly approved. Remaining JVM lessons are samples. Continue one source byte at a time using the same skill and source ID conventions; commit/push only after review.
+
+## Introductory lesson revision — 2026-09-07
+
+- User feedback: first draft was too technical and lacked an introductory purpose; teach conversationally and begin with the JVM at a high level.
+- Rewrote byte-001 at the same URL around what a JVM does and its four main responsibilities. Kept the original short method to connect the parts; deferred diagnostic detail. Replaced both SVGs with larger, colored illustrations and added a revealable understanding check.
+- Keep this editorial direction provisional until review. Source byte and prior execution evidence are preserved. Draft remains local-only on the existing feature branch. Next: review this version for voice, depth and visual usefulness before committing.
+
+Revision verification: Astro check and production build pass; 11 local course routes and anchors checked; draft absent from production navigation/output; original byte unchanged. Desktop and 390px mobile inspected, both SVGs load without page overflow, and the answer disclosure responds to Space with a visible keyboard focus indicator.
+
+## Editorial visual experiment — 2026-09-07
+
+- Replaced the understated system/Space Grotesk direction with Fraunces display headings, DM Sans body copy, and JetBrains Mono code. This is a deliberate local review experiment; it gives the blog and course material a warmer editorial voice while retaining legible technical code.
+- Added a warm paper background, subtle blue and peach atmosphere, a coral primary action, and stronger navy-to-blue Learning feature panel. The blog index now has an editorial label, warm topic panel, coral dates, and hover markers for posts.
+- Verified the homepage, blog index, and JVM lesson locally. `npm run check` and `npm run build` pass. Keep the server running for review; decide whether this visual direction should be retained before cleaning the previous unused font dependencies.
+
+## Learning scope locked — 2026-09-07
+
+- Only the JVM course is visible during this phase. Kubernetes and agentic-system samples remain in local data as hidden future experiments and do not generate cards or routes.
+- The JVM course contains the authored introduction and a single “Heap and native memory” placeholder. Removed the Native Memory Tracking sample and its Diagnostics section until real source material is processed.
+- Placeholder pages contain only a clear planned-lesson state; they do not present generated sample teaching content as course material.
+
+## First lesson accepted — 2026-09-07
+
+- “What the JVM actually is” is no longer a draft. It is included in production routes, course counts, navigation, and the sitemap.
+- The accepted course currently contains this published introduction and one explicit memory placeholder. This records content visibility only; no site deployment was performed.
