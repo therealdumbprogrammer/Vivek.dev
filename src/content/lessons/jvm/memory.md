@@ -6,7 +6,7 @@ lessonSlug: memory
 module: Foundations
 order: 20
 sourceByte: byte-002
-draft: true
+draft: false
 prerequisites: [runtime]
 jdk: HotSpot · JDK 25 reference
 ---

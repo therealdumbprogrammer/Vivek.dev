@@ -147,7 +147,7 @@ Here's a useful consequence of this bigger picture. Suppose you set a maximum Ja
 
 In production, start with three questions: **Memory? Execution? Runtime coordination?** Unexpected process growth points you toward memory; high CPU usage could involve application code, compilation, or GC; a slow request might be waiting for a lock or runtime coordination. These are starting categories, not diagnoses, and they can overlap. Use evidence to work out which systems are involved before changing a setting.
 
-The next topic is JVM process memory: where the heap fits alongside stacks, class metadata, compiled code, and native allocations.
+The next [lesson on JVM process memory](/courses/jvm/memory) explains where the heap fits alongside stacks, class metadata, compiled code, and native allocations.
 
 <details class="lesson-sources">
 <summary>Sources and further reading</summary>

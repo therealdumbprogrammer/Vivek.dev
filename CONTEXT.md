@@ -136,3 +136,8 @@ Revision verification: Astro check and production build pass; 11 local course ro
 - Preserved pre-existing uncommitted Lesson 1 refinements. Branch remains `feature/learning-ui-experiment`; no commit, push or deployment. Next: editorial review of Lesson 2, then supply the object-layout byte.
 
 - Verification: final Astro check has zero errors/warnings/hints; production build passes (57 pages); memory draft URL absent from all production HTML/XML. Desktop/390px mobile inspected; diagram, anchors, keyboard check, overview/sidebar and runtime → memory → object-layout navigation work without page overflow. NMT summary/baseline/summary.diff and direct-buffer allocation validated on a bounded OpenJDK 25.0.2 process; source and actual output saved with byte-002 review notes. Container budget is illustrative, not a reproduced OOM. Preview remains at http://127.0.0.1:4321/courses/jvm/memory.
+
+## Lesson 2 accepted — 2026-09-08
+
+- User reviewed and accepted JVM Lesson 2. Set memory.md to `draft: false`; it now participates in production routes, counts, sidebar, previous/next navigation and sitemap. Restored Lesson 1’s direct prose link to Lesson 2.
+- This supersedes the local-draft status above. Object-layout remains an explicit planned preview.
