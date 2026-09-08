@@ -1,9 +1,12 @@
-@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/jetbrains-mono";
 @import "tailwindcss";
 
 @theme {
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @layer base {
@@ -12,13 +15,18 @@
   }
 
   body {
-    background: #fafaf9;
+    background-color: #fffaf5;
+    background-image: radial-gradient(circle at 88% -10%, #ffe5d2 0, transparent 26rem), radial-gradient(circle at -8% 36%, #e6f1ff 0, transparent 24rem);
+    font-family: var(--font-sans);
   }
 
   h1,
   h2,
   h3 {
     font-family: var(--font-display);
+    font-variation-settings: "opsz" 72, "SOFT" 25, "WONK" 1;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
   }
 
   ::selection {

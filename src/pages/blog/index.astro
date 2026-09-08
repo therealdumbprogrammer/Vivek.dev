@@ -19,14 +19,14 @@ const tags = [...tagCounts.entries()].sort(([firstTag], [secondTag]) => firstTag
 <BaseLayout title="Blog — Vivek.dev" description="Engineering notes from Vivek.dev.">
   <section class="py-6 sm:py-12">
     <div class="max-w-3xl">
-      <p class="text-sm font-semibold tracking-wide text-blue-700 uppercase">Writing</p>
-      <h1 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Blog</h1>
+      <p class="inline-flex rounded-full bg-[#ffe4d4] px-3 py-1 text-xs font-semibold tracking-wide text-[#9a3b24] uppercase">Writing</p>
+      <h1 class="mt-5 text-4xl font-semibold sm:text-5xl">Blog</h1>
       <p class="mt-5 text-lg leading-8 text-slate-600">Notes, ideas, and work in progress.</p>
     </div>
 
     <div class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start">
       {tags.length > 0 && (
-        <aside class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm lg:sticky lg:top-6 lg:order-2" aria-labelledby="topics-heading">
+        <aside class="rounded-xl border border-[#eadfd1] bg-[#fffdf9] p-5 shadow-sm lg:sticky lg:top-6 lg:order-2" aria-labelledby="topics-heading">
           <h2 id="topics-heading" class="text-sm font-semibold tracking-wide text-slate-900 uppercase">Browse by topic</h2>
           <ul class="mt-4 space-y-1.5">
             {tags.map(([tag, count]) => (
@@ -43,17 +43,17 @@ const tags = [...tagCounts.entries()].sort(([firstTag], [secondTag]) => firstTag
 
       <ul class="divide-y divide-slate-200 border-t border-slate-200 lg:order-1">
         {posts.map((post) => (
-          <li class="py-8 first:pt-0">
+          <li class="group border-l-2 border-transparent py-8 pl-4 transition hover:border-[#d65c3c] first:pt-0">
             <article>
-              <time class="text-sm text-slate-500" datetime={post.data.publishDate.toISOString()}>
+              <time class="text-sm font-medium text-[#a24a31]" datetime={post.data.publishDate.toISOString()}>
                 {post.data.publishDate.toLocaleDateString('en-US', {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric',
                 })}
               </time>
-              <h2 class="mt-2 text-2xl font-semibold tracking-tight">
-                <a class="outline-none transition hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4" href={`/blog/${post.id}/`}>{post.data.title}</a>
+              <h2 class="mt-2 text-2xl font-semibold">
+                <a class="outline-none transition hover:text-[#b9472e] focus-visible:ring-2 focus-visible:ring-[#d65c3c] focus-visible:ring-offset-4" href={`/blog/${post.id}/`}>{post.data.title}</a>
               </h2>
               <p class="mt-2 text-slate-600">{post.data.description}</p>
               {post.data.tags.length > 0 && (

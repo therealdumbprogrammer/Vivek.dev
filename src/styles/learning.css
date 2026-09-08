@@ -1,0 +1,11 @@
+/* Shared track accents; reading surfaces remain neutral. */
+.track-jvm { --accent: #315e9b; --tint: #edf3fb; --edge: #ceddf0; }
+.track-kubernetes { --accent: #247363; --tint: #edf7f3; --edge: #cbe4dc; }
+.track-agentic-systems { --accent: #87532e; --tint: #fbf3eb; --edge: #eddbc9; }
+.learning-grid .track-label { color: var(--accent); }
+.learning-grid .course-intro { border-top: 3px solid var(--accent); background: var(--tint); border-radius: 0 0 12px 12px; padding: 1.5rem; }
+.learning-grid .course-start { background: var(--accent); }
+.learning-grid .course-start:hover { filter: brightness(.9); }
+.learning-grid .lesson-callout { background: var(--tint); border-color: var(--accent); color: #334155; }
+.learning-grid .lesson-row:hover { background: var(--tint); }
+.learning-grid .lesson-number { color: var(--accent); background: var(--tint); border-radius: 50%; min-width: 2rem; height: 2rem; display: grid; place-items: center; }
