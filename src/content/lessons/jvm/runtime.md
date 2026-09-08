@@ -61,13 +61,28 @@ Once a method is ready to run, its instructions need to become actual work on th
 
 Here's the interesting part: HotSpot can observe the program while it runs and use those observations to guide optimization. A method may be interpreted earlier and use compiled code later. The program's behavior must stay correct, but the way HotSpot carries out the work can change.
 
-For now, keep that one idea in mind: **execution can change while the application runs**. We'll explore the decisions behind that change when we reach JIT compilation.
+The key idea is that **execution can change while the application runs**. A simplified journey looks like this:
+
+```text
+Bytecode → interpreter
+    ↓
+Runtime profiling
+  • invocation counts
+  • branch behavior
+  • receiver types at method calls
+    ↓
+Hot method → JIT compilation
+    ↓
+Native machine code
+```
+
+Those observations help HotSpot decide what to compile and how to optimize it. This isn't a required path for every method: with tiered compilation, compiled code can also collect profiles for further optimization. We'll explore those decisions when we reach JIT compilation.
 
 ### 3. Runtime memory gives everything a place to live
 
 It's easy to hear “Java memory” and think only of the heap. But an application needs space for more than its objects.
 
-Suppose your code creates a `Customer`. The object belongs to the Java heap in the JVM's memory model. The running method also needs space to keep track of its work. HotSpot needs information describing the `Customer` class, and it needs somewhere to keep any machine code the JIT produces.
+Suppose your code creates a `Customer`. Conceptually, Java objects live on the heap; HotSpot may optimize some allocations away. We'll return to that distinction when we meet escape analysis and scalar replacement. The running method also needs space to keep track of its work. HotSpot needs information describing the `Customer` class, and it needs somewhere to keep any machine code the JIT produces.
 
 These names describe the main places you'll encounter:
 
@@ -107,6 +122,20 @@ Meanwhile, runtime services continue doing their jobs for the application as a w
 
 That's why describing the JVM as a bytecode interpreter leaves so much out. Interpretation is one way it executes code. The JVM also supplies the memory and services around that execution.
 
+### Three systems to keep in mind
+
+You can now group the runtime into three connected systems:
+
+```text
+             Memory
+                │
+Execution ──────┼──── Runtime Services
+```
+
+Execution does the work, memory holds its code and data, and runtime services coordinate and manage it. Class loading brings new code and metadata into this running system.
+
+For example, imagine a compiled method working with a `Customer` object. Its machine code lives in the code cache, while the object lives on the heap. When GC needs to inspect the thread's references, runtime coordination provides a safe state to do so, using safepoints where required. The JIT supplies maps of object-reference locations in compiled frames and registers, so GC can find objects the method still needs. Compiling a method doesn't disconnect it from memory management.
+
 ## Use the map before reaching for a setting
 
 Here's a useful consequence of this bigger picture. Suppose you set a maximum Java heap of 512 MB, but your application's process uses more memory than that. Has the JVM ignored your setting?
@@ -116,18 +145,19 @@ Here's a useful consequence of this bigger picture. Suppose you set a maximum Ja
 <p>No. The heap is only one part of process memory. Thread stacks, Metaspace, the code cache, and other native allocations also need space. The <code>-Xmx</code> option limits the Java heap; it doesn't cap the whole process.</p>
 </details>
 
-The same habit helps with other performance questions. High CPU usage could involve application code, compilation, or garbage collection. A slow request might be waiting for a lock. The symptom gives you a starting point, but you still need evidence to identify the cause.
+In production, start with three questions: **Memory? Execution? Runtime coordination?** Unexpected process growth points you toward memory; high CPU usage could involve application code, compilation, or GC; a slow request might be waiting for a lock or runtime coordination. These are starting categories, not diagnoses, and they can overlap. Use evidence to work out which systems are involved before changing a setting.
 
-When you meet a new JVM topic, place it on this map: **how code executes, where data lives, or how the runtime manages the work**. Those three questions connect the parts we've just met. The next [memory lesson](/courses/jvm/memory), currently a preview, will zoom into where the memory goes.
+The next topic is JVM process memory: where the heap fits alongside stacks, class metadata, compiled code, and native allocations.
 
 <details class="lesson-sources">
 <summary>Sources and further reading</summary>
 <ul>
 <li><a href="https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-2.html">JVM specification: the abstract machine, class files, and runtime data areas</a></li>
 <li><a href="https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-5.html">JVM specification: loading, linking, and initialization</a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/25/vm/java-hotspot-virtual-machine-performance-enhancements.html">HotSpot: tiered compilation and the code cache</a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/25/vm/java-hotspot-virtual-machine-performance-enhancements.html">HotSpot: tiered compilation, code cache, and allocation elimination</a></li>
 <li><a href="https://docs.oracle.com/en/java/javase/25/gctuning/other-considerations.html">HotSpot: class metadata and native memory</a></li>
 <li><a href="https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html">Java launcher and heap size options</a></li>
 <li><a href="https://cr.openjdk.org/~redestad/slides/openjdk-scalability.pdf">OpenJDK: runtime coordination and thread-local handshakes</a></li>
+<li><a href="https://github.com/openjdk/jdk/blob/master/src/hotspot/share/compiler/oopMap.hpp">OpenJDK: object-reference maps for compiled code and GC</a></li>
 </ul>
 </details>

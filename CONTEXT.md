@@ -117,3 +117,22 @@ Revision verification: Astro check and production build pass; 11 local course ro
 
 - “What the JVM actually is” is no longer a draft. It is included in production routes, course counts, navigation, and the sitemap.
 - The accepted course currently contains this published introduction and one explicit memory placeholder. This records content visibility only; no site deployment was performed.
+
+## JVM Byte #1 technical refinement — 2026-09-08
+
+- Refined byte-001 in Foundations at `/courses/jvm/runtime` after review: retain the conversational introduction while restoring a concrete profiling/JIT journey and an explicit Execution / Memory / Runtime Services model.
+- Added one Customer example connecting compiled code, code cache, GC reference maps and safe runtime coordination. Qualified conceptual heap allocation to leave room for escape analysis/scalar replacement.
+- Closing flow now runs from putting the pieces together through the three-system model, the existing -Xmx reasoning check, and “Memory? Execution? Runtime coordination?” diagnosis prompts to the memory placeholder.
+- Kept accepted visibility, existing SVGs, source byte and course conventions. Changes remain uncommitted on `feature/learning-ui-experiment`; next step is local editorial review.
+- Verification: Astro check returned zero errors/warnings/hints; production build passed (57 pages). Local desktop and 390px mobile checks confirmed loaded images, valid anchors, no page/code-block horizontal overflow, and a working reasoning disclosure. An initial content-sync duplicate-ID warning did not recur on the final check; only one lesson source exists. Preview: http://127.0.0.1:4321/courses/jvm/runtime. No new executable example was added.
+
+
+## Daily JVM Byte #2 converted — 2026-09-08
+
+- Converted byte-002 into JVM Lesson 2, “JVM process memory — heap is only one part”, at `/courses/jvm/memory`, Foundations order 20. Source preserved in `sources/daily-jvm/byte-002.md`; review notes in `sources/daily-jvm/byte-002/review.md`.
+- Kept Lesson 1's course prose, figure/full-size link, source disclosure and reasoning-check conventions. Added an original editable process-memory SVG.
+- Accuracy decisions: heap is not process memory; -Xss/platform-thread reservation is not RSS; distinguish reserved/committed/resident; Metaspace follows loader lifecycle; Code Cache, direct buffers and HotSpot internals need native memory. GC manages heap lifetime, with related cleanup participation, not all native allocation. -Xmx does not cap RSS; container/cgroup accounting needs measured headroom. NMT is HotSpot-focused and incomplete for native allocations.
+- Shared metadata orders runtime → memory → object-layout preview locally. Memory remains draft and excluded from production paths/navigation. Removed the published runtime prose link to the now-draft route to avoid a broken production link. Object-layout preview uses its own summary, not memory-specific boilerplate.
+- Preserved pre-existing uncommitted Lesson 1 refinements. Branch remains `feature/learning-ui-experiment`; no commit, push or deployment. Next: editorial review of Lesson 2, then supply the object-layout byte.
+
+- Verification: final Astro check has zero errors/warnings/hints; production build passes (57 pages); memory draft URL absent from all production HTML/XML. Desktop/390px mobile inspected; diagram, anchors, keyboard check, overview/sidebar and runtime → memory → object-layout navigation work without page overflow. NMT summary/baseline/summary.diff and direct-buffer allocation validated on a bounded OpenJDK 25.0.2 process; source and actual output saved with byte-002 review notes. Container budget is illustrative, not a reproduced OOM. Preview remains at http://127.0.0.1:4321/courses/jvm/memory.

@@ -21,7 +21,7 @@ const toc = lesson.placeholder ? [] : rendered ? rendered.headings.filter(h => h
     <section class="mt-10 rounded-2xl border border-[#eadfd1] bg-[#fffdf9] p-7 sm:p-9">
       <p class="text-sm font-semibold uppercase tracking-wide text-[#a24a31]">Coming next</p>
       <h2 class="mt-3 text-2xl font-semibold text-slate-900">This lesson is being prepared.</h2>
-      <p class="mt-4 max-w-2xl leading-7 text-slate-600">It will build on the JVM overview and explain how heap memory fits alongside thread stacks, class metadata, compiled code, and other native allocations.</p>
+      <p class="mt-4 max-w-2xl leading-7 text-slate-600">{lesson.summary}</p>
     </section>
   ) : <article class="prose lesson-prose mt-8">
     {Content ? <Content /> : <>
