@@ -24,7 +24,7 @@ const groups = [...new Set(track.lessons.map(l => l.group))];
       <nav aria-label="Breadcrumb" class="mb-8 flex flex-wrap gap-2 text-xs leading-6 text-slate-500"><a href="/courses" class="hover:text-blue-700">Learning</a><span aria-hidden="true">/</span><a href={`/courses/${track.slug}`} class="hover:text-blue-700">{track.title}</a>{current && <><span aria-hidden="true">/</span><span aria-current="page">{title}</span></>}</nav>
       <slot />
     </div>
-    {toc.length > 0 && <nav aria-label="On this page" class="sticky top-6 hidden border-l border-slate-200 pl-5 text-xs xl:block"><p class="font-semibold uppercase tracking-wide text-slate-500">On this page</p><ul class="mt-4 space-y-4">{toc.map(item => <li><a class="text-slate-600 hover:text-blue-700" href={`#${item.id}`}>{item.title}</a></li>)}</ul></nav>}
+    {toc.length > 0 && <nav aria-label="On this page" data-page-toc class="sticky top-6 hidden border-l border-slate-200 pl-5 text-xs xl:block"><p class="font-semibold uppercase tracking-wide text-slate-500">On this page</p><ul class="mt-4 space-y-4">{toc.map(item => <li><a class="page-toc-link text-slate-600" href={`#${item.id}`}>{item.title}</a></li>)}</ul></nav>}
   </div>
 </BaseLayout>
 <style>
@@ -33,5 +33,63 @@ const groups = [...new Set(track.lessons.map(l => l.group))];
   aside > details { border-top: 3px solid var(--accent); }
   .active-lesson { color: var(--accent); background: var(--tint); box-shadow: inset 3px 0 var(--accent); }
   nav[aria-label="On this page"] { border-color: var(--edge); }
-  nav[aria-label="On this page"] a:hover { color: var(--accent); }
+  .page-toc-link { position: relative; display: block; line-height: 1.5; transition: color 150ms ease; }
+  .page-toc-link:hover { color: var(--accent); }
+  .page-toc-link[aria-current="location"] { color: var(--accent); font-weight: 600; }
+  .page-toc-link[aria-current="location"]::before { content: ""; position: absolute; top: 0.05rem; bottom: 0.05rem; left: calc(-1.25rem - 1px); width: 3px; border-radius: 999px; background: var(--accent); }
 </style>
+
+<script>
+  const setupPageToc = () => {
+    const nav = document.querySelector<HTMLElement>('[data-page-toc]');
+    if (!nav || nav.dataset.ready === 'true') return;
+
+    const items = Array.from(nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'))
+      .map(link => ({ link, heading: document.getElementById(decodeURIComponent(link.hash.slice(1))) }))
+      .filter((item): item is { link: HTMLAnchorElement; heading: HTMLElement } => Boolean(item.heading));
+
+    if (items.length === 0) return;
+    nav.dataset.ready = 'true';
+
+    let activeId = '';
+    let frame = 0;
+
+    const setActive = (id: string) => {
+      if (id === activeId) return;
+      activeId = id;
+      for (const item of items) {
+        if (item.heading.id === id) item.link.setAttribute('aria-current', 'location');
+        else item.link.removeAttribute('aria-current');
+      }
+    };
+
+    const updateActiveSection = () => {
+      frame = 0;
+      const readingLine = Math.min(180, window.innerHeight * 0.25);
+      let active = items[0];
+
+      for (const item of items) {
+        if (item.heading.getBoundingClientRect().top <= readingLine) active = item;
+        else break;
+      }
+
+      const atPageEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      setActive((atPageEnd ? items.at(-1) : active)?.heading.id ?? '');
+    };
+
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    for (const item of items) {
+      item.link.addEventListener('click', () => setActive(item.heading.id));
+    }
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    window.addEventListener('hashchange', requestUpdate);
+    updateActiveSection();
+  };
+
+  setupPageToc();
+  document.addEventListener('astro:page-load', setupPageToc);
+</script>
