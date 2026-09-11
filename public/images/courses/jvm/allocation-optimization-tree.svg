@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="560" viewBox="0 0 480 560" role="img" aria-labelledby="title desc">
+  <title id="title">Allocation optimization decision tree</title><desc id="desc">A source-level new may be scalar-replaced. If a real allocation remains, it uses a TLAB when suitable or outside-TLAB collector machinery, then joins heap and GC lifecycle.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="560" rx="24" fill="#f7f9fc"/><g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="24" y="36" font-size="20">FROM NEW TO RUNTIME COST</text><rect x="150" y="57" width="180" height="48" rx="9" fill="#fff" stroke="#315dcc"/><text x="180" y="87" font-size="16">new SomeObject()</text><path d="M240 106v31" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/>
+    <rect x="150" y="141" width="180" height="52" rx="9" fill="#e9efff" stroke="#315dcc"/><text x="178" y="173" font-size="16">JIT / escape analysis</text>
+    <path d="M201 194l-99 55" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><path d="M279 194l99 55" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><text x="92" y="224" font-size="13">can eliminate</text><text x="321" y="224" font-size="13">must allocate</text>
+    <rect x="24" y="253" width="180" height="72" rx="10" fill="#e8f4ee" stroke="#4c8c6b"/><text x="45" y="282" font-size="16">Scalar replacement</text><text x="53" y="307" font-size="14">values, no heap object</text>
+    <rect x="276" y="253" width="180" height="72" rx="10" fill="#fff" stroke="#315dcc"/><text x="310" y="282" font-size="16">Real allocation</text><text x="305" y="307" font-size="14">choose allocation path</text>
+    <path d="M338 326l-51 50" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><path d="M395 326l38 50" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/>
+    <rect x="217" y="381" width="130" height="62" rx="9" fill="#e9efff" stroke="#315dcc"/><text x="260" y="407" font-size="16">TLAB</text><text x="237" y="430" font-size="13">when suitable</text><rect x="359" y="381" width="97" height="62" rx="9" fill="#eef2f7" stroke="#315dcc"/><text x="374" y="407" font-size="13">outside</text><text x="374" y="427" font-size="13">TLAB</text>
+    <path d="M282 444l63 37" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><path d="M407 444l-38 37" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><rect x="250" y="485" width="206" height="48" rx="9" fill="#fff" stroke="#315dcc"/><text x="274" y="515" font-size="15">heap object → GC lifecycle</text>
+    <text x="24" y="360" font-size="14">No normal allocation path</text><text x="24" y="384" font-size="14">or GC pressure for this object.</text>
+  </g>
+</svg>

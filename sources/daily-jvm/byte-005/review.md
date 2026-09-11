@@ -1,0 +1,9 @@
+Preserved original byte and reviewed draft. Authored lesson follows the established connected course prose and seven editable diagrams. Draft true follows local review convention. Technical refinements: building blocks, not exclusive collector types; copied bytes versus total GC work; destination capacity; reference correctness without requiring eager slot updates; decimal GB examples; weak generational hypothesis is empirical. Oracle JDK 25 GC guide, JVMS 2.7, and historical CMS free-list documentation checked. Examples are conceptual; no JVM benchmark claimed.
+
+Opening-diagram revision: copying now shows the populated from-space before collection, an explicit movement arrow, and the separate to-space after collection. This makes its different memory boundary visible beside the compacted result.
+
+Semispace explanation revision: added a concrete 1 GB split, explained why one half remains available as the destination, showed the spaces exchanging roles, and separated this classic capacity trade-off from modern region-based evacuation.
+
+Accepted 2026-09-10: user reviewed Lesson 5 and approved removing draft status. Production prose no longer links to the still-draft generational-GC route.
+
+- Verification: final Astro check reports zero errors/warnings/hints; production build passes (60 pages). All seven SVGs parse, load, and were visually inspected. Desktop and 390px mobile checked; table scroll is contained and code has no overflow. Reasoning disclosure opens with Enter; overview, sidebar, heading anchors, Lesson 4 ↔ Lesson 5 ↔ generational preview and legacy redirect verified. Draft URL/links absent from production HTML/XML. One transient content-sync duplicate-ID warning occurred with dev/check; exactly one byte-005 source entry exists. Examples are illustrative, not executed JVM measurements. Server remains at http://127.0.0.1:4323/courses/jvm/gc-reclamation-strategies.

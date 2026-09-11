@@ -1,0 +1,10 @@
+---
+import { getTracks, lessonUrl } from '../../../data/learning';
+// Preserve the former preview URL while respecting draft visibility.
+const jvm = (await getTracks()).find(track => track.slug === 'jvm');
+const lesson = jvm?.lessons.find(item => item.slug === 'tlabs-allocation');
+const destination = lesson ? lessonUrl('jvm', lesson.slug) : '/courses/jvm';
+return Astro.redirect(destination);
+---
+
+<a href={destination}>Continue to the JVM course</a>

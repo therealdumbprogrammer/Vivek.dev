@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="440" viewBox="0 0 480 440" role="img" aria-labelledby="title desc">
+  <title id="title">Inlining widens escape-analysis scope</title><desc id="desc">Before inlining, a Point crosses a factory method boundary. After inlining, allocation and field use are visible within one compiler scope.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="440" rx="24" fill="#f7f9fc"/><g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="24" y="38" font-size="20">INLINING REVEALS THE WHOLE FLOW</text><text x="38" y="78" font-size="16">Before inlining</text><text x="280" y="78" font-size="16">After inlining</text>
+    <rect x="24" y="95" width="198" height="245" rx="12" fill="#fff" stroke="#9aa8bb"/><rect x="42" y="118" width="162" height="70" rx="8" fill="#eef2f7"/><text x="62" y="147" font-size="14">createPoint()</text><text x="59" y="169" font-size="13">new Point → return</text><path d="M123 190v49" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><rect x="42" y="243" width="162" height="70" rx="8" fill="#e9efff"/><text x="70" y="272" font-size="14">calculate()</text><text x="68" y="294" font-size="13">read p.x</text>
+    <path d="M228 217h38" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><rect x="276" y="95" width="180" height="245" rx="12" fill="#e8f4ee" stroke="#4c8c6b"/><text x="296" y="125" font-size="14">one compiler scope</text><rect x="296" y="150" width="140" height="48" rx="8" fill="#fff"/><text x="317" y="179" font-size="14">new Point</text><path d="M366 200v39" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><rect x="296" y="243" width="140" height="48" rx="8" fill="#fff"/><text x="328" y="272" font-size="14">read x</text><text x="315" y="320" font-size="13">no outside observer?</text>
+    <text x="45" y="382" font-size="15">Larger scope → better visibility → possible scalar replacement</text>
+  </g>
+</svg>

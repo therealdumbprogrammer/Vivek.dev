@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="680" viewBox="0 0 480 680" role="img" aria-labelledby="title desc">
+  <title id="title">Same survivors, different memory arrangements</title>
+  <desc id="desc">The same starting heap is swept, compacted, or copied. Copying explicitly shows live objects leaving from-space and entering a separate to-space.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10" fill="#315dcc"/>
+    </marker>
+  </defs>
+  <rect width="480" height="680" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui, sans-serif" fill="#334155">
+    <text x="24" y="36" font-size="20">SAME SURVIVORS · DIFFERENT SPACE</text>
+
+    <text x="30" y="78" font-size="17">Starting heap · A, B, C are live</text>
+    <g font-size="17">
+      <rect x="30" y="94" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="41" y="123">A</text>
+      <rect x="100" y="94" width="65" height="46" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="108" y="123">dead</text>
+      <rect x="170" y="94" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="181" y="123">B</text>
+      <rect x="240" y="94" width="65" height="46" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="248" y="123">dead</text>
+      <rect x="310" y="94" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="321" y="123">C</text>
+      <rect x="380" y="94" width="65" height="46" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="388" y="123">dead</text>
+    </g>
+
+    <text x="30" y="181" font-size="18">1 · Sweep: survivors stay in place</text>
+    <g font-size="17">
+      <rect x="30" y="197" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="41" y="226">A</text>
+      <rect x="100" y="197" width="65" height="46" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="110" y="226">free</text>
+      <rect x="170" y="197" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="181" y="226">B</text>
+      <rect x="240" y="197" width="65" height="46" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="250" y="226">free</text>
+      <rect x="310" y="197" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="321" y="226">C</text>
+      <rect x="380" y="197" width="65" height="46" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="390" y="226">free</text>
+    </g>
+
+    <text x="30" y="284" font-size="18">2 · Compact: survivors pack together</text>
+    <g font-size="17">
+      <rect x="30" y="300" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="41" y="329">A</text>
+      <rect x="100" y="300" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="111" y="329">B</text>
+      <rect x="170" y="300" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="181" y="329">C</text>
+      <rect x="240" y="300" width="205" height="46" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="250" y="329">contiguous free space</text>
+    </g>
+
+    <text x="30" y="387" font-size="18">3 · Copy: move into a separate space</text>
+    <text x="30" y="424" font-size="16">FROM-SPACE · before</text>
+    <g font-size="16">
+      <rect x="30" y="439" width="65" height="44" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="41" y="467">A</text>
+      <rect x="100" y="439" width="65" height="44" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="108" y="467">dead</text>
+      <rect x="170" y="439" width="65" height="44" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="181" y="467">B</text>
+      <rect x="240" y="439" width="65" height="44" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="248" y="467">dead</text>
+      <rect x="310" y="439" width="65" height="44" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="321" y="467">C</text>
+      <rect x="380" y="439" width="65" height="44" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="388" y="467">dead</text>
+    </g>
+
+    <path d="M237 496 L237 527" fill="none" stroke="#315dcc" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="254" y="518" font-size="16">copy live objects</text>
+
+    <text x="30" y="557" font-size="16">TO-SPACE · after</text>
+    <g font-size="17">
+      <rect x="30" y="572" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="41" y="601">A</text>
+      <rect x="100" y="572" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="111" y="601">B</text>
+      <rect x="170" y="572" width="65" height="46" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/><text x="181" y="601">C</text>
+      <rect x="240" y="572" width="205" height="46" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="2"/><text x="250" y="601">free destination space</text>
+    </g>
+    <text x="30" y="652" font-size="16">From-space can be reused after relocation completes.</text>
+  </g>
+</svg>

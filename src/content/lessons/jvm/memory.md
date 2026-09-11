@@ -24,9 +24,34 @@ A running HotSpot JVM needs somewhere to store objects, track method calls, desc
 <figcaption>The process boundary encloses more than the heap. Regions are grouped by responsibility, not drawn to scale. <a href="/images/courses/jvm/process-memory.svg">Open full-size diagram</a>.</figcaption>
 </figure>
 
-Before attaching numbers to that map, distinguish three measurements. **Reserved** memory is virtual address space set aside for possible use. **Committed** memory is memory the runtime has made available for use within its reservations. **Resident** memory is the portion currently in physical RAM; process RSS measures resident pages. Committed memory and RSS are not interchangeable, and reserved memory is not a bill for RAM already consumed.
+### Reserved, committed, and resident memory
 
-That distinction matters when reading JVM tools alongside an operating-system dashboard. A large reservation alone does not prove physical memory pressure. Equally, a heap occupancy chart cannot tell you the resident footprint of the whole process.
+JVM tools and operating-system tools describe memory in different ways. Let's use one illustrative example to see what their numbers mean.
+
+Suppose the JVM reserves **1 GB of virtual address space** for a memory region. **Reserved** means that this address space is set aside for possible use. Think of it as asking, “Keep this range available in case I need it.” It does **not** mean the JVM has already consumed 1 GB of physical RAM.
+
+Now suppose the JVM commits **300 MB** within that reservation. **Committed** means memory that the JVM has made usable. The region still has 1 GB reserved, but only 300 MB has been made available for use so far. Making memory usable does not mean all of it is currently in RAM.
+
+Of those 300 MB, suppose **180 MB** is currently backed by physical RAM. That is the **resident** portion. For this example, the relationship looks like this:
+
+```text
+Reserved: 1 GB
+└── Committed: 300 MB
+    └── Resident: 180 MB
+```
+
+The operating system reports **RSS (Resident Set Size)**: the amount of a process's memory currently resident in physical RAM. Process RSS covers the whole JVM process, including memory outside the Java heap; it is not the same measurement as committed heap memory.
+
+For example, these illustrative readings can both be correct:
+
+```text
+JVM: Reserved heap = 4 GB
+OS:  Process RSS   = 1.8 GB
+```
+
+The JVM has set aside 4 GB of address space for the heap, without needing all 4 GB to be in RAM. The whole process currently has 1.8 GB resident across the heap and its other regions. There is no contradiction: the two numbers measure different things.
+
+A large reservation alone does not prove physical memory pressure. Likewise, a heap-usage chart tells you about the Java heap, not the resident footprint of the whole process.
 
 ## The heap holds Java objects
 
@@ -140,7 +165,7 @@ NMT is HotSpot-focused, **not a complete profiler for every native allocation**.
 
 You now have two boundaries to keep separate: the Java heap inside the JVM process, and the process inside its container's memory accounting. When the numbers disagree, identify what each measurement includes before changing a setting.
 
-The [object-layout preview](/courses/jvm/object-layout) marks our next step: looking inside a heap object at its header, mark word, class pointer, and alignment. That will explain why the space occupied by an object can exceed the sizes of its fields.
+Lesson 3, “Object layout inside the heap”, is our next step: looking inside a heap object at its header, mark word, class pointer, and alignment. That will explain why the space occupied by an object can exceed the sizes of its fields.
 
 <details class="lesson-sources">
 <summary>Sources and further reading</summary>

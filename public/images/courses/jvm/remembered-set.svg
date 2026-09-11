@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="660" viewBox="0 0 480 660" role="img" aria-labelledby="title desc">
+  <title id="title">CARD TABLE → REMEMBERED SET → YOUNG GC</title>
+  <desc id="desc">A reference store dirties old Card 17 and places its number in pending refinement work. A background refinement worker scans Card 17 and records it in the remembered set for Young. Young GC reads the remembered set and scans Card 17.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10" fill="#315dcc"/>
+    </marker>
+  </defs>
+  <rect width="480" height="660" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui, sans-serif" fill="#334155">
+    <text x="24" y="36" font-size="18">CARD TABLE → REMEMBERED SET → YOUNG GC</text>
+
+    <rect x="24" y="58" width="432" height="62" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+    <text x="38" y="82" font-size="13" font-weight="700">REFERENCE STORE</text>
+    <text x="38" y="106" font-size="16">Old Card 17: Customer → young Order</text>
+    <path d="M240 124 L240 144" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="24" y="150" width="432" height="88" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/>
+    <text x="38" y="176" font-size="13" font-weight="700">WRITE BARRIER</text>
+    <text x="38" y="202" font-size="16">Card table: Card 17 = DIRTY</text>
+    <text x="38" y="226" font-size="15">Hand Card 17 to pending refinement work</text>
+    <path d="M240 242 L240 262" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="24" y="268" width="432" height="90" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/>
+    <text x="38" y="294" font-size="13" font-weight="700">BACKGROUND REFINEMENT</text>
+    <text x="38" y="318" font-size="16">Take Card 17 from the pending work</text>
+    <text x="38" y="342" font-size="16">Scan it; find a reference into Young</text>
+    <path d="M240 362 L240 382" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="24" y="388" width="432" height="90" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/>
+    <text x="38" y="414" font-size="13" font-weight="700">REMEMBERED SET FOR YOUNG</text>
+    <text x="38" y="438" font-size="16">Add Card 17: it may point into Young</text>
+    <text x="38" y="462" font-size="15">Card table may now say CLEAN; this entry stays</text>
+    <path d="M240 482 L240 502" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="24" y="508" width="432" height="78" rx="8" fill="#e9efff" stroke="#315dcc" stroke-width="2"/>
+    <text x="38" y="534" font-size="13" font-weight="700">YOUNG GC</text>
+    <text x="38" y="558" font-size="16">Read remembered set → scan Card 17</text>
+    <text x="38" y="578" font-size="16">Find the reference and keep Order reachable</text>
+
+    <text x="24" y="618" font-size="15">Refinement handles dirty-card work as the app runs.</text>
+    <text x="24" y="642" font-size="15">Remembered entry = scan this card during Young GC.</text>
+  </g>
+</svg>

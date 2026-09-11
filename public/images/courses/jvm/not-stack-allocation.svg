@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="420" viewBox="0 0 480 420" role="img" aria-labelledby="title desc">
+  <title id="title">Allocation elimination is not stack allocation</title><desc id="desc">A crossed-out model moves an intact heap object to the stack. The preferred model eliminates the object and keeps scalar values.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="420" rx="24" fill="#f7f9fc"/><g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="24" y="38" font-size="20">USE THE ELIMINATION MODEL</text>
+    <rect x="24" y="65" width="432" height="128" rx="12" fill="#fff" stroke="#b65d5d"/><text x="42" y="92" font-size="15">Misleading shortcut</text><rect x="63" y="112" width="105" height="52" rx="8" fill="#f9eeee"/><text x="83" y="143" font-size="14">heap Point</text><path d="M176 138h92" stroke="#b65d5d" stroke-width="2" marker-end="url(#a)"/><rect x="279" y="112" width="120" height="52" rx="8" fill="#f9eeee"/><text x="300" y="143" font-size="14">stack Point</text><path d="M34 75l412 108" stroke="#b65d5d" stroke-width="4" opacity=".8"/>
+    <rect x="24" y="215" width="432" height="155" rx="12" fill="#e8f4ee" stroke="#4c8c6b"/><text x="42" y="244" font-size="15">HotSpot scalar replacement</text><rect x="54" y="270" width="105" height="58" rx="8" fill="#fff"/><text x="75" y="304" font-size="14">heap Point</text><path d="M166 299h85" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><rect x="264" y="261" width="145" height="76" rx="8" fill="#fff"/><text x="289" y="289" font-size="14">allocation gone</text><text x="289" y="316" font-size="14">x and y remain</text>
+    <text x="52" y="396" font-size="14">Scalar storage may later use registers or stack slots.</text>
+  </g>
+</svg>

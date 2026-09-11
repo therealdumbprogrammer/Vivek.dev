@@ -2,6 +2,13 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 const sampleTracks = [
   { slug: 'jvm', title: 'JVM from the inside out', type: 'Course', description: 'Build a mental model of the runtime, then follow memory from allocation to diagnosis.', note: 'Follow a guided sequence', lessons: [
     { slug: 'object-layout', title: 'Inside a Java object', group: 'Foundations', summary: 'A preview of object headers, mark words, class pointers, and alignment: why an object can occupy more memory than its fields suggest.', placeholder: true },
+    { slug: 'gc-roots-reachability', title: 'References, reachability, and GC roots', group: 'Foundations', summary: 'A preview of how references connect objects, how GC roots provide starting points, and why reachability determines which objects must remain alive.', placeholder: true },
+    { slug: 'gc-reclamation-strategies', title: 'Mark-Sweep vs Mark-Compact vs Copying GC', group: 'Foundations', summary: 'Foundational strategies for reclaiming memory.', placeholder: true },
+    { slug: 'generational-gc', title: 'Generational garbage collection', group: 'Foundations', summary: 'A preview of Eden, Survivor spaces, the old generation, age, and promotion: how object lifetimes guide collection.', placeholder: true },
+    { slug: 'write-barriers-card-tables', title: 'Write barriers, card tables, and remembered sets', group: 'Foundations', summary: 'A preview of how reference writes mark cards and maintain remembered metadata so collection can find incoming references without scanning the entire heap.', placeholder: true },
+    { slug: 'tlabs-allocation', title: 'Allocation internals: TLABs and bump pointers', group: 'Foundations', summary: 'A preview of how thread-local allocation buffers and bump-pointer allocation let HotSpot allocate objects cheaply without one global allocation bottleneck.', placeholder: true },
+    { slug: 'escape-analysis-scalar-replacement', title: 'Escape analysis and scalar replacement', group: 'Foundations', summary: 'A preview of how the JIT analyzes object use and can replace an object with its fields, removing some allocations entirely.', placeholder: true },
+    { slug: 'class-loading-lifecycle', title: 'Class loading lifecycle', group: 'Foundations', summary: 'A preview of loading, linking, verification, preparation, resolution, and initialization: how class-file bytes become runtime types.', placeholder: true },
   ]},
   { slug: 'kubernetes', hidden: true, title: 'A path into Kubernetes', type: 'Path', description: 'Connect the building blocks: from a running container to a service you can reach.', note: 'Work through connected milestones', lessons: [
     { slug: 'pods', title: 'Start with a Pod', group: 'Building blocks', summary: 'A Pod groups containers that share a network and storage context. It is the smallest deployable unit you manage in Kubernetes.', idea: 'Start with one running unit before thinking about a whole cluster.', example: 'kubectl get pods', exercise: 'Draw one Pod with two containers. Mark the resources they share.' },
@@ -34,8 +41,8 @@ export async function getTracks(): Promise<Track[]> {
   return sampleTracks.filter(track => !track.hidden).map(track => {
     const authored = entries.filter(e => e.data.course === track.slug);
     const samples: Lesson[] = track.lessons
-      .filter(l => !authored.some(e => e.data.lessonSlug === l.slug))
-      .map((l, i) => ({...l, order: (i + 3) * 10, draft: false}));
+      .map((l, i) => ({...l, order: (i + 3) * 10, draft: false}))
+      .filter(l => !authored.some(e => e.data.lessonSlug === l.slug));
     const real: Lesson[] = authored.filter(e => import.meta.env.DEV || !e.data.draft)
       .map(entry => ({slug: entry.data.lessonSlug, title: entry.data.title,
         group: entry.data.module, summary: entry.data.summary, order: entry.data.order,

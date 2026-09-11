@@ -1,0 +1,6 @@
+UseCompressedOops=true
+UseCompressedClassPointers=true
+ObjectAlignmentInBytes=8
+UseCompactObjectHeaders=false
+User shallow size=24
+VerifiedUser shallow size=24

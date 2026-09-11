@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="610" viewBox="0 0 480 610" role="img" aria-labelledby="title desc">
+  <title id="title">A live reference in t1 keeps an Order graph reachable</title>
+  <desc id="desc">The main thread starts t1 and waits. Separately, t1 has a live order reference in a stack slot or register. That root reference reaches Order, Customer, and Address.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10" fill="#315dcc"/>
+    </marker>
+  </defs>
+  <rect width="480" height="610" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui, sans-serif" fill="#334155">
+    <text x="24" y="38" font-size="18" font-weight="650">A SNAPSHOT WHILE t1 USES THE ORDER</text>
+
+    <rect x="24" y="66" width="432" height="116" rx="14" fill="#fff" stroke="#dce5ef" stroke-width="2"/>
+    <text x="44" y="99" font-size="19" font-weight="650">main thread</text>
+    <text x="44" y="132" font-size="17">starts t1, then waits in join()</text>
+    <text x="44" y="162" font-size="15" fill="#64748b">Its t1 local is a separate possible root path.</text>
+
+    <rect x="24" y="205" width="432" height="118" rx="14" fill="#e9efff" stroke="#315dcc" stroke-width="2"/>
+    <text x="44" y="239" font-size="19" font-weight="650">t1 execution state</text>
+    <text x="44" y="271" font-size="17">live stack slot or register</text>
+    <text x="44" y="302" font-size="18" font-weight="650" fill="#315dcc">order · root-set reference</text>
+
+    <path d="M240 324 L240 363" fill="none" stroke="#315dcc" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+    <rect x="53" y="379" width="118" height="54" rx="11" fill="#fff" stroke="#315dcc" stroke-width="2"/>
+    <text x="82" y="413" font-size="19">Order</text>
+    <path d="M173 406 L215 406" fill="none" stroke="#315dcc" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="228" y="379" width="138" height="54" rx="11" fill="#fff" stroke="#315dcc" stroke-width="2"/>
+    <text x="251" y="413" font-size="19">Customer</text>
+    <path d="M297 435 L297 473" fill="none" stroke="#315dcc" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="228" y="489" width="138" height="54" rx="11" fill="#fff" stroke="#315dcc" stroke-width="2"/>
+    <text x="259" y="523" font-size="19">Address</text>
+
+    <text x="24" y="577" font-size="16">When t1's live reference disappears, another</text>
+    <text x="24" y="599" font-size="16">root path is required to keep this graph alive.</text>
+  </g>
+</svg>
