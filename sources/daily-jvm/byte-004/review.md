@@ -1,0 +1,5 @@
+Source: ChatGPT conversation 6a996dbd-f8b0-83ee-a26a-3b05f1d7e4a3, Save Backend Resource. Original source wording preserved.
+
+Adapted the reviewed draft to the Lesson 3 prose and 480px figure conventions. Reused object-graph.svg without changing Lesson 3. Root sources are conceptual, not physical storage claims. Qualified strong references, JNI weak globals, class lifetime, collection timing, concurrent/partial collection, and liveness vs lexical scope. Added the exact dominator definition and alternate-path reasoning. Examples are illustrative, not JVM measurements. Primary references are in the lesson. New lesson stays draft for local review.
+
+Reader-review refinement: added a concrete `main` / `t1` / `Order` walkthrough and `thread-root-example.svg`. The example deliberately distinguishes “main starts t1” from the actual root path: while `t1` uses `order`, a live reference in `t1`'s frame/register is a root-set entry. The collector scans the root set across relevant threads rather than traversing outward from the main thread as a single master root. The snapshot is illustrative because optimization determines the exact reference location and liveness.

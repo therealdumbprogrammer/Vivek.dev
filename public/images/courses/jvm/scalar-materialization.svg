@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="440" viewBox="0 0 480 440" role="img" aria-labelledby="title desc">
+  <title id="title">Materializing scalar-replaced state</title><desc id="desc">Optimized x and y values plus deoptimization metadata can reconstruct a Point object when Java-level state requires it.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="440" rx="24" fill="#f7f9fc"/><g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="24" y="38" font-size="20">RECOVER JAVA-LEVEL STATE</text>
+    <rect x="24" y="68" width="195" height="214" rx="12" fill="#e8f4ee" stroke="#4c8c6b"/><text x="48" y="98" font-size="16">Optimized execution</text><rect x="52" y="123" width="139" height="50" rx="8" fill="#fff"/><text x="94" y="154" font-size="15">x = 10</text><rect x="52" y="184" width="139" height="50" rx="8" fill="#fff"/><text x="94" y="215" font-size="15">y = 20</text><text x="54" y="260" font-size="13">no physical Point</text>
+    <path d="M226 174h50" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><text x="221" y="158" font-size="12">deoptimize</text>
+    <rect x="285" y="68" width="171" height="214" rx="12" fill="#fff" stroke="#315dcc"/><text x="309" y="98" font-size="16">Materialized Point</text><rect x="311" y="123" width="119" height="46" rx="7" fill="#eef2f7"/><text x="331" y="151" font-size="14">object header</text><rect x="311" y="181" width="119" height="40" rx="7" fill="#e9efff"/><text x="348" y="206" font-size="14">x = 10</text><rect x="311" y="232" width="119" height="40" rx="7" fill="#e9efff"/><text x="348" y="257" font-size="14">y = 20</text>
+    <rect x="62" y="321" width="356" height="70" rx="10" fill="#fff" stroke="#9aa8bb"/><text x="87" y="350" font-size="15">Deoptimization metadata maps values</text><text x="91" y="375" font-size="15">back to required Java state.</text>
+  </g>
+</svg>

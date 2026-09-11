@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="420" viewBox="0 0 480 420" role="img" aria-labelledby="title desc">
+  <title id="title">A source allocation has two optimized outcomes</title><desc id="desc">A new Point expression reaches JIT escape analysis, which can eliminate the allocation or preserve a real heap object.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="420" rx="24" fill="#f7f9fc"/><g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="24" y="38" font-size="20">DOES THE OBJECT NEED TO EXIST?</text>
+    <rect x="130" y="65" width="220" height="58" rx="10" fill="#fff" stroke="#315dcc" stroke-width="1.5"/><text x="180" y="100" font-size="17">new Point(10, 20)</text>
+    <path d="M240 124v48" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><rect x="125" y="176" width="230" height="64" rx="10" fill="#e9efff" stroke="#315dcc" stroke-width="1.5"/><text x="174" y="202" font-size="16">JIT escape analysis</text><text x="159" y="225" font-size="14">What can observe this value?</text>
+    <path d="M205 241l-91 66" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><path d="M275 241l91 66" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/>
+    <rect x="24" y="312" width="196" height="76" rx="10" fill="#e8f4ee" stroke="#4c8c6b"/><text x="52" y="341" font-size="16">Allocation eliminated</text><text x="50" y="367" font-size="14">keep x and y values</text>
+    <rect x="260" y="312" width="196" height="76" rx="10" fill="#fff" stroke="#315dcc"/><text x="294" y="341" font-size="16">Real allocation</text><text x="297" y="367" font-size="14">ordinary heap object</text>
+  </g>
+</svg>

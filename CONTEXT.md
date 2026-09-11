@@ -141,3 +141,119 @@ Revision verification: Astro check and production build pass; 11 local course ro
 
 - User reviewed and accepted JVM Lesson 2. Set memory.md to `draft: false`; it now participates in production routes, counts, sidebar, previous/next navigation and sitemap. Restored Lesson 1’s direct prose link to Lesson 2.
 - This supersedes the local-draft status above. Object-layout remains an explicit planned preview.
+
+## Lesson 2 memory terminology simplified — 2026-09-09
+
+- Simplified the reserved/committed/resident explanation below the process-memory diagram with an illustrative 1 GB reserved → 300 MB committed → 180 MB resident walkthrough and compact hierarchy. Added a brief RSS definition and a 4 GB reserved heap / 1.8 GB process RSS comparison.
+- Preserved the rest of Lesson 2 and its accepted visibility on `feature/learning-ui-experiment`. Next: review the revised explanation locally at http://127.0.0.1:4321/courses/jvm/memory.
+
+
+## Daily JVM Byte #3 converted — 2026-09-09
+
+- Converted byte-003 and the reviewed originating draft into Lesson 3, “Object layout inside the heap”, Foundations order 30, prerequisite memory. Local draft at `/courses/jvm/object-layout`, on `feature/learning-ui-experiment`.
+- Illustration-first teaching: eight editable SVGs show heap zoom, conventional header, Klass pointer, separate referenced objects, 24-byte User alignment, compact headers, scale effects, and object graphs. Reused the accepted course shell, voice, full-size image links and disclosure styles.
+- Explicitly distinguish implementation settings from Java guarantees, internal vs trailing padding, class pointers vs object references, shallow vs retained size, and conventional vs JDK 25 compact headers (product feature, disabled by default). Kept the 24-byte example and source-order caveat.
+- Navigation/sidebar now connect Lesson 2 → Lesson 3 → references/reachability/GC-roots preview. Assign placeholder order before filtering authored replacements. Draft lesson stays excluded from production navigation and routes; Lesson 2 names it in prose without a production dead link.
+- Original byte, reviewed draft, editorial notes and small JDK probe retained under `sources/daily-jvm/byte-003*`. OpenJDK 25.0.2 confirms User and the additional-boolean variant are 24 bytes in both tested header modes; offsets remain illustrative.
+- Verification: Astro check has zero errors/warnings/hints, build succeeds (58 pages); draft route/links excluded from production. Desktop and 390px mobile checked for SVG loading, anchors, navigation, overflow and keyboard disclosure. Local server remains at http://127.0.0.1:4321/courses/jvm/object-layout.
+- Next: review Lesson 3 locally. Changes remain uncommitted; existing Lesson 2 revisions preserved.
+
+### Lesson 3 class-metadata clarification — 2026-09-09
+
+- Expanded the `java.lang.Class` sentence into a concrete `User.class` / `user.getClass()` explanation. The lesson now distinguishes the heap-resident Java-facing class mirror from HotSpot's internal native `Klass` metadata and shows how both represent the same loaded class.
+
+
+## Daily JVM Byte #4 converted — 2026-09-09
+
+- Converted byte-004 and its reviewed draft into Lesson 4, “GC roots, reachability, and why GC is graph traversal”, Foundations order 40, prerequisite object-layout. Local draft: `/courses/jvm/gc-roots-reachability`.
+- Graph-first visual teaching reuses the Lesson 3 object graph and adds nine editable SVGs for roots, root sources, the concrete thread-root example, transitive reachability, cycles, marking, reachable leaks, root paths, and dominator intuition.
+- Preserved root-set starting-reference semantics; stack/register/static/JNI/VM sources; precise interpreter/JIT frame metadata and OopMap intuition; strong-reference and collection-timing limits; unwanted retention; and retained-size alternate-path caveat with reasoning checks.
+- Shared navigation connects Lesson 3 → Lesson 4 → collection-strategies preview. Source and reviewed draft preserved under `sources/daily-jvm/byte-004*`. Lesson 4 stays excluded from production routes/navigation. Existing Lesson 3 and memory changes preserved; branch remains `feature/learning-ui-experiment`, changes uncommitted.
+- Next: local editorial review of Lesson 4, then the mark-sweep/mark-compact/copying byte.
+- Original verification: Astro check reported zero errors/warnings/hints; production build passed (59 pages). Lesson 4 and its links were absent from production HTML/XML. The original nine lesson SVGs parsed and loaded; desktop navigation, headings, old-preview redirect, and narrow layout with keyboard reasoning disclosure were checked. Cache declaration wrapped for narrow reading. HotSpot frame.cpp confirms interpreter map and compiled OopMap scanning; no JVM experiment was run for these conceptual examples. Dev server: http://127.0.0.1:4322/courses/jvm/gc-roots-reachability. A transient Astro content-sync duplicate-ID warning occurred during concurrent dev/check; only one source file exists for each lesson.
+- Reader-review refinement on 2026-09-10: added a concrete `main` → `t1` → `processOrder` example and a thread-root SVG, bringing the lesson to ten SVGs including the reused object graph. Clarified that `main` starts and joins `t1`, while the root path to Order comes from the live `order` reference in `t1`'s execution state; GC scans a root set across relevant threads rather than treating main as a single master root. Exact stack/register placement remains implementation- and optimization-dependent. Astro check again reported zero errors/warnings/hints and the production build passed (62 pages); the draft remained absent from production output. Desktop and 390px mobile views verified with all images loaded and no page or code overflow; the textual root path is stacked vertically for narrow screens.
+
+
+## Daily JVM Byte #5 converted — 2026-09-09
+
+- Converted byte-005 into Lesson 5, “Mark-Sweep vs Mark-Compact vs Copying GC”, Foundations order 50 at `/courses/jvm/gc-reclamation-strategies`. Illustration-first GC algorithm comparison with seven editable SVGs.
+- Preserved building-block framing, fragmentation/free-list bookkeeping, compaction/bump allocation, reference relocation correctness, copying survivor cost versus total work, survival comparison, table, reasoning checks, and generational bridge.
+- Navigation connects Lesson 4 → Lesson 5 → generational-gc preview. Former collection-strategies URL redirects according to draft visibility. Source byte and reviewed draft archived. Lesson stays a local draft; existing edits preserved on feature/learning-ui-experiment. No commit, push, or deployment.
+- Next: local editorial review of Lesson 5, then the generational-GC byte.
+- Lesson 5 visual revision: the opening three-strategy comparison now shows copying as an explicit from-space → to-space transition, so it no longer resembles the compacted result.
+- Lesson 5 prose revision: expanded the semispace capacity trade-off with a 1 GB → two 500 MB spaces example, role swapping after collection, the equal-size worst-case guarantee, and the distinction from region-based evacuation.
+- Verification: final Astro check reports zero errors/warnings/hints; production build passes (60 pages). All seven SVGs parse, load, and were visually inspected. Desktop and 390px mobile checked; table scroll is contained and code has no overflow. Reasoning disclosure opens with Enter; overview, sidebar, heading anchors, Lesson 4 ↔ Lesson 5 ↔ generational preview and legacy redirect verified. Draft URL/links absent from production HTML/XML. One transient content-sync duplicate-ID warning occurred with dev/check; exactly one byte-005 source entry exists. Examples are illustrative, not executed JVM measurements. Server remains at http://127.0.0.1:4323/courses/jvm/gc-reclamation-strategies.
+
+
+## Daily JVM Byte #6 converted — 2026-09-09
+
+- Converted byte-006 and the reviewed originating draft into Lesson 6, “Generational GC — Eden, Survivor, and promotion”, Foundations order 60 at `/courses/jvm/generational-gc`. Nine editable SVGs support an illustration-first generational-GC teaching approach.
+- Preserved classic Eden/S0/S1 conceptual framing, G1 regions and special allocation caveat, dynamic tenuring, mutator/write-barrier/remembered-metadata intuition, and distinct allocation/survival/promotion/occupancy measurements.
+- Navigation connects Lesson 5 → Lesson 6 → write-barriers/card-tables/remembered-sets preview. Lesson 6 remains a local draft on feature/learning-ui-experiment; existing edits preserved. Source and review notes saved under sources/daily-jvm/byte-006*.
+- Next: local editorial review, then supply Byte #7. Examples and rates are illustrative, not executed JVM measurements.
+
+- Verification: Astro check returned zero errors/warnings/hints; production build passed (60 pages), with Lesson 6 route and HTML links excluded. Nine SVGs parse, load, and were visually inspected. Desktop and 390px mobile checked without page/code overflow; heading anchors, keyboard reasoning disclosure, overview/sidebar, and Lesson 5 → 6 → next preview verified. One transient duplicate-ID content-sync warning for existing Lesson 5 occurred before clean build sync; no duplicate Byte #6 source exists. Local server remains at http://127.0.0.1:4324/courses/jvm/generational-gc.
+
+
+## Daily JVM Byte #7 converted — 2026-09-09
+
+- Converted byte-007 into Lesson 7, “Write barriers, card tables, and remembered sets”, Foundations order 70, prerequisite generational-gc. Local draft at `/courses/jvm/write-barriers-card-tables`.
+- Seven editable SVGs support an illustration-first explanation of barriers/cards/remembered sets. Preserved coarse dirty-card semantics, incoming-source metadata, G1 grouping, hot-path and concurrent cost trade-offs, and production reasoning checks.
+- Navigation connects Lesson 6 → Lesson 7 → TLAB/bump-pointer allocation preview; former Lesson 7 preview redirects with draft visibility respected. Source and editorial notes archived. Existing edits preserved on feature/learning-ui-experiment; changes remain uncommitted.
+- Next: local editorial review, then the allocation-internals byte. Examples are illustrative, not measured JVM output.
+
+- Verification: Astro check reports zero errors/warnings/hints; build passes (61 pages). Draft Lesson 7 route and production links are absent. All seven SVGs parse, load, and were visually inspected; card-table label spacing corrected after review. Desktop and 390px mobile verified with no page overflow, working keyboard disclosure and valid heading targets. Existing transient content-sync duplicate-ID warning occurred for Lesson 6; clean build sync succeeded. Preview server: http://127.0.0.1:4325/courses/jvm/write-barriers-card-tables.
+- Simplified the selected-card explanation after review: card metadata reduces how much of Old must be searched, while young GC still scans roots, follows live objects, copies survivors, and updates references. Kept the coarse-card caveat in plain language.
+- Rewrote the remembered-set section around the concrete old `Customer` → young `Order` example. It now distinguishes “where did a write happen?” (card table) from “where outside the collection target should GC look?” (remembered set), with a four-step flow and an explicit collector-specific caveat. Astro check and production build pass; the rendered section and comparison table were visually inspected at http://127.0.0.1:4328/courses/jvm/write-barriers-card-tables#a-remembered-set-tells-gc-where-to-look.
+- Refined the explanation again after reader review: a remembered set is target-oriented information, not generally a hash table of every dirty card. Added the G1-style dirty-card refinement step, explained why a remembered entry can remain after a card is cleaned, and replaced the ambiguous “REMEMBER INCOMING SOURCES” graphic with a five-stage card-table → refinement → remembered-set → young-GC flow. The SVG parses, Astro check and production build pass, and the revised flow was visually inspected at http://127.0.0.1:4329/courses/jvm/write-barriers-card-tables#a-remembered-set-tells-gc-which-outside-cards-to-scan.
+- Removed the vague term “remembered information” throughout Lesson 7 and now names only the card table and remembered set. The section and flow diagram explicitly show the post-refinement states: Card 17 may be clean in the card table while the remembered set for Young still lists Card 17, because “write processed” and “reference may still exist” are different facts. The revised page and diagram were visually checked at http://127.0.0.1:4330/courses/jvm/write-barriers-card-tables#a-remembered-set-tells-gc-which-outside-cards-to-scan; Astro check and production build pass.
+- Clarified how G1 refinement discovers dirty cards: the write barrier identifies the source card and hands its number to pending refinement work, typically through a small buffer. Background refinement processes that work while the application runs; a GC pause can finish a backlog. The lesson and SVG now state explicitly that G1 does not scan all of Old to rediscover which cards changed. The SVG parses, Astro check and production build pass, and the revised prose and diagram were visually inspected at the local Lesson 7 URL.
+
+
+## Daily JVM Byte #8 converted — 2026-09-09
+
+- Converted byte-008 and the available reviewed originating draft into Lesson 8, “TLABs and why object allocation is usually very cheap”, Foundations order 80, prerequisite write-barriers-card-tables, at `/courses/jvm/tlabs-allocation`.
+- Eight original editable SVGs support an illustration-first allocation-internals teaching approach. Preserved dynamic allocation slices, shared-pointer contention intuition, bounds check/bump/initialization, separate constructor work, amortized refill, tail waste, and collector-specific outside-TLAB behavior.
+- Clarified ordinary shared heap object semantics versus ThreadLocal, carrier/platform allocation state for virtual threads, and allocation rate versus cost and retention. JFR distinguishes cumulative thread counters, refill-triggering allocations, outside-TLAB allocations, and weighted samples; platform counters are not a per-virtual-thread census.
+- Shared metadata connects Lesson 7 → Lesson 8 → escape-analysis/scalar-replacement preview. Old TLAB preview URL redirects with draft visibility respected. Source and available reviewed draft archived; retrieval truncation documented in review notes.
+- Local draft on feature/learning-ui-experiment; all prior edits preserved and changes uncommitted. Next: local editorial review of Lesson 8. Examples are illustrative, not benchmark measurements.
+
+- Verification: Astro check reports zero errors/warnings/hints; production build passes (62 pages). Draft Lesson 8 route and links excluded from production. All eight SVGs parse, load, and were visually inspected. Desktop and a 390px iframe verified; no page or code overflow after shortening pseudocode. Keyboard disclosures, heading anchor, sidebar/overview, Lesson 7 ↔ Lesson 8 ↔ escape-analysis preview and legacy redirect checked. Viewport override was ineffective, so narrow QA used an iframe. Transient content-sync warnings occurred for Lessons 7/8 during dev/check; one source file per lesson exists and clean build sync succeeded. Build/content sync left the reused server overview stale; started a fresh server and verified correct Lesson 8 overview, assets and navigation at http://127.0.0.1:4326/courses/jvm/tlabs-allocation.
+
+
+## Daily JVM Byte #9 converted — 2026-09-09
+
+- Converted byte-009 and the reviewed originating draft into Lesson 9, “Escape analysis and scalar replacement”, Foundations order 90, prerequisite tlabs-allocation, at `/courses/jvm/escape-analysis-scalar-replacement`.
+- Eight editable SVGs support the illustration-first explanation. Escape analysis is separated from scalar replacement; NoEscape is an opportunity rather than a guarantee; scalar decomposition is distinguished from general stack allocation.
+- Preserved NoEscape/ArgEscape/GlobalEscape intuition, inlining scope, lock elimination, source `new` versus heap allocations, warmed-up profiling and JMH caution, practical guidance, reasoning checks, and deoptimization materialization as a bridge to later JIT lessons.
+- Navigation connects Lesson 8 → Lesson 9 → class-loading-lifecycle preview. The final decision tree places TLAB and outside-TLAB machinery under real allocation before heap/GC lifecycle.
+- Lesson 9 remains a local draft on feature/learning-ui-experiment; prior edits are preserved and all changes remain uncommitted. Examples are illustrative, not benchmark measurements.
+- Verification: Astro check reports zero errors/warnings/hints; production build passes (62 pages), with the Lesson 9 draft route and links absent. All eight SVGs parse and load at their intrinsic dimensions. Desktop 1280px and mobile 390px layouts have no page, code, or image overflow; sidebar, TOC, heading anchors, keyboard reasoning disclosure, draft badge, and Lesson 8 ↔ Lesson 9 ↔ class-loading preview navigation were checked in the browser. Local server: http://127.0.0.1:4327/courses/jvm/escape-analysis-scalar-replacement.
+- Reader-review revision: expanded the escape-state section with small source and conceptual compiler-view examples for NoEscape, ArgEscape, and GlobalEscape. Simplified the stack-allocation correction to show that scalar replacement removes the `Point` container and retains values, which may independently occupy registers or stack slots.
+
+## Lessons 3 and 4 accepted — 2026-09-10
+
+- User reviewed and accepted “Object layout inside the heap” and “GC roots, reachability, and why GC is graph traversal”. Set both lessons to `draft: false` without changing their content.
+- Lessons 3 and 4 now participate in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap. Later lessons remain at their existing visibility.
+- Changes remain uncommitted on `feature/learning-ui-experiment`; no deployment was performed.
+
+## Lesson 5 accepted — 2026-09-10
+
+- User reviewed and accepted “Mark-Sweep vs Mark-Compact vs Copying GC”. Set the lesson to `draft: false`; its content and illustrations are unchanged from the reviewed revision.
+- Lesson 5 now participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap. The generational-GC lesson remains a draft, so Lesson 5 names it as the next planned lesson without linking to its local-only route.
+- Changes remain uncommitted on `feature/learning-ui-experiment`; no deployment was performed.
+- Verification: Astro check reports zero errors/warnings/hints; production build passes (65 pages). Lesson 5 is present in the production route, course overview, Lesson 4 navigation, and sitemap without a draft badge. Lesson 6 remains excluded.
+
+## Lessons 6 and 7 accepted — 2026-09-11
+
+- User reviewed and accepted “Generational GC — Eden, Survivor, and promotion” and “Write barriers, card tables, and remembered sets”. Set both lessons to `draft: false`. Updated publication-aware transitions: Lesson 5 now links to published Lesson 6, while Lesson 7 describes the unpublished TLAB lesson without linking to its draft-only route.
+- Lessons 6 and 7 now participate in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap. Lesson 8 remains a draft preview.
+- Changes remain uncommitted on `feature/learning-ui-experiment`; no deployment was performed.
+- Verification: Astro check reports zero errors/warnings/hints; production build passes with 67 pages. Both routes appear in the production build and sitemap without draft badges, Lesson 5 → Lesson 6 → Lesson 7 navigation is live, and Lesson 7 has no production link to the unpublished TLAB route. Both finalized lesson headers and sidebar entries were visually checked at http://127.0.0.1:4331/.
+
+
+## JVM Lessons 8 and 9 promoted — 2026-09-11
+
+- User reviewed and accepted “TLABs and why object allocation is usually very cheap” and “Escape analysis and scalar replacement”. Set both lessons to `draft: false` so they participate in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Updated publication-aware transitions: Lesson 7 now links to Lesson 8, and Lesson 8 describes Lesson 9 as the next published lesson. Lesson 9 continues to point to the class-loading lifecycle preview.
+- Verification: Astro check completed with 0 errors, warnings, or hints; the production build generated 69 pages, including both lesson routes with final sidebar and previous/next navigation and no draft labels. The sitemap includes both routes, and every JVM course SVG passes XML validation.

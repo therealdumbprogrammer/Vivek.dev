@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="455" viewBox="0 0 480 455" role="img" aria-labelledby="title desc">
+  <title id="title">Escape-state intuition</title><desc id="desc">Three panels show a confined object, an object flowing through a call argument, and an object reachable from global state.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="455" rx="24" fill="#f7f9fc"/><g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="24" y="38" font-size="20">WHAT CAN OBSERVE THE OBJECT?</text>
+    <rect x="24" y="65" width="432" height="95" rx="10" fill="#e8f4ee" stroke="#4c8c6b"/><text x="42" y="92" font-size="17">NoEscape</text><rect x="193" y="91" width="92" height="43" rx="8" fill="#fff" stroke="#4c8c6b"/><text x="216" y="118" font-size="15">Point</text><text x="307" y="118" font-size="14">confined use</text>
+    <rect x="24" y="180" width="432" height="95" rx="10" fill="#fff" stroke="#315dcc"/><text x="42" y="207" font-size="17">ArgEscape</text><rect x="145" y="207" width="78" height="42" rx="8" fill="#e9efff"/><text x="163" y="233" font-size="14">Point</text><path d="M227 228h58" stroke="#315dcc" stroke-width="2" marker-end="url(#a)"/><rect x="292" y="207" width="128" height="42" rx="8" fill="#eef2f7"/><text x="308" y="233" font-size="14">callee(arg)</text>
+    <rect x="24" y="295" width="432" height="112" rx="10" fill="#fff" stroke="#9b5d44"/><text x="42" y="322" font-size="17">GlobalEscape</text><rect x="145" y="337" width="78" height="42" rx="8" fill="#f9eee9"/><text x="163" y="363" font-size="14">Point</text><path d="M227 358h58" stroke="#9b5d44" stroke-width="2" marker-end="url(#a)"/><rect x="292" y="337" width="128" height="42" rx="8" fill="#f9eee9"/><text x="306" y="363" font-size="14">static / published</text>
+    <text x="24" y="434" font-size="14">Analysis is conservative: unknown visibility preserves semantics.</text>
+  </g>
+</svg>
