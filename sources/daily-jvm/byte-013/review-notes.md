@@ -1,0 +1,7 @@
+# Byte 013 review
+
+Lesson 13, Execution and JIT, order 130; local draft. Preserved interpreter-native machinery, logical bytecode/frame execution, JVMS versus HotSpot boundaries, immediate execution and evidence gathering, compiled-tier profiling, call-site receiver and branch evidence, nuanced invocation/back-edge policy, OSR bridge, dispatch and optimization trade-offs, native compilation costs, production warm-up, reasoning checks, and C1/C2 bridge.
+
+Reader-feedback revision: rebuilt the lesson for a first-time JVM learner. It now defines the JVM stack-machine model before load/store mechanics, implements a small fetch-dispatch-execute interpreter in pseudocode, traces `pc` and operand-stack state instruction by instruction, separates template generation from runtime handler dispatch, and explains OSR as a live-state handoff for the same active invocation. Added purpose-built stack-machine, interpreter-loop, and OSR diagrams. Lesson 12 now introduces “stack machine” before its local/operand walkthrough.
+
+Clarifications: instruction flow includes branch/call/return; stack diagrams are logical rather than literal native pops; observed receiver types require correct fallback; warm-up is neither universally timed nor monotonic. Counts/costs are illustrative; large loops not executed. Reviewed draft retrieval was truncated, so final sections follow the supplied byte and explicit brief. Primary references are pinned to JDK 25 where relevant. Ten editable SVGs match the existing 480px course figure convention.

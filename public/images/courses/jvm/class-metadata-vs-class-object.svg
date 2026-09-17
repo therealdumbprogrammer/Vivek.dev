@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="555" viewBox="0 0 480 555" role="img" aria-labelledby="title desc">
+  <title id="title">Customer after initialization and one allocation</title>
+  <desc id="desc">Native Metaspace contains Customer class metadata. The Java heap contains the associated Class Customer object with static nextId equal to two and a separate Customer instance with id equal to one.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="555" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="36" font-size="19" text-anchor="middle">INITIALIZED TYPE + ONE CUSTOMER</text>
+    <rect x="22" y="65" width="207" height="400" rx="16" fill="#e9efff" stroke="#9aa8bb"/>
+    <text x="125.5" y="91" font-size="13" font-weight="600" text-anchor="middle">NATIVE METASPACE</text>
+    <rect x="40" y="111" width="171" height="272" rx="12" fill="#fff" stroke="#9aa8bb"/>
+    <text x="125.5" y="139" font-size="15" font-weight="600" text-anchor="middle">Customer metadata</text>
+    <line x1="55" y1="153" x2="196" y2="153" stroke="#b9c6d8"/>
+    <text x="125.5" y="181" font-size="14" text-anchor="middle">field descriptions</text>
+    <text x="125.5" y="207" font-size="14" text-anchor="middle">method metadata</text>
+    <text x="125.5" y="233" font-size="14" text-anchor="middle">parent types</text>
+    <text x="125.5" y="259" font-size="14" text-anchor="middle">runtime constant pool</text>
+    <text x="125.5" y="294" font-size="13" text-anchor="middle">the VM's detailed</text>
+    <text x="125.5" y="314" font-size="13" text-anchor="middle">definition of Customer</text>
+    <text x="125.5" y="418" font-size="13" text-anchor="middle">created while loading</text>
+    <text x="125.5" y="440" font-size="13" text-anchor="middle">exists before &lt;clinit&gt;</text>
+    <rect x="251" y="65" width="207" height="400" rx="16" fill="#fff" stroke="#9aa8bb"/>
+    <text x="354.5" y="91" font-size="13" font-weight="600" text-anchor="middle">JAVA HEAP</text>
+    <rect x="270" y="111" width="169" height="132" rx="12" fill="#e9efff" stroke="#9aa8bb"/>
+    <text x="354.5" y="139" font-size="15" font-weight="600" text-anchor="middle">Class&lt;Customer&gt;</text>
+    <text x="354.5" y="163" font-size="13" text-anchor="middle">the Java-facing object</text>
+    <line x1="285" y1="178" x2="424" y2="178" stroke="#b9c6d8"/>
+    <text x="354.5" y="203" font-size="14" text-anchor="middle">static nextId = 2</text>
+    <text x="354.5" y="225" font-size="12" text-anchor="middle">class-wide state</text>
+    <rect x="270" y="300" width="169" height="104" rx="12" fill="#fff" stroke="#9aa8bb"/>
+    <text x="354.5" y="328" font-size="15" font-weight="600" text-anchor="middle">Customer instance</text>
+    <text x="354.5" y="352" font-size="13" text-anchor="middle">ordinary heap object</text>
+    <line x1="285" y1="365" x2="424" y2="365" stroke="#b9c6d8"/>
+    <text x="354.5" y="389" font-size="14" text-anchor="middle">instance id = 1</text>
+    <path d="M270 151C247 151 240 164 213 164" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="240" y="143" font-size="11" text-anchor="middle">represents</text>
+    <path d="M270 343C244 343 240 286 213 286" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="240" y="326" font-size="11" text-anchor="middle">type</text>
+    <rect x="22" y="488" width="436" height="45" rx="12" fill="#fff" stroke="#9aa8bb"/>
+    <text x="240" y="507" font-size="13" text-anchor="middle">Both heap objects are associated with one runtime class.</text>
+    <text x="240" y="525" font-size="12" text-anchor="middle">Arrows show VM links, not ordinary Java fields.</text>
+    <text x="240" y="548" font-size="12" text-anchor="middle">Simplified HotSpot view · not a JVM-specified physical layout</text>
+  </g>
+</svg>

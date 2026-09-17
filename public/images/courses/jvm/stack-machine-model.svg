@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480" role="img" aria-labelledby="title desc">
+  <title id="title">How a JVM stack machine handles values</title>
+  <desc id="desc">Load instructions copy values from indexed local slots to the operand stack. Operations consume values from the top and push results. Store instructions copy a result back to a local slot.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="480" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="34" font-size="18" text-anchor="middle">THE JVM STACK-MACHINE MODEL</text>
+    <rect x="28" y="67" width="180" height="158" rx="14" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="118" y="94" font-size="16" text-anchor="middle">LOCAL SLOTS</text>
+    <text x="52" y="128" font-size="15">slot 1</text><rect x="112" y="108" width="70" height="30" rx="7" fill="#e9efff"/><text x="147" y="129" font-size="15" text-anchor="middle">10</text>
+    <text x="52" y="170" font-size="15">slot 2</text><rect x="112" y="150" width="70" height="30" rx="7" fill="#e9efff"/><text x="147" y="171" font-size="15" text-anchor="middle">20</text>
+    <text x="52" y="211" font-size="14">kept by index</text>
+    <rect x="272" y="67" width="180" height="158" rx="14" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="362" y="94" font-size="16" text-anchor="middle">OPERAND STACK</text>
+    <rect x="310" y="112" width="104" height="38" rx="8" fill="#e9efff" stroke="#9aa8bb"/><text x="362" y="137" font-size="16" text-anchor="middle">20  ← top</text>
+    <rect x="310" y="154" width="104" height="38" rx="8" fill="#e9efff" stroke="#9aa8bb"/><text x="362" y="179" font-size="16" text-anchor="middle">10</text>
+    <path d="M207 121 C238 121 242 121 271 121" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/><text x="240" y="110" font-size="13" text-anchor="middle">load</text>
+    <rect x="60" y="275" width="360" height="60" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="300" font-size="16" text-anchor="middle">iadd consumes 10 and 20</text><text x="240" y="322" font-size="14" text-anchor="middle">then pushes 30 for the next instruction</text>
+    <path d="M362 226 V273" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="188" y="370" width="104" height="42" rx="8" fill="#e9efff" stroke="#9aa8bb"/><text x="240" y="397" font-size="16" text-anchor="middle">30  ← top</text>
+    <path d="M240 336 V368" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="240" y="448" font-size="14" text-anchor="middle">One instruction's output becomes another's input</text>
+  </g>
+</svg>

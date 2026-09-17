@@ -298,7 +298,7 @@ The allocation story now begins before the TLAB fast path. The JIT first decides
 <figcaption>Escape analysis can remove the need for allocation; TLABs optimize the common path after a real allocation is still required. <a href="/images/courses/jvm/allocation-optimization-tree.svg">Open full-size diagram</a>.</figcaption>
 </figure>
 
-The next preview follows a different transition: the [class-loading lifecycle](/courses/jvm/class-loading-lifecycle), from class-file bytes through loading, linking, verification, preparation, resolution, and initialization.
+The [next lesson](/courses/jvm/class-loading-lifecycle) follows the class-loading lifecycle, from class-file bytes through loading, linking, verification, preparation, resolution, and initialization.
 
 <details class="lesson-sources">
 <summary>Sources and implementation boundaries</summary>

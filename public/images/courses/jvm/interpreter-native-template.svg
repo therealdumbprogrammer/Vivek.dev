@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="520" viewBox="0 0 480 520" role="img" aria-labelledby="title desc">
+  <title id="title">From interpreter template to runtime dispatch</title>
+  <desc id="desc">During JVM initialization, HotSpot uses an iadd template to generate a native iadd handler for the current CPU. At runtime, iadd bytecodes in different interpreted methods dispatch to this reusable handler.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="520" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="34" font-size="18" text-anchor="middle">TEMPLATE CREATION AND RUNTIME USE</text>
+    <text x="34" y="69" font-size="14" font-weight="600">WHEN THE JVM INITIALIZES</text>
+    <rect x="34" y="84" width="180" height="70" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="124" y="111" font-size="16" text-anchor="middle">iadd template</text><text x="124" y="135" font-size="13" text-anchor="middle">HotSpot generator recipe</text>
+    <path d="M215 119 H263" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="266" y="84" width="180" height="70" rx="12" fill="#e9efff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="356" y="111" font-size="16" text-anchor="middle">native iadd handler</text><text x="356" y="135" font-size="13" text-anchor="middle">generated for this CPU</text>
+    <path d="M240 175 H445" stroke="#9aa8bb" stroke-width="1.5"/><path d="M35 175 H240" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="34" y="211" font-size="14" font-weight="600">WHEN METHODS RUN</text>
+    <rect x="34" y="230" width="180" height="64" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="124" y="256" font-size="15" text-anchor="middle">Method A reaches iadd</text><text x="124" y="278" font-size="13" text-anchor="middle">interpreted bytecode</text>
+    <rect x="34" y="326" width="180" height="64" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="124" y="352" font-size="15" text-anchor="middle">Method B reaches iadd</text><text x="124" y="374" font-size="13" text-anchor="middle">interpreted bytecode</text>
+    <path d="M215 262 C250 262 248 302 284 302" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M215 358 C250 358 248 318 284 318" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="287" y="270" width="159" height="80" rx="12" fill="#e9efff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="367" y="298" font-size="15" text-anchor="middle">shared native handler</text><text x="367" y="322" font-size="13" text-anchor="middle">consume two ints</text><text x="367" y="341" font-size="13" text-anchor="middle">push their sum</text>
+    <path d="M367 351 V403" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="176" y="406" width="270" height="56" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="311" y="430" font-size="15" text-anchor="middle">dispatch to the next bytecode handler</text><text x="311" y="451" font-size="13" text-anchor="middle">or return from the method</text>
+    <text x="240" y="496" font-size="13" text-anchor="middle">The template generates the handler; methods reuse it later</text>
+  </g>
+</svg>

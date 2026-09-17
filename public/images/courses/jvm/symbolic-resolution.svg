@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="545" viewBox="0 0 480 545" role="img" aria-labelledby="title desc">
+  <title id="title">Resolution connects a constant-pool symbol to a runtime method</title>
+  <desc id="desc">Checkout bytecode invokes constant-pool entry seven. The entry describes Customer fee with a descriptor returning int. Resolution finds and checks the corresponding runtime class and method.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="545" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="36" font-size="20" text-anchor="middle">WHAT RESOLUTION CONNECTS</text>
+    <rect x="28" y="65" width="424" height="68" rx="12" fill="#fff" stroke="#9aa8bb"/>
+    <text x="48" y="88" font-size="12" font-weight="600">CHECKOUT BYTECODE</text>
+    <text x="48" y="116" font-size="16" font-family="ui-monospace,monospace">invokestatic #7</text>
+    <text x="222" y="116" font-size="14">call the symbol at entry #7</text>
+    <path d="M240 135v30" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="28" y="170" width="424" height="142" rx="12" fill="#e9efff" stroke="#9aa8bb"/>
+    <text x="48" y="194" font-size="12" font-weight="600">CONSTANT-POOL DESCRIPTION</text>
+    <text x="48" y="222" font-size="15" font-family="ui-monospace,monospace">#7  Methodref  Customer.fee:()I</text>
+    <line x1="48" y1="237" x2="432" y2="237" stroke="#b9c6d8"/>
+    <text x="91" y="261" font-size="14" text-anchor="middle">Customer</text>
+    <text x="91" y="283" font-size="12" text-anchor="middle">owner class</text>
+    <text x="240" y="261" font-size="14" text-anchor="middle">fee</text>
+    <text x="240" y="283" font-size="12" text-anchor="middle">method name</text>
+    <text x="386" y="261" font-size="14" text-anchor="middle">()I</text>
+    <text x="386" y="283" font-size="12" text-anchor="middle">no args → int</text>
+    <path d="M240 314v34" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="28" y="353" width="424" height="79" rx="12" fill="#fff" stroke="#9aa8bb"/>
+    <text x="240" y="380" font-size="15" font-weight="600" text-anchor="middle">RESOLUTION</text>
+    <text x="240" y="404" font-size="14" text-anchor="middle">find the runtime Customer · look up fee()I</text>
+    <text x="240" y="422" font-size="13" text-anchor="middle">check that the reference is valid and accessible</text>
+    <path d="M240 434v31" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="75" y="470" width="330" height="50" rx="12" fill="#e9efff" stroke="#9aa8bb"/>
+    <text x="240" y="500" font-size="15" text-anchor="middle">checked relationship to runtime method</text>
+    <text x="240" y="536" font-size="13" text-anchor="middle">If the method is absent, resolution can fail.</text>
+  </g>
+</svg>
