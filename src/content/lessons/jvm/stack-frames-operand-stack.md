@@ -13,7 +13,7 @@ jdk: JVM execution model · JDK 25 / HotSpot boundaries
 
 You can now read `invokevirtual #17` and explain how its constant-pool entry identifies a method. But the instruction still needs an actual receiver and arguments. Where are those values while the method executes?
 
-[Lesson 11](/courses/jvm/constant-pool-symbolic-references) connected symbolic references to runtime entities. This lesson follows the working state that makes those entities useful. **Each method invocation gets its own JVM frame**, containing a local-variable array, an operand stack, and a reference to the runtime constant pool of the class containing the current method.
+[Lesson 11](/courses/jvm/constant-pool-symbolic-references) connected symbolic references to runtime entities. This lesson follows the working state that makes those entities useful. **<mark>Each method invocation gets its own JVM frame</mark>**, containing a local-variable array, an operand stack, and a reference to the runtime constant pool of the class containing the current method.
 
 <figure>
 <a href="/images/courses/jvm/jvm-frame-overview.svg" aria-label="Open diagram at full size"><img src="/images/courses/jvm/jvm-frame-overview.svg" alt="An add invocation contains indexed locals, its own operand stack, and a runtime constant-pool reference." width="480" height="470" /></a>

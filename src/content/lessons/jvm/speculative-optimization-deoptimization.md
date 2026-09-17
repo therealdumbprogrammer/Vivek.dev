@@ -19,7 +19,7 @@ In [Lesson 14](/courses/jvm/tiered-compilation), we saw C2 use runtime profiles 
 
 HotSpot can still use that evidence. It may optimize for the behavior that happens most often, provided that it keeps a correct route for every behavior Java allows. This is **speculative optimization**: optimize around a likely condition while treating that condition as something that may later prove false.
 
-If the optimized form can no longer be used safely, HotSpot can leave it, rebuild the Java-level execution state, and continue in a safer form. That transition is **deoptimization**. It does not undo the application's work or restart the request.
+If the optimized form can no longer be used safely, HotSpot can leave it, rebuild the Java-level execution state, and continue in a safer form. That transition is **deoptimization**. <mark>It does not undo the application's work or restart the request.</mark>
 
 Keep three layers separate throughout the lesson:
 

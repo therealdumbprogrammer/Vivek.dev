@@ -38,9 +38,12 @@ class Customer {
 
 An Order can reference a Customer, which can reference an Address. The collector's fundamental question is whether there is still a path to those objects from the running program. An object's age can influence how a collector manages it, but age alone does not decide whether it is garbage.
 
-> An object becomes eligible for reclamation when it is no longer reachable from the GC root set.
+<aside class="lesson-callout" data-kind="key-idea" aria-label="Key idea">
+<p class="callout-label">Key idea</p>
+<p>An object becomes eligible for reclamation when it is no longer reachable from the GC root set.</p>
+</aside>
 
-We'll use ordinary strong references throughout these pictures. Special reference processing, including weak references and finalization, adds rules that belong in a later lesson. **Eligible does not mean reclaimed immediately**: the collector must discover and reclaim the object in an appropriate collection.
+We'll use ordinary strong references throughout these pictures. Special reference processing, including weak references and finalization, adds rules that belong in a later lesson. **<mark>Eligible does not mean reclaimed immediately</mark>**: the collector must discover and reclaim the object in an appropriate collection.
 
 ## Where traversal begins
 

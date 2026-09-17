@@ -13,7 +13,7 @@ jdk: HotSpot · JDK 25 reference
 
 You create a Java object with just a few fields. Add up their sizes, and it seems as though the object should be tiny. Yet the space it occupies on the heap can be much larger. Where do the extra bytes come from?
 
-In [Lesson 2](/courses/jvm/memory), we looked at the memory consumed by the entire JVM process. Now let's move inside that map, all the way down to **one object in the Java heap**. The key idea is **Java fields ≠ total object size**. Your fields hold application data; HotSpot also needs information to manage the object, and space to satisfy its layout rules.
+In [Lesson 2](/courses/jvm/memory), we looked at the memory consumed by the entire JVM process. Now let's move inside that map, all the way down to **one object in the Java heap**. The key idea is **<mark>Java fields ≠ total object size</mark>**. Your fields hold application data; HotSpot also needs information to manage the object, and space to satisfy its layout rules.
 
 ## Zoom from the heap into one object
 
@@ -103,7 +103,7 @@ If we create a `Person` and assign a newly created `Address` to its `address` fi
 
 The **shallow size** of `Person` counts that one object's header, primitive fields, reference slots, and padding. It does **not** include the `Address` object's body. `Address` has its own header, fields, and padding. If `address` is `null`, the reference slot still occupies space in `Person`, but there is no object to follow through that slot.
 
-Several people could also refer to the same address. Counting an entire `Address` for every reference would count that shared object more than once. This is why **reference ≠ referenced object** matters when estimating memory.
+Several people could also refer to the same address. Counting an entire `Address` for every reference would count that shared object more than once. This is why **<mark>reference ≠ referenced object</mark>** matters when estimating memory.
 
 We'll later distinguish reachable graph size from **retained size**, which concerns what would become collectible if a particular object stopped keeping it alive. Retained size is not just shallow size plus everything reachable; other paths can keep shared objects alive.
 

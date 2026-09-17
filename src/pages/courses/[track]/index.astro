@@ -1,8 +1,9 @@
 ---
 import LearningLayout from '../../../layouts/LearningLayout.astro';
-import { getTracks, trackCount, lessonUrl } from '../../../data/learning';
+import { getTracks, trackCount, lessonUrl, getLessonSections } from '../../../data/learning';
 export async function getStaticPaths() { return (await getTracks()).map(track => ({ params: { track: track.slug }, props: { track } })); }
 const { track } = Astro.props;
+const sections = getLessonSections(track);
 ---
 <LearningLayout track={track} title={track.title} toc={[{id:'about',title:'About this track'},{id:'lessons',title:'The learning map'}]}>
   <div class="course-intro">
@@ -13,5 +14,9 @@ const { track } = Astro.props;
   </div>
   <div class="prose"><h2 id="about">About this track</h2><p>This is a small preview of a connected learning experience. Use the contents to move between ideas without losing sight of the bigger picture. {track.note}.</p></div>
   <h2 id="lessons" class="mt-10 text-2xl font-semibold">The learning map</h2>
-  <div class="mt-5 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">{track.lessons.map((lesson,i) => <a href={lessonUrl(track.slug,lesson.slug)} class="lesson-row flex items-start gap-4 p-5"><span class="lesson-number shrink-0 font-mono text-xs">{String(i + 1).padStart(2, '0')}</span><div><p class="text-xs text-slate-500">{lesson.group}</p><h3 class="mt-1 font-semibold">{lesson.title}{lesson.draft && <span class="ml-2 text-xs text-blue-700">Draft</span>}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{lesson.summary}</p></div><span aria-hidden="true" class="ml-auto text-blue-700">→</span></a>)}</div>
+  <p class="mt-3 text-sm text-slate-600">Expand a section to explore its lessons. Numbers follow the full course sequence.</p>
+  <div class="course-map mt-5">{sections.map(section => <details class="course-section">
+    <summary><span class="section-name">{section.name}</span><span class="section-count">{section.lessons.length} {section.lessons.length === 1 ? 'lesson' : 'lessons'}</span></summary>
+    <ol>{section.lessons.map(({ lesson, number }) => <li value={number}><a href={lessonUrl(track.slug,lesson.slug)} class="lesson-row flex items-start gap-4 p-5"><span aria-hidden="true" class="lesson-number shrink-0 font-mono text-xs">{String(number).padStart(2, '0')}</span><div><h3 class="font-semibold">{lesson.title}{lesson.draft && <span class="ml-2 text-xs">Draft</span>}{lesson.placeholder && <span class="ml-2 text-xs">Planned</span>}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{lesson.summary}</p></div><span aria-hidden="true" class="ml-auto">→</span></a></li>)}</ol>
+  </details>)}</div>
 </LearningLayout>

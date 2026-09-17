@@ -61,7 +61,7 @@ Once a method is ready to run, its instructions need to become actual work on th
 
 Here's the interesting part: HotSpot can observe the program while it runs and use those observations to guide optimization. A method may be interpreted earlier and use compiled code later. The program's behavior must stay correct, but the way HotSpot carries out the work can change.
 
-The key idea is that **execution can change while the application runs**. A simplified journey looks like this:
+The key idea is that **<mark>execution can change while the application runs</mark>**. A simplified journey looks like this:
 
 ```text
 Bytecode → interpreter

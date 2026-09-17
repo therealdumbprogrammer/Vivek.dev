@@ -20,7 +20,7 @@ You add a library, start the application, and eventually call one of its methods
 <figcaption>The solid path shows prerequisites for initialization. The separate resolution path prevents “linked” from implying that every reference has already been resolved. <a href="/images/courses/jvm/class-lifecycle-overview.svg">Open full-size diagram</a>.</figcaption>
 </figure>
 
-**Loaded, linked, and initialized are different states.** Linking comprises verification, preparation, and resolution, but these are not three boxes that must all finish eagerly before any execution. Keep that qualification in mind as we follow the lifecycle defined by the JVM specification.
+**<mark>Loaded, linked, and initialized are different states.</mark>** Linking comprises verification, preparation, and resolution, but these are not three boxes that must all finish eagerly before any execution. Keep that qualification in mind as we follow the lifecycle defined by the JVM specification.
 
 ## Loading: bring class bytes into the runtime
 
@@ -164,7 +164,7 @@ The symbol says: find the class named `Customer`, then find its static method na
 
 When the reference is resolved, the JVM uses `Checkout`'s loading context to identify the correct runtime `Customer` class, looks up `fee()I`, and checks that the reference is valid and accessible. The runtime constant-pool entry can then represent the established runtime relationship.
 
-If the loaded `Customer` class does not have that method, resolution can produce `NoSuchMethodError`. The source compiled against one API, but the symbolic description cannot be connected to the classes present at runtime. The next lesson opens the constant pool in more detail; here the key idea is that **resolution turns a description into a checked runtime relationship**.
+If the loaded `Customer` class does not have that method, resolution can produce `NoSuchMethodError`. The source compiled against one API, but the symbolic description cannot be connected to the classes present at runtime. The next lesson opens the constant pool in more detail; here the key idea is that **<mark>resolution turns a description into a checked runtime relationship</mark>**.
 
 ## Resolution may continue after initialization
 

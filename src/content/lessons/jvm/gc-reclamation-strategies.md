@@ -13,7 +13,7 @@ jdk: HotSpot · GC foundations
 
 Your application needs room for another object. The collector has found plenty of unreachable data, but that does not yet give the allocator somewhere convenient to put the new object. The collector still has to turn that garbage into reusable space.
 
-In [Lesson 4](/courses/jvm/gc-roots-reachability), we followed references from GC roots to discover the live graph. This lesson begins with that result and asks: **how should the memory be reclaimed and organized?** Mark-sweep, mark-compact, and copying are foundational strategies, or building blocks. Modern collectors combine them across regions, generations, and phases; they are not three mutually exclusive collector types.
+In [Lesson 4](/courses/jvm/gc-roots-reachability), we followed references from GC roots to discover the live graph. This lesson begins with that result and asks: **how should the memory be reclaimed and organized?** Mark-sweep, mark-compact, and copying are foundational strategies, or building blocks. <mark>Modern collectors combine them across regions, generations, and phases; they are not three mutually exclusive collector types.</mark>
 
 Look at the same starting heap in each case. A, B, and C survive. What changes is where they end up and how the free space is arranged.
 

@@ -114,7 +114,7 @@ HotSpot does not need to keep `process` in the slower interpreter just to gather
 
 Some counters reveal how often the method is called or a loop repeats. A richer profile can also record which side of an `if` statement is usually taken and which concrete object type appears at a particular method call. HotSpot therefore learns about behavior at specific places inside `process`, not just whether the whole method is popular.
 
-Those extra measurements have a cost, which is why C1 has different profiling levels. The key point is that **compiled does not mean finished learning**. HotSpot can execute faster native code and still collect evidence for a later C2 compilation. Oracle's [tiered-compilation documentation](https://docs.oracle.com/en/java/javase/25/vm/java-hotspot-virtual-machine-performance-enhancements.html) describes this combination.
+Those extra measurements have a cost, which is why C1 has different profiling levels. The key point is that **<mark>compiled does not mean finished learning</mark>**. HotSpot can execute faster native code and still collect evidence for a later C2 compilation. Oracle's [tiered-compilation documentation](https://docs.oracle.com/en/java/javase/25/vm/java-hotspot-virtual-machine-performance-enhancements.html) describes this combination.
 
 ## C2 uses the profile to optimize the common case
 

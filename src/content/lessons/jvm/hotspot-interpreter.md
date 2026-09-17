@@ -170,7 +170,7 @@ can repay the cost
 
 ## Running code leaves useful evidence
 
-While the application runs, HotSpot can record **profiles**: summaries of behavior seen at particular methods and bytecode locations. A profile is runtime evidence, not a prediction that the future must look the same.
+While the application runs, HotSpot can record **profiles**: summaries of behavior seen at particular methods and bytecode locations. <mark>A profile is runtime evidence, not a prediction that the future must look the same.</mark>
 
 Suppose this method is called repeatedly:
 

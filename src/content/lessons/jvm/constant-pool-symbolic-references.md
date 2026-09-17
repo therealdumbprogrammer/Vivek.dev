@@ -195,7 +195,7 @@ descriptor:      ()Ljava/lang/String;
 
 The descriptor records the parameter and return types. Here `()` means that this method takes no explicit arguments, and `Ljava/lang/String;` means that it returns a reference to `java.lang.String`.
 
-The class named in a method reference is the **reference class**, where method lookup begins. The method can ultimately be inherited rather than declared directly in that class. The symbolic reference gives the JVM enough information to perform the specified lookup; it does not contain a final machine-code address.
+The class named in a method reference is the **reference class**, where method lookup begins. The method can ultimately be inherited rather than declared directly in that class. <mark>The symbolic reference gives the JVM enough information to perform the specified lookup; it does not contain a final machine-code address.</mark>
 
 The field instruction works the same way at this level. `getfield #7` leads to:
 
