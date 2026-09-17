@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="560" viewBox="0 0 480 560" role="img" aria-labelledby="title desc">
+  <title id="title">Trace add through a JVM stack machine</title>
+  <desc id="desc">The add method starts with 10 and 20 in local slots. iload 1 and iload 2 copy them to the operand stack, iadd replaces them with 30, and ireturn returns 30.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="560" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="34" font-size="18" text-anchor="middle">ADD(10, 20), ONE BYTECODE AT A TIME</text>
+    <rect x="26" y="60" width="428" height="70" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="48" y="86" font-size="15">locals</text><text x="48" y="112" font-size="15">[this, 10, 20]</text><text x="280" y="100" font-size="15">operand stack [ ]</text>
+    <path d="M240 131 V153" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="26" y="156" width="428" height="66" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="48" y="182" font-size="16">iload_1</text><text x="48" y="205" font-size="14">copy local 1</text><text x="280" y="194" font-size="16">stack [10]</text>
+    <path d="M240 223 V245" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="26" y="248" width="428" height="66" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="48" y="274" font-size="16">iload_2</text><text x="48" y="297" font-size="14">copy local 2</text><text x="280" y="286" font-size="16">stack [10, 20]</text>
+    <path d="M240 315 V337" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="26" y="340" width="428" height="66" rx="12" fill="#e9efff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="48" y="366" font-size="16">iadd</text><text x="48" y="389" font-size="14">pop, add, push</text><text x="280" y="378" font-size="16">stack [30]</text>
+    <path d="M240 407 V429" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="26" y="432" width="428" height="66" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="48" y="458" font-size="16">ireturn</text><text x="48" y="481" font-size="14">consume top value</text><text x="280" y="470" font-size="16">return 30</text>
+    <text x="240" y="531" font-size="14" text-anchor="middle">The local slots remain [this, 10, 20]</text>
+  </g>
+</svg>

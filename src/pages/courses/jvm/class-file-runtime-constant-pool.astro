@@ -1,0 +1,9 @@
+---
+import { getTracks, lessonUrl } from '../../../data/learning';
+const jvm = (await getTracks()).find(track => track.slug === 'jvm');
+const lesson = jvm?.lessons.find(item => item.slug === 'constant-pool-symbolic-references');
+const destination = lesson ? lessonUrl('jvm', lesson.slug) : '/courses/jvm';
+return Astro.redirect(destination);
+---
+
+<a href={destination}>Continue to the JVM course</a>

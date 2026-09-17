@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="540" viewBox="0 0 480 540" role="img" aria-labelledby="title desc">
+  <title id="title">The interpreter's repeating loop</title>
+  <desc id="desc">The interpreter fetches an opcode at the current bytecode position, dispatches to an implementation, updates the current frame, chooses the next position, and repeats until a return exits the loop.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="540" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="35" font-size="18" text-anchor="middle">FETCH → DISPATCH → EXECUTE → CONTINUE</text>
+    <rect x="70" y="66" width="340" height="62" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="92" font-size="16" text-anchor="middle">1 · FETCH</text><text x="240" y="114" font-size="14" text-anchor="middle">opcode = bytecode[pc]</text>
+    <path d="M240 129 V154" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="70" y="157" width="340" height="62" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="183" font-size="16" text-anchor="middle">2 · DISPATCH</text><text x="240" y="205" font-size="14" text-anchor="middle">select this opcode's handler</text>
+    <path d="M240 220 V245" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="70" y="248" width="340" height="62" rx="12" fill="#e9efff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="274" font-size="16" text-anchor="middle">3 · EXECUTE</text><text x="240" y="296" font-size="14" text-anchor="middle">read or change the current frame</text>
+    <path d="M240 311 V336" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="70" y="339" width="340" height="62" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="365" font-size="16" text-anchor="middle">4 · CONTINUE</text><text x="240" y="387" font-size="14" text-anchor="middle">advance pc or choose a branch target</text>
+    <path d="M70 370 H38 V97 H68" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="22" y="238" font-size="13" text-anchor="middle" transform="rotate(-90 22 238)">repeat</text>
+    <path d="M410 370 H444 V448" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="285" y="451" width="169" height="48" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="370" y="481" font-size="15" text-anchor="middle">return exits the loop</text>
+    <text x="240" y="521" font-size="13" text-anchor="middle">Teaching model · real HotSpot dispatch is generated native code</text>
+  </g>
+</svg>

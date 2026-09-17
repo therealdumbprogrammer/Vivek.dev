@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="470" viewBox="0 0 480 470" role="img" aria-labelledby="title desc">
+  <title id="title">Loading creates two connected runtime pieces</title>
+  <desc id="desc">Customer class bytes pass through the defining loader. HotSpot creates internal class metadata and a connected Class Customer heap object used by Java code.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="470" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="36" font-size="20" text-anchor="middle">LOADING CREATES THE RUNTIME TYPE</text>
+    <rect x="90" y="65" width="300" height="52" rx="12" fill="#fff" stroke="#9aa8bb"/>
+    <text x="240" y="97" font-size="16" text-anchor="middle">Customer.class bytes</text>
+    <path d="M240 118v32" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="90" y="154" width="300" height="58" rx="12" fill="#e9efff" stroke="#9aa8bb"/>
+    <text x="240" y="178" font-size="16" text-anchor="middle">Defining loader supplies the bytes</text>
+    <text x="240" y="199" font-size="14" text-anchor="middle">HotSpot creates the runtime type</text>
+    <path d="M184 214l-58 52" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M296 214l58 52" fill="none" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="126" y="253" font-size="12" text-anchor="middle">VM uses</text>
+    <text x="354" y="253" font-size="12" text-anchor="middle">Java code uses</text>
+    <rect x="24" y="272" width="205" height="112" rx="12" fill="#e9efff" stroke="#9aa8bb"/>
+    <text x="126.5" y="300" font-size="13" font-weight="600" text-anchor="middle">HOTSPOT METADATA</text>
+    <text x="126.5" y="326" font-size="15" text-anchor="middle">fields · methods</text>
+    <text x="126.5" y="348" font-size="15" text-anchor="middle">parents · runtime pool</text>
+    <text x="126.5" y="369" font-size="13" text-anchor="middle">detailed VM definition</text>
+    <rect x="251" y="272" width="205" height="112" rx="12" fill="#fff" stroke="#9aa8bb"/>
+    <text x="353.5" y="300" font-size="13" font-weight="600" text-anchor="middle">JAVA HEAP OBJECT</text>
+    <text x="353.5" y="326" font-size="15" text-anchor="middle">Class&lt;Customer&gt;</text>
+    <text x="353.5" y="348" font-size="14" text-anchor="middle">returned by Customer.class</text>
+    <text x="353.5" y="369" font-size="13" text-anchor="middle">Java-facing representative</text>
+    <line x1="229" y1="405" x2="251" y2="405" stroke="#315dcc" stroke-width="2"/>
+    <circle cx="240" cy="405" r="4" fill="#315dcc"/>
+    <text x="240" y="432" font-size="14" text-anchor="middle">connected representations of the same type</text>
+    <text x="240" y="454" font-size="13" text-anchor="middle">“mirror” = the Class&lt;Customer&gt; object</text>
+  </g>
+</svg>

@@ -9,6 +9,12 @@ const sampleTracks = [
     { slug: 'tlabs-allocation', title: 'Allocation internals: TLABs and bump pointers', group: 'Foundations', summary: 'A preview of how thread-local allocation buffers and bump-pointer allocation let HotSpot allocate objects cheaply without one global allocation bottleneck.', placeholder: true },
     { slug: 'escape-analysis-scalar-replacement', title: 'Escape analysis and scalar replacement', group: 'Foundations', summary: 'A preview of how the JIT analyzes object use and can replace an object with its fields, removing some allocations entirely.', placeholder: true },
     { slug: 'class-loading-lifecycle', title: 'Class loading lifecycle', group: 'Foundations', summary: 'A preview of loading, linking, verification, preparation, resolution, and initialization: how class-file bytes become runtime types.', placeholder: true },
+    { slug: 'constant-pool-symbolic-references', title: 'The constant pool and why JVM bytecode uses symbolic references', group: 'Foundations', summary: 'A preview of how numbered bytecode operands select class-file entries and become usable runtime relationships.', placeholder: true },
+    { slug: 'stack-frames-operand-stack', title: 'Stack frames, local variables, and the operand stack', group: 'Foundations', summary: 'A preview of local variables, operands, method calls, and how the interpreter executes stack-based bytecode instruction by instruction.', placeholder: true },
+    { slug: 'hotspot-interpreter', title: 'The HotSpot interpreter', group: 'Execution and JIT', summary: 'A preview of bytecode dispatch, interpreted frame state, and the execution profiles that guide JIT compilation.', placeholder: true },
+    { slug: 'tiered-compilation', title: 'Tiered compilation: C1, C2, and compilation levels', group: 'Execution and JIT', summary: 'A preview of profiling compiled tiers, C1 and C2, compilation levels, and why HotSpot can compile a method more than once.', placeholder: true },
+    { slug: 'speculative-optimization-deoptimization', title: 'Speculative optimization and deoptimization', group: 'Execution and JIT', summary: 'A preview of guarded runtime assumptions, optimized code invalidation, and how HotSpot recovers correct execution when observed behavior changes.', placeholder: true },
+    { slug: 'code-cache', title: 'The Code Cache', group: 'Execution and JIT', summary: 'A preview of where JIT-generated native code lives, profiled and non-profiled code heaps, code lifetime, and how Code Cache pressure affects production performance.', placeholder: true },
   ]},
   { slug: 'kubernetes', hidden: true, title: 'A path into Kubernetes', type: 'Path', description: 'Connect the building blocks: from a running container to a service you can reach.', note: 'Work through connected milestones', lessons: [
     { slug: 'pods', title: 'Start with a Pod', group: 'Building blocks', summary: 'A Pod groups containers that share a network and storage context. It is the smallest deployable unit you manage in Kubernetes.', idea: 'Start with one running unit before thinking about a whole cluster.', example: 'kubectl get pods', exercise: 'Draw one Pod with two containers. Mark the resources they share.' },
@@ -40,9 +46,13 @@ export async function getTracks(): Promise<Track[]> {
   }
   return sampleTracks.filter(track => !track.hidden).map(track => {
     const authored = entries.filter(e => e.data.course === track.slug);
+    const firstDraftOrder = import.meta.env.DEV
+      ? Number.POSITIVE_INFINITY
+      : Math.min(...authored.filter(e => e.data.draft).map(e => e.data.order), Number.POSITIVE_INFINITY);
     const samples: Lesson[] = track.lessons
       .map((l, i) => ({...l, order: (i + 3) * 10, draft: false}))
-      .filter(l => !authored.some(e => e.data.lessonSlug === l.slug));
+      .filter(l => !authored.some(e => e.data.lessonSlug === l.slug))
+      .filter(l => l.order < firstDraftOrder);
     const real: Lesson[] = authored.filter(e => import.meta.env.DEV || !e.data.draft)
       .map(entry => ({slug: entry.data.lessonSlug, title: entry.data.title,
         group: entry.data.module, summary: entry.data.summary, order: entry.data.order,

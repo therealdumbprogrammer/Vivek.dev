@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="570" viewBox="0 0 480 570" role="img" aria-labelledby="title desc">
+  <title id="title">On-Stack Replacement preserves a running method's state</title>
+  <desc id="desc">A method starts in interpreted execution and reaches a hot loop. HotSpot prepares compiled code with an OSR entry, transfers equivalent live state including the current loop index, and the same invocation continues in compiled code.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="570" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="35" font-size="18" text-anchor="middle">OSR: SAME CALL, NEW EXECUTION PATH</text>
+    <rect x="38" y="65" width="404" height="72" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="91" font-size="16" text-anchor="middle">1 · process() starts interpreted</text><text x="240" y="116" font-size="14" text-anchor="middle">one active frame on the thread's call stack</text>
+    <path d="M240 138 V162" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="38" y="165" width="404" height="72" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="191" font-size="16" text-anchor="middle">2 · the loop becomes hot</text><text x="240" y="216" font-size="14" text-anchor="middle">current logical state includes i = 40,000</text>
+    <path d="M240 238 V262" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="38" y="265" width="404" height="72" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="291" font-size="16" text-anchor="middle">3 · HotSpot prepares OSR code</text><text x="240" y="316" font-size="14" text-anchor="middle">compiled entry matches a supported loop point</text>
+    <path d="M240 338 V362" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="38" y="365" width="404" height="72" rx="12" fill="#e9efff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="391" font-size="16" text-anchor="middle">4 · transfer equivalent live state</text><text x="240" y="416" font-size="14" text-anchor="middle">arguments, references, loop index, bytecode position</text>
+    <path d="M240 438 V462" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="38" y="465" width="404" height="60" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="491" font-size="16" text-anchor="middle">5 · the same invocation continues compiled</text><text x="240" y="513" font-size="14" text-anchor="middle">i is still 40,000; the method does not restart</text>
+    <text x="240" y="550" font-size="13" text-anchor="middle">Conceptual state handoff · physical layouts differ</text>
+  </g>
+</svg>

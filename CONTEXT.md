@@ -257,3 +257,137 @@ Revision verification: Astro check and production build pass; 11 local course ro
 - User reviewed and accepted “TLABs and why object allocation is usually very cheap” and “Escape analysis and scalar replacement”. Set both lessons to `draft: false` so they participate in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
 - Updated publication-aware transitions: Lesson 7 now links to Lesson 8, and Lesson 8 describes Lesson 9 as the next published lesson. Lesson 9 continues to point to the class-loading lifecycle preview.
 - Verification: Astro check completed with 0 errors, warnings, or hints; the production build generated 69 pages, including both lesson routes with final sidebar and previous/next navigation and no draft labels. The sitemap includes both routes, and every JVM course SVG passes XML validation.
+
+
+## Daily JVM Byte #10 converted — 2026-09-13
+
+- Converted byte-010 into Lesson 10, “Class loading lifecycle — from .class bytes to a live JVM class”, Foundations order 100, following Lesson 9. Local draft on feature/learning-ui-experiment.
+- Twelve editable SVGs clarify loading versus linking versus initialization, lazy resolution, preparation defaults and ConstantValue before clinit, defining-loader type identity, Class mirrors versus HotSpot Metaspace metadata, and reachability-dependent unloading.
+- Shared navigation connects Lesson 9 → Lesson 10 → class-file/runtime-constant-pool preview. Lesson 9 prose avoids a production link to the local draft. Source byte and available reviewed draft archived with review notes.
+- Next: local editorial review, then the class-file/runtime-constant-pool byte. Changes remain uncommitted.
+
+- Verification: Astro diagnostics report 0 errors/warnings/hints; production build succeeds (69 pages). Draft route, production HTML links, and sitemap entry are excluded. All twelve SVGs parse, load, and were visually inspected. Desktop and 390px iframe views checked; final example has no horizontal code or page overflow. Sidebar selection, heading anchor, keyboard disclosure, overview, Lesson 9 ↔ 10 ↔ next preview and end-of-preview navigation verified. Fixed overview numbering from 010/011 to 10/11.
+- Executed the initialization example on Homebrew OpenJDK HotSpot 25.0.2: loaded, 42, initializing, 42, 42. javap confirms ConstantValue for LIMIT and putstatic in the static initializer for count. A transient content-sync duplicate-ID warning occurred during dev/check; clean production sync succeeded and only one source entry exists per lesson.
+- Local preview remains at http://127.0.0.1:4332/courses/jvm/class-loading-lifecycle. No commit, push, or deployment.
+
+
+## Daily JVM Byte #11 converted — 2026-09-13
+
+- Converted byte-011 into Lesson 11, “The constant pool and why JVM bytecode uses symbolic references”, Foundations order 110, prerequisite class-loading-lifecycle. Local draft on feature/learning-ui-experiment.
+- Eleven editable SVGs explain symbolic references, portability, class-file versus runtime pools, loader-sensitive resolution, lazy timing, resolution versus dynamic dispatch, field layout, interpreter operands, and member linkage failures.
+- Verified javap exercise on Homebrew OpenJDK HotSpot 25.0.2; source, available reviewed draft, disassembly, and technical review notes archived. ClassNotFoundException / NoClassDefFoundError remain distinct from missing members; initialization failure caveat preserved.
+- Shared navigation connects Lesson 10 → Lesson 11 → stack-frames/operand-stack preview. Legacy constant-pool preview URL redirects with draft visibility respected. Prior edits preserved; changes uncommitted. Next: local editorial review and the stack-frames byte.
+- Beginner-first revision on 2026-09-15: the lesson now starts with `Example.java` and its verified `javap -v` output, teaches bytecode offsets and constant-pool index chaining before symbolic/runtime terminology, and carries `Example.name` plus `String.toUpperCase` through the rest of the explanation. Updated the opening, five supporting SVGs, the course preview summary, and the reasoning sequence.
+- Reviewed and published on 2026-09-15 by changing Lesson 11 from draft to visible course content.
+
+
+## Daily JVM Byte #12 converted — 2026-09-14
+
+- Converted byte-012 and the available reviewed draft into Lesson 12, “Stack frames, local variables, and the operand stack”, Foundations order 120, prerequisite constant-pool-symbolic-references. Local draft on feature/learning-ui-experiment.
+- Twelve editable SVGs explain frame containment, local slots, instruction-by-instruction operand changes, call/return handoff, stack bytecode versus registers, Code capacities, call stacks, shared heap references, GC roots, logical versus compiled frames, stack overflow, and the interpreter bridge.
+- Clarified indexed slots versus source variables, instance/static receiver convention, continuing two-slot long/double rule, per-frame operand stacks versus thread call stacks, live references/OopMaps, and logical versus JIT physical frames including inlining.
+- Shared course metadata connects Lesson 11 → Lesson 12 → HotSpot interpreter preview. Source byte and available reviewed draft archived with retrieval boundary noted. Changes remain uncommitted; prior edits preserved. Next: local editorial review, then the HotSpot interpreter byte.
+- Verification: Astro check reports 0 errors/warnings/hints; production build succeeds (70 pages), with Lesson 12 route, HTML links and sitemap entry excluded. All twelve SVGs parse, load and were visually reviewed. Desktop 1280px and mobile 390px have no page/code overflow after formatting the Java example. Heading anchors, keyboard reasoning disclosure, overview/sidebar, Lesson 11 ↔ 12 ↔ interpreter preview and end-of-preview navigation verified.
+- Executed FrameDemo on Homebrew OpenJDK HotSpot 25.0.2: prints 30; javap confirms stack=2, locals=4, args_size=3 and the six instructions. Source and disassembly archived. Content sync emitted transient duplicate-ID warnings for Lessons 11/12 during checks; each has one source entry, diagnostics passed, and final production sync succeeded.
+- Local review server: http://127.0.0.1:4333/courses/jvm/stack-frames-operand-stack; interpreter preview: http://127.0.0.1:4333/courses/jvm/hotspot-interpreter. No commit, push or deployment.
+
+
+## Daily JVM Byte #13 converted — 2026-09-14
+
+- Converted byte-013 and the available reviewed draft into Lesson 13, “The HotSpot interpreter — executing bytecode before JIT compilation”, Execution and JIT order 130. Local draft on feature/learning-ui-experiment; prior edits preserved.
+- Ten editable SVGs explain native interpreter machinery, frame/operand operations, interpret-first investment, receiver profiles, policy-driven hotness, back edges/OSR, compiled execution, warm-up, and adaptive execution.
+- Clarified profiling in lower compiled tiers, counters as intuition rather than magic thresholds, guarded receiver assumptions, compiler/native-memory/Code Cache costs, and workload-dependent production warm-up. Theme: execution changes while the application runs.
+- Navigation connects Lesson 12 → Lesson 13 → tiered-compilation preview (C1/C2/levels). Source and available draft archived with retrieval boundary. Next: local editorial review, then tiered compilation. Changes remain uncommitted.
+- Verification: Astro diagnostics passed with 0 errors/warnings/hints; production build generated 70 pages. Lesson 13 is absent from production routes, HTML links and sitemap. All ten SVGs parse and load and were visually inspected. Desktop and 390px mobile checks found no page or code overflow; reasoning disclosure works by keyboard, navigation reaches the tiered preview with a return link and End of preview. A transient existing Lesson 12 duplicate-ID content-sync message appeared before clean build sync.
+- Local review remains at http://127.0.0.1:4333/courses/jvm/hotspot-interpreter; next preview at http://127.0.0.1:4333/courses/jvm/tiered-compilation. Examples are explicitly illustrative; no large loop or benchmark was run. No commit, push, or deployment.
+
+
+## Daily JVM Byte #14 converted — 2026-09-14
+
+- Converted byte-014 and available reviewed draft into Lesson 14, “Tiered compilation — C1, C2, and why HotSpot compiles a method more than once”, Execution and JIT order 140, prerequisite hotspot-interpreter. Local draft on feature/learning-ui-experiment; previous edits preserved.
+- Twelve editable SVGs cover C1/C2 trade-offs, tier states, compiled profiling, profile-guided optimization, inlining scope, method versions, investment, concurrent queues, Code Cache placement, warm-up, and the complete model.
+- Clarified tier levels as policy choices, limited/full C1 profiling, compiler queue pressure and CPU competition, guarded specialization, inlining/escape-analysis opportunities, version replacement versus invalidation/reclamation, native Code Cache placement and configuration-dependent segmentation (including non-profiled C1).
+- Shared navigation connects Lesson 13 → Lesson 14 → speculative-optimization/deoptimization preview. Source byte and available reviewed draft retained with retrieval boundary and review notes. Examples are illustrative, not measured benchmarks. Next: local editorial review, then speculative optimization and deoptimization. Changes remain uncommitted.
+- Verification: Astro check reports 0 errors/warnings/hints; production build succeeds (70 pages). A transient content-sync duplicate-ID warning for the edited Lesson 13 preceded a clean build sync. Lesson 14 is absent from production routes, HTML links, and sitemap. All twelve SVGs parse and load; diagram gallery and rendered lesson inspected. Desktop (1280px) and 390px mobile frame have no page/code overflow. Heading anchor, keyboard reasoning disclosure, active sidebar item, overview, Lesson 13 ↔ 14 ↔ next preview, and end-of-preview navigation verified.
+- Local review remains at http://127.0.0.1:4333/courses/jvm/tiered-compilation; next preview: http://127.0.0.1:4333/courses/jvm/speculative-optimization-deoptimization. No commit, push, or deployment.
+
+
+## Daily JVM Byte #15 converted — 2026-09-14
+
+- Converted byte-015 and available reviewed draft into Lesson 15, “Speculative optimization and deoptimization”, Execution and JIT order 150, prerequisite tiered-compilation. Local draft on feature/learning-ui-experiment; prior edits preserved.
+- Eleven editable SVGs cover speculation, guarded devirtualization, guards versus dependencies, uncommon traps, logical-state and inlined-frame reconstruction, machine-value metadata, rematerialization, adaptive recompilation, class-loading invalidation, and the complete loop.
+- Clarified guard versus VM-dependency invalidation, logical rather than historical physical state, live scalar-replaced object rematerialization and required lock semantics, and adaptive recompilation without a fixed public trap threshold. Included production reasoning and four reasoning checks.
+- Shared navigation connects Lesson 14 → Lesson 15 → Code Cache preview. Source retained with retrieval boundary and technical review notes. Examples are illustrative, not executed benchmarks. Next: local editorial review, then Code Cache. Changes remain uncommitted.
+- Verification: Astro check reports 0 errors/warnings/hints; production build succeeds (70 pages). A transient edited-Lesson-14 duplicate-ID content-sync warning preceded clean build sync. Lesson 15 is absent from production routes, HTML navigation and sitemap. Eleven SVGs parse/load and were visually reviewed, including separate guarded-call branches. Desktop and 390px mobile checks show no page/code overflow; keyboard reasoning disclosure and Lesson 14 ↔ 15 ↔ Code Cache preview navigation verified.
+- Review server remains at http://127.0.0.1:4337/courses/jvm/speculative-optimization-deoptimization; next preview http://127.0.0.1:4337/courses/jvm/code-cache. No commit, push or deployment.
+
+## Lesson 10 reader-feedback revision — 2026-09-14
+
+- Clarified that “mirror” is HotSpot's name for the familiar heap `java.lang.Class` object returned by `Customer.class` and `getClass()`, and simplified the defining-loader explanation around parent delegation.
+- Reframed the ConstantValue section around its observable purpose: some primitive/String compile-time constants can be embedded in callers and read without initializing their declaring class.
+- Rebuilt resolution around a verified `Checkout` → `Customer.fee()` example, including its `invokestatic #7` instruction and corresponding constant-pool entries.
+- Replaced three diagrams. The loading diagram now distinguishes the Java-facing `Class<Customer>` object from VM metadata; the resolution diagram connects bytecode index, symbolic entry, lookup, and runtime method; the memory diagram follows initialized `Customer` metadata, class-wide static state, and an ordinary instance across Metaspace and heap.
+- Changes remain an uncommitted local draft on `feature/learning-ui-experiment`.
+- Verification: the `Checkout` example compiled on Homebrew OpenJDK HotSpot 25.0.2 and `javap -c -verbose` produced `invokestatic #7` with `Methodref Customer.fee:()I`. Astro diagnostics and production build pass. The three revised SVGs parse and load; desktop and 390px views were inspected with no page or code overflow.
+
+## JVM Lesson 10 promoted — 2026-09-15
+
+- User reviewed and accepted “Class loading lifecycle — from .class bytes to a live JVM class”. Set Lesson 10 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Restored Lesson 9's direct link to Lesson 10. Lesson 10 describes unpublished Lesson 11 as the next planned lesson without linking to its draft-only route.
+- Content and illustrations remain unchanged from the reviewed revision. Changes remain uncommitted on `feature/learning-ui-experiment`; no deployment was performed.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 71 pages. Lesson 10 appears as a normal 15-minute lesson in the generated route, course overview, sidebar, and sitemap without a draft marker. Production navigation links Lesson 9 to Lesson 10 and omits the draft-only Lesson 11 route. The local lesson preview was inspected at desktop size and shows Lesson 10 without a draft label.
+
+## JVM Lesson 12 promoted — 2026-09-15
+
+- User reviewed and accepted “Stack frames, local variables, and the operand stack”. Set Lesson 12 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Lesson 12 now describes the unpublished HotSpot interpreter lesson as the next planned lesson without linking to its draft-only route. Content and illustrations remain unchanged from the reviewed revision.
+- Changes remain uncommitted on `feature/learning-ui-experiment`; no deployment was performed.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 73 pages. Lesson 12 appears in the generated route, course overview, sidebar, and sitemap without a draft marker, and Lesson 11 links forward to it. The HotSpot interpreter route remains excluded from production.
+
+## JVM Lesson 13 beginner-model revision — 2026-09-16
+
+- Reworked the draft HotSpot interpreter lesson around a first-time JVM reader. The explanation now builds in dependency order: stack machine and operand flow, a complete teaching interpreter loop with `pc`, fetch/dispatch/execute/continue, HotSpot template generation versus runtime native-handler reuse, profiling and hotness, back edges, then OSR state transfer.
+- Added `stack-machine-add.svg`, `interpreter-loop.svg`, and `osr-state-handoff.svg`; rebuilt the template-interpreter and complete adaptive-execution diagrams. Lesson 12 now defines the stack-machine model before introducing indexed locals and operand-stack instructions, with `stack-machine-model.svg`.
+- Preserved the implementation boundaries: the pseudocode is explanatory rather than literal HotSpot source, the JVMS owns instruction semantics, HotSpot supplies native interpreter machinery, profiling also occurs in lower compiled tiers, and OSR continues the same invocation without resetting live state.
+- Changes remain uncommitted on `feature/learning-ui-experiment`; Lesson 13 remains a local draft.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; production build succeeds with 73 pages. Lesson 13 remains absent from production routes, HTML links, and sitemap, while published Lesson 12 includes the new stack-machine section and diagram. All revised SVGs parse and load. Desktop and 390px views show no page or code overflow; heading anchors and both keyboard reasoning disclosures work. The local Lesson 12 → Lesson 13 → Lesson 14 navigation remains intact. A transient content-sync duplicate-ID warning for the edited Lesson 13 preceded a clean production sync.
+- Local review server: http://127.0.0.1:4338/courses/jvm/hotspot-interpreter. No commit, push, or deployment.
+
+## JVM Lesson 13 promoted — 2026-09-17
+
+- User reviewed and accepted “The HotSpot interpreter — executing bytecode before JIT compilation”. Set Lesson 13 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Lesson 12 now links directly to the published interpreter lesson. Lesson 13 describes tiered compilation as the next planned lesson without linking to its unpublished draft route.
+- Content and illustrations remain unchanged from the reviewed beginner-model revision. Changes remain uncommitted on `feature/learning-ui-experiment`; no deployment was performed.
+- Production course navigation now stops at Lesson 13 while Lessons 14 and 15 remain drafts, instead of skipping ahead to the later Code Cache placeholder. Development previews retain the complete draft sequence.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 73 pages. Lesson 13 appears as Lesson 13 of 13 in its generated route, course overview, sidebar, and sitemap without a draft marker. Lesson 12 links forward to Lesson 13, and Lesson 13 ends the published preview without exposing draft or out-of-sequence placeholder routes.
+
+## JVM Lesson 14 beginner-model revision — 2026-09-17
+
+- Reworked the draft tiered-compilation lesson for first-time course readers while preserving its technical scope. One `process(Order)` example now carries the explanation from interpreted bytecode through C1 profiling, C2 optimization, installed versions, compiler queues, and Code Cache placement.
+- Defined JIT compilation, native code, profiling instrumentation, devirtualization, inlining, nmethods, compiler threads, and Code Cache terminology before relying on them. Replaced compressed phrases such as amortization and eligibility/availability with explicit cause-and-effect explanations.
+- Preserved the deeper boundaries: levels are policy-controlled states rather than a mandatory staircase; level 2 and level 3 collect different evidence; profile-guided specialization must preserve Java behavior; inlining only exposes escape-analysis opportunities; installation, invalidation, recompilation, and reclamation are distinct; segmented Code Cache categories include non-profiled C1 code.
+- Revised four diagrams and captions (`c1-vs-c2`, `c1-profiled-code`, `profile-to-c2`, and `compilation-investment`) to use the lesson's beginner-facing terms and consistent `DefaultPricingService` example. Lesson 14 remains an uncommitted local draft on `feature/learning-ui-experiment`.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; production build succeeds with 73 pages. Lesson 14 remains absent from production routes and links. All twelve lesson images load; the four revised SVGs parse. Desktop and 390px mobile views have no page, table, or code overflow, and the keyboard reasoning disclosure works. Local review: http://127.0.0.1:4338/courses/jvm/tiered-compilation.
+
+## JVM Lesson 14 promoted — 2026-09-17
+
+- User reviewed and accepted “Tiered compilation — C1, C2, and why HotSpot compiles a method more than once”. Set Lesson 14 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Lesson 13 now links directly to the published tiered-compilation lesson. Lesson 14 describes speculative optimization and deoptimization as the next planned lesson without linking to the unpublished Lesson 15 route.
+- Content and illustrations remain unchanged from the reviewed beginner-model revision. Changes remain uncommitted on `feature/learning-ui-experiment`; no deployment was performed.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 74 pages. Lesson 14 appears in its generated route, course overview, sidebar, and sitemap without a draft marker. Production navigation links Lesson 13 to Lesson 14 and ends the published preview at Lesson 14, while Lesson 15 remains excluded. The local lesson was visually inspected at http://127.0.0.1:4338/courses/jvm/tiered-compilation.
+
+## JVM Lesson 15 beginner-model revision — 2026-09-17
+
+- Reworked the draft speculative-optimization lesson for a first-time JVM reader while preserving its full technical scope. The opening now separates required Java behavior, C2's optimized representation, and recovery information before introducing implementation machinery.
+- Expanded one `Payment` example to define call site, receiver, guard, inlining, fallback, uncommon trap, and deoptimization in dependency order. Added an end-to-end eight-step trace before the frame-reconstruction internals.
+- Added a guard-versus-VM-dependency comparison and defined invalidation, logical JVM state, compiler metadata as a translation map, rematerialization, identity and aliases, and monitor state at first use.
+- Preserved the deeper boundaries around dependency invalidation, bytecode-position recovery, inlined-frame reconstruction, machine-value locations, conditional object rematerialization, eliminated locks, adaptive recompilation, trap history without a public fixed threshold, dynamic class loading, Code Cache cost, and latency-sensitive production behavior.
+- Lesson 15 remains an uncommitted local draft on `feature/learning-ui-experiment`; Lesson 14 remains the end of the published course until review acceptance.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 74 pages. Lesson 15 remains absent from production routes, HTML links, and sitemap. All eleven images load, heading anchors and adjacent navigation are correct, and the first reasoning disclosure works by keyboard. Desktop and 390px mobile views have no page or code overflow after replacing the four-column comparison table with compact parallel blocks and wrapping the teaching examples. Local review: http://127.0.0.1:4340/courses/jvm/speculative-optimization-deoptimization.
+
+## JVM Lesson 15 promoted — 2026-09-17
+
+- User reviewed and accepted “Speculative optimization and deoptimization”. Set Lesson 15 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Lesson 14 now links directly to the published Lesson 15. Lesson 15 continues to the existing Code Cache preview.
+- Content and illustrations remain unchanged from the reviewed beginner-model revision. The accumulated course changes are being committed and pushed on `feature/learning-ui-experiment` at the user's request; no deployment was requested.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 76 pages. Lesson 15 renders without a draft marker, appears in the course overview and sitemap, receives the forward link from Lesson 14, and links onward to the Code Cache preview.

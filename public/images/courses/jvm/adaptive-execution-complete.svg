@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="540" viewBox="0 0 480 540" role="img" aria-labelledby="title desc">
+  <title id="title">From bytecode execution to adaptive compilation</title>
+  <desc id="desc">A loaded method creates frame state. The interpreter fetches and executes bytecodes. Calls, branches, receiver types, and loop activity create runtime evidence. The JIT can install compiled code for later calls or an OSR entry for an active loop.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#315dcc"/></marker></defs>
+  <rect width="480" height="540" rx="24" fill="#f7f9fc"/>
+  <g font-family="system-ui,sans-serif" fill="#334155">
+    <text x="240" y="34" font-size="18" text-anchor="middle">EXECUTION CHANGES WHILE THE APP RUNS</text>
+    <rect x="38" y="61" width="404" height="62" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="87" font-size="16" text-anchor="middle">1 · loaded bytecode + invocation frame</text><text x="240" y="108" font-size="13" text-anchor="middle">locals, operand stack, bytecode position</text>
+    <path d="M240 124 V146" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="38" y="149" width="404" height="62" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="175" font-size="16" text-anchor="middle">2 · interpreter fetches and executes</text><text x="240" y="196" font-size="13" text-anchor="middle">shared native handlers implement bytecodes</text>
+    <path d="M240 212 V234" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="38" y="237" width="404" height="62" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="263" font-size="16" text-anchor="middle">3 · runtime activity becomes evidence</text><text x="240" y="284" font-size="13" text-anchor="middle">calls · loops · branches · receiver types</text>
+    <path d="M240 300 V322" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="38" y="325" width="404" height="62" rx="12" fill="#e9efff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="240" y="351" font-size="16" text-anchor="middle">4 · HotSpot decides whether to compile</text><text x="240" y="372" font-size="13" text-anchor="middle">expected benefit is weighed against runtime cost</text>
+    <path d="M240 388 V411" stroke="#315dcc" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="27" y="414" width="202" height="72" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="128" y="440" font-size="15" text-anchor="middle">later invocation</text><text x="128" y="463" font-size="13" text-anchor="middle">enters compiled method code</text>
+    <rect x="251" y="414" width="202" height="72" rx="12" fill="#fff" stroke="#9aa8bb" stroke-width="1.5"/>
+    <text x="352" y="440" font-size="15" text-anchor="middle">active hot loop</text><text x="352" y="463" font-size="13" text-anchor="middle">can enter through OSR</text>
+    <text x="240" y="517" font-size="13" text-anchor="middle">Both paths preserve the same Java behavior</text>
+  </g>
+</svg>
