@@ -391,3 +391,12 @@ Revision verification: Astro check and production build pass; 11 local course ro
 - Lesson 14 now links directly to the published Lesson 15. Lesson 15 continues to the existing Code Cache preview.
 - Content and illustrations remain unchanged from the reviewed beginner-model revision. The accumulated course changes are being committed and pushed on `feature/learning-ui-experiment` at the user's request; no deployment was requested.
 - Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 76 pages. Lesson 15 renders without a draft marker, appears in the course overview and sitemap, receives the forward link from Lesson 14, and links onward to the Code Cache preview.
+
+## Course orientation and emphasis — 2026-09-17
+
+- Overview uses native collapsed section disclosures with lesson counts, numbered links, and planned/draft labels. Sidebar separators stay non-clickable; active lesson remains accented.
+- Shared `getLessonSections()` derives both views from existing module metadata and preserves global sequence numbers and draft visibility. No parallel section registry.
+- Use semantic `<mark>` for roughly 1–3 short must-remember ideas per lesson where useful; never add emphasis mechanically or hard-code colors. Larger standalone concepts may use restrained `lesson-callout` asides with Key idea, Important, Production note, or Common misconception labels. Existing lesson wording and qualifications are preserved.
+- See `JVM_AUTHORING_GUIDE.md` for exact markup, metadata conventions, and review steps. Course colors follow the OS dark-mode preference; diagrams retain their authored colors.
+- Verification: Astro diagnostics report 0 errors/warnings/hints; production build generates 76 pages. Chromium checks at 1440px and 390px in light/dark mode cover all 16 lesson routes, overview counts and keyboard disclosure, mobile contents toggle, active state, previous/next links, and horizontal overflow. Visually reviewed overview and emphasis. Content sync emitted transient duplicate-ID warnings during concurrent development/check; build completed cleanly and only one source file exists per lesson.
+- Local preview: http://127.0.0.1:4330/courses/jvm. Changes remain uncommitted on feature/learning-ui-experiment.

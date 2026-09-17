@@ -1,21 +1,21 @@
 ---
 import '../styles/learning.css';
 import BaseLayout from './BaseLayout.astro';
-import { lessonUrl, type Track } from '../data/learning';
+import { lessonUrl, getLessonSections, type Track } from '../data/learning';
 interface Props { track: Track; current?: string; title: string; toc: { id: string; title: string }[]; }
 const { track, current, title, toc } = Astro.props;
-const groups = [...new Set(track.lessons.map(l => l.group))];
+const sections = getLessonSections(track);
 ---
 <BaseLayout title={`${title} — Learning — Vivek.dev`} wide>
   <a href="#reading-content" class="sr-only focus:not-sr-only focus:block focus:mb-4 focus:text-blue-700">Skip to lesson content</a>
   <div class:list={[`track-${track.slug}`, "learning-grid grid items-start gap-8 lg:grid-cols-[230px_minmax(0,1fr)]", toc.length > 0 && "xl:grid-cols-[230px_minmax(0,1fr)_160px]"]}>
     <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto">
       <a href="/courses" class="text-sm text-slate-500 hover:text-blue-700">← All learning</a>
-      <details open class="mt-5 rounded-xl border border-slate-200 bg-white p-4">
+      <details open data-course-contents class="mt-5 rounded-xl border border-slate-200 bg-white p-4">
         <summary class="cursor-pointer font-semibold text-slate-900">{track.title}</summary>
         <nav aria-label="Learning contents" class="mt-5 text-sm">
           <a href={`/courses/${track.slug}`} aria-current={!current ? 'page' : undefined} class:list={['block rounded-md px-3 py-2', !current ? 'active-lesson font-semibold' : 'text-slate-600 hover:bg-stone-100']}>Overview</a>
-          {groups.map(group => <div class="mt-6"><p class="px-3 text-xs font-semibold uppercase tracking-wide text-slate-500">{group}</p><ul class="mt-2 space-y-1">{track.lessons.filter(l => l.group === group).map(lesson => <li><a href={lessonUrl(track.slug, lesson.slug)} aria-current={current === lesson.slug ? 'page' : undefined} class:list={['flex gap-3 rounded-md px-3 py-2.5', current === lesson.slug ? 'active-lesson font-semibold' : 'text-slate-600 hover:bg-stone-100']}><span class="text-slate-400">{String(track.lessons.indexOf(lesson)+1).padStart(2,'0')}</span>{lesson.title}{lesson.draft && <span class="text-[10px] uppercase">Draft</span>}</a></li>)}</ul></div>)}
+          {sections.map(section => <div class="mt-6"><p class="course-section-label text-xs font-semibold uppercase tracking-wide">{section.name}</p><ul class="mt-2 space-y-1">{section.lessons.map(({ lesson, number }) => <li><a href={lessonUrl(track.slug, lesson.slug)} aria-current={current === lesson.slug ? 'page' : undefined} class:list={['flex gap-3 rounded-md px-3 py-2.5', current === lesson.slug ? 'active-lesson font-semibold' : 'text-slate-600 hover:bg-stone-100']}><span class="text-slate-400">{String(number).padStart(2,'0')}</span>{lesson.title}{lesson.draft && <span class="text-[10px] uppercase">Draft</span>}</a></li>)}</ul></div>)}
         </nav>
       </details>
       <p class="mt-4 px-1 text-xs leading-5 text-slate-500">{track.lessons.some(l => l.entry) ? "Course in development" : "Sample content · UI experiment"}</p>
@@ -41,6 +41,11 @@ const groups = [...new Set(track.lessons.map(l => l.group))];
 
 <script>
   const setupPageToc = () => {
+    const contents = document.querySelector<HTMLDetailsElement>('[data-course-contents]');
+    if (contents && !contents.dataset.ready) {
+      contents.open = window.matchMedia('(min-width: 1024px)').matches;
+      contents.dataset.ready = 'true';
+    }
     const nav = document.querySelector<HTMLElement>('[data-page-toc]');
     if (!nav || nav.dataset.ready === 'true') return;
 

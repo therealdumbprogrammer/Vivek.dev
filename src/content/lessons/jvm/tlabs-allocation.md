@@ -91,7 +91,10 @@ One possible outcome is to retire the current TLAB, obtain a new slice from the 
 <figcaption>A possible refill path: the next object does not fit, the old buffer is retired, and a fresh buffer supplies the next run of local allocations. <a href="/images/courses/jvm/tlab-refill.svg">Open full-size diagram</a>.</figcaption>
 </figure>
 
-Refilling needs shared allocation machinery, so it involves more work than advancing an existing local pointer. But one refill can support many subsequent objects. Its cost is **amortized**: spread over the allocations that use the buffer, rather than paid in full for every object.
+<aside class="lesson-callout" data-kind="production" aria-label="Production note">
+<p class="callout-label">Production note</p>
+<p>Refilling needs shared allocation machinery, so it involves more work than advancing an existing local pointer. But one refill can support many subsequent objects. Its cost is <strong>amortized</strong>: spread over the allocations that use the buffer, rather than paid in full for every object.</p>
+</aside>
 
 The unused tail explains a trade-off. Immediately abandoning every remainder would waste space. Keeping a useful remainder and allocating the current object elsewhere can avoid that waste. HotSpot therefore does not have to retire the TLAB on every failed fit check. We do not need its refill algorithms here; we need the intuition that local speed, refill frequency, and unused capacity must be balanced.
 
@@ -114,7 +117,7 @@ Thread A can allocate Customer X in its TLAB and later pass a reference to Threa
 
 This differs from `ThreadLocal<Customer>`. A TLAB optimizes where an execution thread obtains object storage. `ThreadLocal<T>` associates Java values with threads. Even a value stored through ThreadLocal is not magically prevented from being referenced elsewhere.
 
-The useful distinction is **private allocation state, shared heap objects**. Retiring a buffer or moving execution to another thread does not invalidate the objects that were allocated there.
+The useful distinction is **<mark>private allocation state, shared heap objects</mark>**. Retiring a buffer or moving execution to another thread does not invalidate the objects that were allocated there.
 
 ## Virtual threads use the carrier's allocation machinery
 

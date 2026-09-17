@@ -65,3 +65,14 @@ export function trackCount(track: Track) {
   const sample = track.lessons.filter(l => !l.entry).length;
   return `${track.lessons.length} lessons${draft ? ` · ${draft} draft` : sample === track.lessons.length ? ' · sample content' : ''}`;
 }
+
+// Preserve course order and global lesson numbers while grouping by module metadata.
+export function getLessonSections(track: Track) {
+  const sections: { name: string; lessons: { lesson: Lesson; number: number }[] }[] = [];
+  track.lessons.forEach((lesson, index) => {
+    let section = sections.find(section => section.name === lesson.group);
+    if (!section) { section = { name: lesson.group, lessons: [] }; sections.push(section); }
+    section.lessons.push({ lesson, number: index + 1 });
+  });
+  return sections;
+}

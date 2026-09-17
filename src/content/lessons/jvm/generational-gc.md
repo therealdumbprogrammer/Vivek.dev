@@ -28,7 +28,7 @@ Most ordinary heap allocations start in **Eden**, part of the young generation. 
 
 In the **classic conceptual model**, young memory consists of Eden and two Survivor spaces, S0 and S1. The old generation holds objects treated as longer-lived. These names describe roles, not a physical layout promised by the JVM specification. **G1 implements Eden, Survivor, and Old using heap regions**, rather than three permanently contiguous young areas. The S0/S1 diagrams below teach classic copying mechanics; they are not a literal G1 heap map.
 
-Returning from a request handler does not itself make every object garbage. A result stored in a reachable cache can outlive the method that created it. Reachability still decides survival.
+Returning from a request handler does not itself make every object garbage. A result stored in a reachable cache can outlive the method that created it. <mark>Reachability still decides survival.</mark>
 
 ## Young collection preserves the survivors
 
@@ -61,7 +61,7 @@ Follow cache entry A across young collections. In this HotSpot model, an object 
 <figcaption>A remains the same logical object while its GC age increases across young collections. The numbers are illustrative. <a href="/images/courses/jvm/object-aging.svg">Open full-size diagram</a>.</figcaption>
 </figure>
 
-**Object age is a GC optimization heuristic, not a property of the Java object model.** Java provides no ordinary object method for asking its GC age. Moving or aging A does not change its identity or the meaning of its fields.
+**<mark>Object age is a GC optimization heuristic, not a property of the Java object model.</mark>** Java provides no ordinary object method for asking its GC age. Moving or aging A does not change its identity or the meaning of its fields.
 
 ## Promotion avoids repeated young copying
 

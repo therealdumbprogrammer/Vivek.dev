@@ -13,7 +13,7 @@ jdk: HotSpot · JDK 25 reference
 
 Your service has a 4 GiB maximum heap and a 5 GiB container memory limit. The heap dashboard looks comfortable, yet the container is killed for running out of memory. Has the JVM ignored its heap setting?
 
-In [Lesson 1](/courses/jvm/runtime), we separated execution, memory, and runtime services. Now we'll zoom into memory. The distinction that explains this incident is **JVM process memory ≠ Java heap**. The heap setting controls one region inside a larger process; understanding the other regions tells you where to investigate.
+In [Lesson 1](/courses/jvm/runtime), we separated execution, memory, and runtime services. Now we'll zoom into memory. The distinction that explains this incident is **<mark>JVM process memory ≠ Java heap</mark>**. The heap setting controls one region inside a larger process; understanding the other regions tells you where to investigate.
 
 ## Start with the process boundary
 
@@ -114,7 +114,7 @@ JNI code and native libraries add further allocations with their own ownership r
 
 Garbage collectors need bookkeeping structures, JIT compilers need working memory, and the runtime needs internal tables and synchronization structures. These consume native memory beyond the regions already discussed. Their size depends on the collector, JDK, workload, and configuration; there is no universal fixed overhead to add to every heap.
 
-Keep the boundary precise: **GC manages Java heap object lifetime, rather than total process memory**. It can participate in related cleanup, including class unloading and reachability-triggered resource cleanup. But it is not a general owner of every native allocation, and reclaiming an object does not imply the process immediately returns the same number of bytes to the OS.
+Keep the boundary precise: **<mark>GC manages Java heap object lifetime, rather than total process memory</mark>**. It can participate in related cleanup, including class unloading and reachability-triggered resource cleanup. But it is not a general owner of every native allocation, and reclaiming an object does not imply the process immediately returns the same number of bytes to the OS.
 
 ## Leave room around the heap in containers
 

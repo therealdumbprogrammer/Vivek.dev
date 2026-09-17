@@ -27,7 +27,7 @@ Java source defines the behavior the program must preserve. It does not require 
 <figcaption>A source-level allocation may become a real heap object or disappear before the allocation path is needed. <a href="/images/courses/jvm/escape-analysis-overview.svg">Open full-size diagram</a>.</figcaption>
 </figure>
 
-The analysis that creates this opportunity is **escape analysis**. HotSpot asks how the object can be observed within and beyond the compilation scope. If no external observer needs the `Point` or its identity, the optimizer may preserve only the values the computation uses.
+The analysis that creates this opportunity is **escape analysis**. HotSpot asks how the object can be observed within and beyond the compilation scope. If no external observer needs the `Point` or its identity, <mark>the optimizer may preserve only the values the computation uses</mark>.
 
 ## Scalar replacement preserves values without the object
 
@@ -193,7 +193,10 @@ int y = 20;
 return x + y;
 ```
 
-The object header, the reference `p`, and the `Point` container are absent. This is allocation **elimination**, rather than moving an intact object to another memory area.
+<aside class="lesson-callout" data-kind="misconception" aria-label="Common misconception">
+<p class="callout-label">Common misconception</p>
+<p>The object header, the reference <code>p</code>, and the <code>Point</code> container are absent. This is allocation <strong>elimination</strong>, rather than moving an intact object to another memory area.</p>
+</aside>
 
 <figure>
 <a href="/images/courses/jvm/not-stack-allocation.svg" aria-label="Open diagram at full size"><img src="/images/courses/jvm/not-stack-allocation.svg" alt="The misleading model moves an intact object from heap to stack. The HotSpot model eliminates the aggregate and retains only required scalar values." width="480" height="420" /></a>

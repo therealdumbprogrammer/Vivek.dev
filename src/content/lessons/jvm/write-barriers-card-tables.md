@@ -32,7 +32,7 @@ customer.latestOrder = order;
 
 The running application thread is called a **mutator** because it mutates the object graph. At the moment of the store, the runtime has the destination address and the reference being stored. This is an efficient place to record a little information for GC, instead of reconstructing every change later.
 
-A **write barrier** is lightweight GC logic associated with a reference write. Conceptually, this assignment becomes **store the reference + perform GC bookkeeping**. HotSpot supplies that logic through its interpreted and compiled execution paths; you do not write a Java callback for it.
+A **write barrier** is lightweight GC logic associated with a reference write. Conceptually, this assignment becomes **<mark>store the reference + perform GC bookkeeping</mark>**. HotSpot supplies that logic through its interpreted and compiled execution paths; you do not write a Java callback for it.
 
 <figure>
 <a href="/images/courses/jvm/write-barrier.svg" aria-label="Open diagram at full size"><img src="/images/courses/jvm/write-barrier.svg" alt="The mutator stores a reference and runs lightweight GC logic; this is not a blocking gate." width="480" height="440" /></a>
@@ -181,7 +181,7 @@ Compare a graph built once and then mostly read with a graph whose references ar
 
 So far, the collector needs to remember incoming references. During concurrent GC, another problem appears: application threads can change the graph while the collector is tracing it. Collectors need protocols that preserve correctness despite those changes.
 
-GC barriers support different tasks, including mutation tracking, marking correctness, and relocation. **Not every GC barrier is a write barrier.** Some collectors use load or read barriers too. G1, ZGC, and Shenandoah make different choices; we will study their marking and relocation protocols later. The post-write card-marking model here does not explain all of them.
+GC barriers support different tasks, including mutation tracking, marking correctness, and relocation. **<mark>Not every GC barrier is a write barrier.</mark>** Some collectors use load or read barriers too. G1, ZGC, and Shenandoah make different choices; we will study their marking and relocation protocols later. The post-write card-marking model here does not explain all of them.
 
 ## Pause time is only part of GC cost
 
