@@ -301,7 +301,7 @@ We can now connect profiling, compilation, and recovery. The interpreter and pro
 <figcaption>HotSpot changes execution representations while maintaining one set of Java semantics. <a href="/images/courses/jvm/speculation-deoptimization-complete.svg">Open full-size diagram</a>.</figcaption>
 </figure>
 
-Those compiled versions and their supporting metadata need a home. The next [Code Cache preview](/courses/jvm/code-cache) follows the native memory that holds generated code, how HotSpot organizes it, and why capacity and code lifetime can affect performance.
+Those compiled versions and their supporting metadata need a home. [Lesson 16](/courses/jvm/code-cache) follows the Code Cache: the native memory that holds generated code, how HotSpot organizes it, and why capacity and code lifetime can affect performance.
 
 <details class="lesson-sources">
 <summary>Sources and implementation boundaries</summary>
