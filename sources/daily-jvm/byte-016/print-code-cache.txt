@@ -1,0 +1,12 @@
+openjdk version "25.0.2" 2026-01-20
+OpenJDK Runtime Environment Homebrew (build 25.0.2)
+OpenJDK 64-Bit Server VM Homebrew (build 25.0.2, mixed mode, sharing)
+CodeHeap 'non-profiled nmethods': size=120048Kb used=2Kb max_used=2Kb free=120045Kb
+ bounds [0x0000000120cd4000, 0x0000000120f44000, 0x0000000128210000]
+CodeHeap 'profiled nmethods': size=120016Kb used=2Kb max_used=2Kb free=120014Kb
+ bounds [0x0000000119210000, 0x0000000119480000, 0x0000000120744000]
+CodeHeap 'non-nmethods': size=5696Kb used=1115Kb max_used=1129Kb free=4580Kb
+ bounds [0x0000000120744000, 0x00000001209b4000, 0x0000000120cd4000]
+CodeCache: size=245760Kb, used=1119Kb, max_used=1133Kb, free=244639Kb
+ total_blobs=295, nmethods=5, adapters=200, full_count=0
+Compilation: enabled, stopped_count=0, restarted_count=0

@@ -400,3 +400,20 @@ Revision verification: Astro check and production build pass; 11 local course ro
 - See `JVM_AUTHORING_GUIDE.md` for exact markup, metadata conventions, and review steps. Course colors follow the OS dark-mode preference; diagrams retain their authored colors.
 - Verification: Astro diagnostics report 0 errors/warnings/hints; production build generates 76 pages. Chromium checks at 1440px and 390px in light/dark mode cover all 16 lesson routes, overview counts and keyboard disclosure, mobile contents toggle, active state, previous/next links, and horizontal overflow. Visually reviewed overview and emphasis. Content sync emitted transient duplicate-ID warnings during concurrent development/check; build completed cleanly and only one source file exists per lesson.
 - Local preview: http://127.0.0.1:4330/courses/jvm. Changes remain uncommitted on feature/learning-ui-experiment.
+
+## Daily JVM Byte #16 converted — 2026-09-22
+
+- Converted byte-016 and the reviewed originating draft into Lesson 16, “The Code Cache — where JIT-compiled machine code lives”, Execution and JIT order 160, prerequisite speculative-optimization-deoptimization. It remains an uncommitted local draft on `feature/learning-ui-experiment`.
+- Eight editable SVGs explain bytecode → C1/C2 → nmethod → Code Cache → CPU, native-memory placement outside `-Xmx`, the three segmented Code Heaps, nmethod anatomy, delayed reclamation, fragmentation/lifecycle grouping, compilation pressure, and the complete adaptive-execution model.
+- Preserved the key boundaries: segmentation is a HotSpot choice; non-profiled is not a strict C2-only category; an nmethod is executable code plus relocation, reference, stack/scope, safepoint, deoptimization, exception and dependency metadata; invalidation or supersession does not immediately free storage.
+- Diagnostics distinguish aggregate occupancy from per-heap usable capacity, reclamation, compiler enabled/stopped/restarted state, compilation results and compiler queues. JFR CodeCacheFull, JITRestart, Compilation, Deoptimization and CompilerQueueUtilization are presented as correlated evidence, with one restrained production tuning note.
+- Three semantic inline highlights and one Production note use the shared emphasis system. Navigation connects Lesson 15 → Lesson 16 → Safepoints preview in development; production keeps the draft route and links excluded.
+- Verified `-XX:+PrintCodeCache` and relevant Code Heap flags on Homebrew OpenJDK HotSpot 25.0.2; the exact startup output is archived under `sources/daily-jvm/byte-016/` and is labeled as a short-lived observation rather than a workload measurement.
+- Astro diagnostics report 0 errors/warnings/hints; production build succeeds with 75 pages and excludes the draft route, sitemap entry and navigation links. All eight SVGs parse and load at their intrinsic sizes. Desktop and 390px mobile checks cover highlights, callout, diagrams, headings, reasoning disclosures, overview section grouping, active sidebar, mobile contents toggle, previous/next links, and page/image overflow. Mobile code samples retain intentional internal horizontal scrolling where needed. Light and forced dark-theme review show legible emphasis, callouts and fixed-color SVGs.
+- Local review: http://127.0.0.1:4341/courses/jvm/code-cache; course overview: http://127.0.0.1:4341/courses/jvm. Next: Safepoints. No commit, push or deployment.
+
+## JVM Lesson 16 promoted — 2026-09-22
+
+- User reviewed and accepted “The Code Cache — where JIT-compiled machine code lives”. Set Lesson 16 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Lesson 15 now links directly to Lesson 16. Lesson 16 continues to the Safepoints preview. Lesson content and illustrations are unchanged from the reviewed draft.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build includes Lesson 16 as normal course content without a draft label and retains Safepoints as the next planned preview.
