@@ -417,3 +417,22 @@ Revision verification: Astro check and production build pass; 11 local course ro
 - User reviewed and accepted “The Code Cache — where JIT-compiled machine code lives”. Set Lesson 16 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
 - Lesson 15 now links directly to Lesson 16. Lesson 16 continues to the Safepoints preview. Lesson content and illustrations are unchanged from the reviewed draft.
 - Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build includes Lesson 16 as normal course content without a draft label and retains Safepoints as the next planned preview.
+
+## Daily JVM Byte #17 converted — 2026-09-23
+
+- Converted `byte-017` and the reviewed originating draft into Lesson 17, “Safepoints — when HotSpot needs Java threads in a known state”, Execution and JIT order 170, prerequisite `code-cache`. It remains a local review draft on `feature/learning-ui-experiment`.
+- Ten editable SVGs explain global safepoint coordination, arbitrary versus metadata-described machine states, state-dependent thread accounting, compiled-code polling, long-running loop cooperation, the global request/operation/release flow, synchronization time versus time at safepoint, OopMap reference locations, the JIT/GC bridge, and the complete coordination model.
+- Preserved the key boundaries: a safepoint is a global HotSpot coordination state rather than one code location or an OS freeze; threads become safe through different state-dependent mechanisms; poll placement is compiler/runtime policy; safepoints are broader than GC; and compiled code includes metadata that connects GC roots, stack walking, and deoptimization.
+- The main operational takeaway separates synchronization or time-to-safepoint from time at the safepoint. `-Xlog:safepoint` is the starting point, with three semantic highlights and one restrained Production note.
+- Development navigation connects Lesson 16 → Lesson 17 → the Thread-local handshakes preview. Production continues to exclude the draft route and its navigation entry until review acceptance.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 76 pages and excludes Lesson 17 from routes, sitemap, course counts, and navigation. All ten SVGs parse and load. Browser checks cover desktop and 325px narrow mobile layouts, image scaling, page and code overflow, active sidebar state, mobile contents toggle, heading navigation, previous/next links, semantic highlights, callout, and both keyboard reasoning disclosures. A forced dark-theme pass confirmed legible shared colors for text, highlights, callout, and code while all fixed-background SVGs remained readable. Local HotSpot 25.0.2 accepts `-Xlog:safepoint`.
+- Local review: http://127.0.0.1:4342/courses/jvm/safepoints; course overview: http://127.0.0.1:4342/courses/jvm.
+- Source-section consistency revision: Lesson 16 now includes the standard collapsed “Sources and implementation boundaries” disclosure, and Lesson 17's visible sources heading/list now uses the same component. The JVM lesson skill, editorial reference, and portable authoring guide require this structure for future lessons and include it in verification.
+- Next: Thread-local handshakes. No commit, push, or deployment.
+
+## Lesson 17 accepted — 2026-09-23
+
+- User reviewed and accepted “Safepoints — when HotSpot needs Java threads in a known state”. Set Lesson 17 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Lesson 17 continues to the Thread-local handshakes preview. Lesson content, source disclosure, and illustrations are unchanged from the reviewed draft.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 78 pages and includes Lesson 17 plus the Thread-local handshakes preview route.
+- Next: Thread-local handshakes.
