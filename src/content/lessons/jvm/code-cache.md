@@ -304,3 +304,13 @@ The next lesson follows **safepoints**: how HotSpot coordinates threads at known
 <summary>Check your reasoning: why can healthy heap and GC graphs coexist with a JIT-related slowdown?</summary>
 <p>The Java heap and the Code Cache are different memory systems. If a Code Heap cannot accept new compiled methods, HotSpot can constrain JIT activity even though object allocation and garbage collection remain healthy. Confirm that explanation with per-heap capacity, compilation state, queue activity, JFR events, and application timing rather than one graph.</p>
 </details>
+
+<details class="lesson-sources">
+<summary>Sources and implementation boundaries</summary>
+<p>Adapted from Daily JVM Byte #16 and its reviewed draft. Diagrams and lifecycle flows are conceptual. The <code>PrintCodeCache</code> startup check was executed on Homebrew OpenJDK HotSpot 25.0.2; it is a short-lived observation rather than a workload measurement. Code Cache organization, policy, and event details describe HotSpot and can vary by build and configuration.</p>
+<ul>
+<li><a href="https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html">JDK 25 <code>java</code> documentation: segmented Code Cache and sizing options</a></li>
+<li><a href="https://github.com/openjdk/jdk/blob/jdk-25-ga/src/hotspot/share/code/nmethod.hpp">JDK 25 <code>nmethod</code> structure, states, metadata, and lifecycle</a></li>
+<li><a href="https://github.com/openjdk/jdk/blob/jdk-25-ga/src/hotspot/share/jfr/metadata/metadata.xml">JDK 25 JFR metadata: Code Cache, compilation, queue, restart, and deoptimization events</a></li>
+</ul>
+</details>
