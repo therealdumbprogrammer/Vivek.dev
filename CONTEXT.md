@@ -436,3 +436,23 @@ Revision verification: Astro check and production build pass; 11 local course ro
 - Lesson 17 continues to the Thread-local handshakes preview. Lesson content, source disclosure, and illustrations are unchanged from the reviewed draft.
 - Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 78 pages and includes Lesson 17 plus the Thread-local handshakes preview route.
 - Next: Thread-local handshakes.
+
+## Daily JVM Byte #18 converted — 2026-09-24
+
+- Converted `byte-018` and the retained reviewed-draft requirements into Lesson 18, “Thread-local handshakes — coordination without stopping the whole JVM”, `Threads and Synchronization` order 180, prerequisite `safepoints`. It remains an uncommitted local review draft on `feature/learning-ui-experiment`.
+- Eight editable SVGs explain targeted coordination, global-versus-handshake scope, shared per-thread polling, a simplified target flow, handshake-safe state requirements, the scalability motivation, operation-scope choice, and the combined safepoint/handshake model.
+- Preserved the key boundaries: a handshake is selected-thread runtime coordination rather than merely a mini-safepoint; safe-state requirements still apply; suitable operations may be processed on behalf of an already handshake-safe target; narrower scope does not promise zero pause or zero cost; and handshakes complement rather than replace global safepoints.
+- Distinguishes global safepoint responsiveness from target-set handshake responsiveness. JFR cooperative sampling appears only as an observability example. Three reasoning checks cover unrelated-thread progress, external processing, and why separate handshakes do not create one global invariant.
+- Three semantic inline highlights and one restrained Production note use the shared emphasis system.
+- Development navigation connects Lesson 17 → Lesson 18 → the Platform threads vs virtual threads in JDK 25 preview. Production keeps the Lesson 18 draft route and the later preview excluded until review acceptance.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 77 pages and excludes Lesson 18, Lesson 19, their links, and their sitemap entries. All eight SVGs parse and load. Live browser checks cover 1200px desktop and 325px narrow mobile layouts, page/image overflow, intentional code-block scrolling, active sidebar state, collapsed mobile contents, course section grouping, keyboard reasoning/source disclosures, previous/next links, and the Lesson 19 preview. A forced dark-media rendering pass confirmed the shared text, highlight, callout, navigation, and surface colors; the fixed-background SVGs remain self-contained and readable independently of the page theme.
+- Local review: http://127.0.0.1:4343/courses/jvm/thread-local-handshakes; course overview: http://127.0.0.1:4343/courses/jvm; next preview: http://127.0.0.1:4343/courses/jvm/platform-vs-virtual-threads.
+- Next: Platform threads vs virtual threads in JDK 25. No commit, push, or deployment.
+
+## Lesson 18 accepted — 2026-09-24
+
+- User reviewed and accepted “Thread-local handshakes — coordination without stopping the whole JVM”. Set Lesson 18 to `draft: false` so it participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap.
+- Lesson 17 now links directly to Lesson 18. Lesson 18 continues to the Platform threads vs virtual threads in JDK 25 preview. Lesson content, source disclosure, and illustrations are unchanged from the reviewed draft.
+- The accumulated Lesson 18 changes are being committed and pushed on `feature/learning-ui-experiment` at the user's request; no deployment was requested.
+- Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 79 pages. Lesson 18 renders as normal course content without a draft label, appears in the course overview/sidebar and sitemap, receives Lesson 17's forward link, and links onward to the Lesson 19 preview. All eight SVGs parse successfully.
+- Next: Platform threads vs virtual threads in JDK 25.
