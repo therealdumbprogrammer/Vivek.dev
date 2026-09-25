@@ -64,3 +64,13 @@
   body:has(.learning-grid) > footer { border-color: #435064; }
   body:has(.learning-grid) > header a:hover { background: #233955; color: #e2e8f0; }
 }
+
+/* Long API names must wrap; comparison columns scroll within the reading area. */
+.learning-grid .lesson-prose :not(pre) > code { overflow-wrap: anywhere; }
+.lesson-table-scroll { max-width: 100%; overflow-x: auto; margin-block: 1.75rem; border: 1px solid var(--section-edge); border-radius: .5rem; }
+.lesson-table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.lesson-comparison { width: 100%; min-width: 34rem; border-collapse: collapse; font-size: .95rem; line-height: 1.6; }
+.lesson-comparison caption { text-align: left; padding: .85rem 1rem; color: var(--muted); font-size: .85rem; }
+.lesson-comparison :is(th, td) { padding: .8rem 1rem; text-align: left; vertical-align: top; border-top: 1px solid var(--section-edge); }
+.lesson-comparison thead { background: var(--section); color: var(--ink); }
+.lesson-comparison tbody th { width: 25%; font-weight: 600; }

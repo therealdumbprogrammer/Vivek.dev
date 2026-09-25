@@ -1,0 +1,9 @@
+Homebrew OpenJDK HotSpot 25.0.2 (build 25.0.2, mixed mode, sharing)
+Command: java -Xmx64m VirtualIdentity.java
+
+true
+customer-42
+customer-request
+true
+
+Observation checks identity, name, virtual status and ThreadLocal preservation. It does not prove carrier migration.

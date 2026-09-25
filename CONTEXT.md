@@ -456,3 +456,22 @@ Revision verification: Astro check and production build pass; 11 local course ro
 - The accumulated Lesson 18 changes are being committed and pushed on `feature/learning-ui-experiment` at the user's request; no deployment was requested.
 - Verification: Astro diagnostics report 0 errors, warnings, or hints; the production build succeeds with 79 pages. Lesson 18 renders as normal course content without a draft label, appears in the course overview/sidebar and sitemap, receives Lesson 17's forward link, and links onward to the Lesson 19 preview. All eight SVGs parse successfully.
 - Next: Platform threads vs virtual threads in JDK 25.
+
+## Daily JVM Byte #19 converted — 2026-09-25
+
+- Added Lesson 19, “Platform threads vs virtual threads in JDK 25”, `platform-vs-virtual-threads`, Threads and Synchronization order 190, prerequisite `thread-local-handshakes`. Local draft on existing `feature/learning-ui-experiment`; Lessons 1–18 remain accepted.
+- Eleven editable SVGs cover the execution models, platform resources, carriers, mounting, supported blocking/unmounting, dynamic heap stack chunks, continuations, CPU capacity, JDK 25 synchronized behavior, downstream limits, and complete lifecycle.
+- Preserved reviewed identity/lifetime, ThreadLocal/interrupt/name, TLAB and continuation boundaries. Tightened “mounted” versus actually on CPU, optional carrier migration, monitor ownership versus carrier release, JEP 491's JDK 24 delivery/JDK 25 applicability, and native-frame caveats.
+- Three shared inline highlights and the two requested Common misconception / Production note callouts. Comparison table, four reasoning checks, collapsed sources, and a bounded identity example with archived output on Homebrew OpenJDK HotSpot 25.0.2.
+- Shared metadata connects Lesson 18 → Lesson 19 → Lesson 20 synchronization-internals preview locally. Production excludes the draft and subsequent preview; no new sidebar or navigation registry. Next byte: HotSpot synchronization internals / lightweight locking / mark-word behavior in JDK 25.
+- Original byte, retrieved draft excerpt, review notes, Java source and observed output archived under `sources/daily-jvm/byte-019*`. Source-reader truncation is documented explicitly.
+
+- Final verification: `npm run check` reports 0 errors/warnings/hints; `npm run build` produces 78 pages. A transient content-loader duplicate-ID notice appeared during concurrent dev/check; one source file and one byte-019 exist, the build is clean, and the course has one Lesson 19. Production route, HTML-link and sitemap checks exclude Lesson 19 and the later preview.
+- Chromium review passed at 1440, 1024, 768, 390 and 320px in light/dark mode: all 11 SVGs load and parse, no SVG text falls outside its viewBox, no page overflow, three highlights/two callouts, sidebar selection, all 12 section anchors, first/last navigation, Lesson 18 → 19 → 20, overview section counts 12/5/3, and keyboard source/reasoning/overview/mobile-contents disclosures. Comparison-table ArrowRight scrolling was verified; Java code and the table scroll internally on narrow screens. Visually inspected all diagrams, desktop/mobile light/dark typography, emphasis and tables; refined three diagram connectors.
+- Added reusable opt-in comparison table styles and wrapping for long inline API names in `src/styles/learning.css`; future lessons can use the documented semantic table wrapper. Other course structure and existing lesson text are unchanged.
+- Local server left running: http://127.0.0.1:4344/courses/jvm/platform-vs-virtual-threads ; overview http://127.0.0.1:4344/courses/jvm ; next preview http://127.0.0.1:4344/courses/jvm/synchronization-internals . Changes remain uncommitted; no push or deployment.
+
+## JVM Lesson 19 promoted — 2026-09-25
+
+- User reviewed and accepted “Platform threads vs virtual threads in JDK 25”. Set Lesson 19 to `draft: false`; it now participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap. Lesson 20 remains the synchronization-internals preview.
+- No lesson prose or illustration changes were made during promotion.
