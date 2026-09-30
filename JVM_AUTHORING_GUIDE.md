@@ -36,7 +36,7 @@ Course contents start collapsed below 1024px and open on desktop. Readers can to
 
 ## Current JVM sequence — 2026-09-25
 
-Daily JVM Byte #19 is Lesson 19, `platform-vs-virtual-threads`, order 190, a local draft after accepted Lesson 18. The next planned lesson is `synchronization-internals` (order 200), covering HotSpot lightweight locking and mark-word behavior in JDK 25. Use the shared planned entry until the real lesson replaces it. Production stops before the draft and later preview through the existing visibility filter.
+Daily JVM Byte #21 is Lesson 21, `reentrant-lock-aqs`, order 210, and closes Threads and Synchronization. It is published. The next planned lesson starts Garbage Collection foundations at order 220; production visibility follows the shared metadata.
 
 Keep carrier reuse separate from Java thread identity, dynamic stack chunks separate from one permanent chunk per thread, and carrier-level TLABs separate from Java ThreadLocal values. JEP 491 was delivered in JDK 24; JDK 25 ordinary synchronized monitor ownership does not inherently pin. Carrier release does not imply monitor release, and native-frame interaction can still prevent unmounting. Future locking diagrams must use the JDK 25 baseline and define configuration-specific header assumptions.
 

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 500" role="img" aria-labelledby="title desc">
+<title id="title">AQS contention: queue, wake, retry</title><desc id="desc">Queue order is not a universal FIFO acquisition promise.</desc>
+<rect width="660" height="500" rx="26" fill="#f7f9fc"/>
+<text x="24" y="64" font-family="system-ui, sans-serif" font-size="27" font-weight="700" fill="#172b4d">AQS contention: queue, wake, retry</text>
+<rect x="20.0" y="145" width="149.0" height="220" rx="18" fill="#e8f1fb" stroke="#8299b4" stroke-width="2"/>
+<text x="94.5" y="246.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#20344f">A owns</text>
+<text x="94.5" y="280.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#20344f">state > 0</text>
+<path d="M 172.0 255.0 H 172.0 M 166.0 248.0 L 173.0 255.0 L 166.0 262.0" fill="none" stroke="#527aa6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="177.0" y="145" width="149.0" height="220" rx="18" fill="#e8f5f2" stroke="#8299b4" stroke-width="2"/>
+<text x="251.5" y="246.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#20344f">B, C</text>
+<text x="251.5" y="280.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#20344f">queued</text>
+<path d="M 329.0 255.0 H 329.0 M 323.0 248.0 L 330.0 255.0 L 323.0 262.0" fill="none" stroke="#527aa6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="334.0" y="145" width="149.0" height="220" rx="18" fill="#e8f1fb" stroke="#8299b4" stroke-width="2"/>
+<text x="408.5" y="246.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#20344f">unlock</text>
+<text x="408.5" y="280.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#20344f">state → 0</text>
+<path d="M 486.0 255.0 H 486.0 M 480.0 248.0 L 487.0 255.0 L 480.0 262.0" fill="none" stroke="#527aa6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="491.0" y="145" width="149.0" height="220" rx="18" fill="#e8f5f2" stroke="#8299b4" stroke-width="2"/>
+<text x="565.5" y="246.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#20344f">waiter wakes</text>
+<text x="565.5" y="280.0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#20344f">and retries</text>
+<rect x="20" y="398" width="620" height="82" rx="12" fill="#fff" stroke="#d4dde8"/>
+<text x="330" y="438" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#40536c">Queue order is not a universal FIFO acquisition promise.</text>
+</svg>

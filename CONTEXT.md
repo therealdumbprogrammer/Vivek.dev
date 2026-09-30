@@ -475,3 +475,10 @@ Revision verification: Astro check and production build pass; 11 local course ro
 
 - User reviewed and accepted “Platform threads vs virtual threads in JDK 25”. Set Lesson 19 to `draft: false`; it now participates in production routes, course counts, sidebar navigation, previous/next navigation, and the sitemap. Lesson 20 remains the synchronization-internals preview.
 - No lesson prose or illustration changes were made during promotion.
+
+## Daily JVM Byte #21 published — 2026-09-30
+
+- User reviewed and approved Lesson 21, “ReentrantLock, AQS, and parking”, slug `reentrant-lock-aqs`, order 210. Set `draft: false` on the existing `feature/learning-ui-experiment` branch.
+- Lesson 21 closes the Threads and Synchronization module. The following course preview starts Garbage Collection foundations at order 220.
+- Added the Byte #21 source and review notes plus 12 SVG illustrations. The lesson covers AQS state/ownership/queue semantics, lock conditions, parking permits, fairness, virtual-thread parking, diagnostics, and performance guidance.
+- Verification after promotion: `npm run check` reports 0 errors, warnings, or hints; `npm run build` succeeds with 80 pages and includes `/courses/jvm/reentrant-lock-aqs/`.
