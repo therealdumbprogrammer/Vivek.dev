@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" viewBox="0 0 900 450" role="img" aria-labelledby="title desc">
+<title id="title">Same allocation, different survival</title><desc id="desc">High survival increases evacuation, promotion and old growth.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#527aa6"/></marker></defs>
+<rect width="900" height="450" rx="22" fill="#f8fafc"/>
+<text x="30" y="51" font-family="system-ui,sans-serif" font-size="27" font-weight="700" fill="#19324d">Same allocation, different survival</text>
+<path d="M290 160 L335 160" fill="none" stroke="#527aa6" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M540 160 L610 160" fill="none" stroke="#527aa6" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M290 300 L335 300" fill="none" stroke="#527aa6" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M540 300 L610 300" fill="none" stroke="#527aa6" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="115" width="255" height="90" rx="13" fill="#e8f1fb" stroke="#8eaecb" stroke-width="2"/>
+<text x="162.5" y="166" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">A · 1 GB/s allocated</text>
+<rect x="335" y="115" width="205" height="90" rx="13" fill="#e5f5ef" stroke="#91baa9" stroke-width="2"/>
+<text x="437.5" y="166" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">2% survives</text>
+<rect x="610" y="115" width="245" height="90" rx="13" fill="#e5f5ef" stroke="#91baa9" stroke-width="2"/>
+<text x="732.5" y="166" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Less copy / promotion</text>
+<rect x="35" y="255" width="255" height="90" rx="13" fill="#e8f1fb" stroke="#8eaecb" stroke-width="2"/>
+<text x="162.5" y="306" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">B · 1 GB/s allocated</text>
+<rect x="335" y="255" width="205" height="90" rx="13" fill="#fff2d8" stroke="#d4b67c" stroke-width="2"/>
+<text x="437.5" y="306" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">50% survives</text>
+<rect x="610" y="255" width="245" height="90" rx="13" fill="#fff2d8" stroke="#d4b67c" stroke-width="2"/>
+<text x="732.5" y="306" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">More old growth</text>
+<rect x="25" y="398" width="850" height="38" rx="9" fill="#ffffff" stroke="#d5dfe8"/>
+<text x="450" y="423" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#52657a">Illustrative cohorts; measure survival, promotion and headroom.</text>
+</svg>

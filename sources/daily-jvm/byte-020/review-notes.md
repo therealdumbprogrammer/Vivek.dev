@@ -1,0 +1,13 @@
+# Daily JVM Byte #20 review notes
+
+- Integrated as Lesson 20, `synchronization-internals`, Threads and Synchronization, order 200. Local draft (`draft: true`); Lesson 19 links forward to it. The next preview is ReentrantLock, AQS, and `LockSupport.park()` (Lesson 21).
+- The complete lesson follows the reviewed draft's sequence and preserves the requested refinements: block instructions vs `ACC_SYNCHRONIZED`; JDK 25 lightweight state and LockStack; Java reentrancy without assuming one recursion counter; inflation as a representation transition; distinct entry contention and wait-set semantics; monitor deflation; JEP 491 virtual-thread lock-state migration; the performance cost model; and production diagnosis.
+- Technical review used Java SE 25 JLS/JVMS, JEP 491, and OpenJDK 25u synchronization source. Mark Word bit values and runtime data structures are identified as HotSpot details, not Java guarantees. The lesson does not claim that each contention event inflates or that an inflated monitor maps one-to-one to an OS mutex.
+- The source-byte message in the originating conversation was available. The reviewed assistant draft preview was bounded; this note records the substantive reviewed refinements, and the integrated article is retained as `reviewed-draft.md`.
+- No synchronization benchmark or forced monitor inflation demonstration was run. Diagrams and fast-path sequencing are conceptual.
+- Lesson 21 preview enables section grouping and forward navigation through existing shared metadata; no parallel navigation registry was added.
+
+- Final verification: `npm run check` reports 0 errors/warnings/hints; its content-sync phase printed duplicate-ID notices for the unique Lesson 19 and Lesson 20 Markdown paths. A subsequent production build synced cleanly, produced 79 pages, and omitted the Lesson 20 route, Lesson 21 preview, overview links, and sitemap entries. The course runtime checks its source IDs/routes and the local course contains one entry per lesson.
+- Browser review at a 1200 CSS-pixel desktop width and a 267 CSS-pixel narrow mobile viewport: lesson title/draft banner, all 8 images, 2 highlights, 2 callouts, section counts (12/5/4), previous/next destinations and internally scrolling code were checked; no page overflow. The mobile course-contents disclosure begins collapsed. All 8 SVGs parse, have title/description, and were inspected at full size.
+- The actual dark-scheme pass could not be performed because CUA did not grant access to System Settings. The lesson uses the existing shared dark-mode tokens and rules; no stylesheet changes were needed.
+- Local preview is `http://127.0.0.1:4350/courses/jvm/synchronization-internals`; the development server remains running.

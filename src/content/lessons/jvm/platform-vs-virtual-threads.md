@@ -289,7 +289,7 @@ Our request has one Java-thread lifetime but can use several execution resources
 
 This ties together the earlier memory and execution lessons: native stacks still exist on carriers, suspended Java execution can use heap-managed chunks, allocation uses the current execution machinery, and Java-level identity survives those implementation changes. Scalability comes from avoiding a dedicated OS thread for each supported wait, while CPU, heap, locks, and downstream systems retain their own limits.
 
-The next question is what happens inside the monitor itself. The [HotSpot synchronization internals preview](/courses/jvm/synchronization-internals) leads into lightweight locking, contention, and mark-word behavior in JDK 25. We will connect the object-header model from Lesson 3 to synchronization without carrying forward older locking assumptions as universal rules.
+Lesson 20 follows [HotSpot synchronization internals](/courses/jvm/synchronization-internals): lightweight locking, contention, and mark-word behavior in JDK 25. It connects the object-header model from Lesson 3 to synchronization without carrying forward older locking assumptions as universal rules.
 
 <details class="lesson-sources">
 <summary>Sources and implementation boundaries</summary>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" viewBox="0 0 900 450" role="img" aria-labelledby="title desc">
+<title id="title">G1 gives regions generational roles</title><desc id="desc">Eden, Survivor and Old roles appear across a region-based heap.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#527aa6"/></marker></defs>
+<rect width="900" height="450" rx="22" fill="#f8fafc"/>
+<text x="30" y="51" font-family="system-ui,sans-serif" font-size="27" font-weight="700" fill="#19324d">G1 gives regions generational roles</text>
+<rect x="40" y="145" width="145" height="115" rx="13" fill="#e8f1fb" stroke="#8eaecb" stroke-width="2"/>
+<text x="112.5" y="208.5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Eden</text>
+<rect x="195" y="145" width="145" height="115" rx="13" fill="#fff2d8" stroke="#d4b67c" stroke-width="2"/>
+<text x="267.5" y="208.5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Old</text>
+<rect x="350" y="145" width="145" height="115" rx="13" fill="#e8f1fb" stroke="#8eaecb" stroke-width="2"/>
+<text x="422.5" y="208.5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Eden</text>
+<rect x="505" y="145" width="145" height="115" rx="13" fill="#e5f5ef" stroke="#91baa9" stroke-width="2"/>
+<text x="577.5" y="208.5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Survivor</text>
+<rect x="660" y="145" width="145" height="115" rx="13" fill="#fff2d8" stroke="#d4b67c" stroke-width="2"/>
+<text x="732.5" y="208.5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Old</text>
+<rect x="350" y="275" width="145" height="65" rx="13" fill="#e8f1fb" stroke="#8eaecb" stroke-width="2"/>
+<text x="422.5" y="313.5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Eden</text>
+<rect x="505" y="275" width="145" height="65" rx="13" fill="#fff2d8" stroke="#d4b67c" stroke-width="2"/>
+<text x="577.5" y="313.5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Old</text>
+<rect x="25" y="398" width="850" height="38" rx="9" fill="#ffffff" stroke="#d5dfe8"/>
+<text x="450" y="423" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#52657a">Regions can change roles; generations are logical groupings.</text>
+</svg>
