@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450" viewBox="0 0 900 450" role="img" aria-labelledby="title desc">
+<title id="title">The young collection problem</title><desc id="desc">An old object keeps a young object live across the collection boundary.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#527aa6"/></marker></defs>
+<rect width="900" height="450" rx="22" fill="#f8fafc"/>
+<text x="30" y="51" font-family="system-ui,sans-serif" font-size="27" font-weight="700" fill="#19324d">The young collection problem</text>
+<path d="M235 195 L350 155" fill="none" stroke="#527aa6" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="292.5" y="166" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#52657a">root path</text>
+<path d="M550 155 L650 285" fill="none" stroke="#527aa6" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="600" y="211" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#52657a">incoming edge</text>
+<rect x="55" y="145" width="180" height="100" rx="13" fill="#ffffff" stroke="#b7c7d5" stroke-width="2"/>
+<text x="145" y="201" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">GC root</text>
+<rect x="350" y="105" width="200" height="100" rx="13" fill="#e8f1fb" stroke="#8eaecb" stroke-width="2"/>
+<text x="450" y="161" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Old: Customer</text>
+<rect x="650" y="235" width="200" height="100" rx="13" fill="#e5f5ef" stroke="#91baa9" stroke-width="2"/>
+<text x="750" y="291" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Young: Order</text>
+<rect x="55" y="295" width="245" height="75" rx="13" fill="#fff2d8" stroke="#d4b67c" stroke-width="2"/>
+<text x="177.5" y="338.5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="650" fill="#19324d">Young collection</text>
+<rect x="25" y="398" width="850" height="38" rx="9" fill="#ffffff" stroke="#d5dfe8"/>
+<text x="450" y="423" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#52657a">A young-only trace must account for an edge from Old.</text>
+</svg>

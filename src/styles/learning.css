@@ -74,3 +74,11 @@
 .lesson-comparison :is(th, td) { padding: .8rem 1rem; text-align: left; vertical-align: top; border-top: 1px solid var(--section-edge); }
 .lesson-comparison thead { background: var(--section); color: var(--ink); }
 .lesson-comparison tbody th { width: 25%; font-weight: 600; }
+
+/* Keep detailed log diagrams legible on narrow screens without widening the page. */
+@media (max-width: 600px) {
+  .learning-grid .lesson-prose .gc-log-figure { overflow-x: auto; max-width: 100%; }
+  .learning-grid .lesson-prose .gc-log-figure a { display: block; width: 600px; }
+  .learning-grid .lesson-prose .gc-log-figure img { width: 600px; max-width: none; }
+}
+.learning-grid .lesson-prose .gc-log-figure:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
