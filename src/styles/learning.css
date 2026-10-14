@@ -82,3 +82,8 @@
   .learning-grid .lesson-prose .gc-log-figure img { width: 600px; max-width: none; }
 }
 .learning-grid .lesson-prose .gc-log-figure:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Detailed JIT diagrams retain readable labels and scroll on narrow screens. */
+.learning-grid .lesson-prose .jit-figure { overflow-x: auto; max-width: 100%; }
+.learning-grid .lesson-prose .jit-figure a { display: block; width: min(100%, 900px); min-width: 760px; }
+.learning-grid .lesson-prose .jit-figure img { width: 100%; max-width: none; margin: 0; }
