@@ -34,6 +34,9 @@ const sampleTracks = [
     { slug: 'code-cache-internals', title: 'Code Cache internals', group: 'Native Memory', summary: 'A preview of nmethods, segmented code heaps, reclamation, and code-cache pressure.', placeholder: true },
     { slug: 'thread-stacks-stack-walking', title: 'Thread stacks and stack walking', group: 'Native Memory', summary: 'A preview of compiled frames, OopMaps, logical Java frames, and deoptimization.', placeholder: true },
     { slug: 'direct-mapped-memory', title: 'Direct and mapped memory', group: 'Native Memory', summary: 'A preview of direct buffers, mapped files, cleaners, and memory beyond heap dumps.', placeholder: true },
+    { slug: 'jni-native-boundary', title: 'JNI and native libraries', group: 'Native Memory', summary: 'A preview of JNI references and GC safety, critical sections, native allocations, crashes, and the memory boundary around native code.', placeholder: true },
+    { slug: 'native-memory-tracking', title: 'Native Memory Tracking', group: 'Native Memory', summary: 'Identify growth in HotSpot memory categories using NMT baselines and diffs.', placeholder: true },
+    { slug: 'jvm-crash-anatomy', title: 'JVM crash anatomy', group: 'Native Memory', summary: 'Classify process termination and interpret fatal-error evidence.', placeholder: true },
   ]},
   { slug: 'kubernetes', hidden: true, title: 'A path into Kubernetes', type: 'Path', description: 'Connect the building blocks: from a running container to a service you can reach.', note: 'Work through connected milestones', lessons: [
     { slug: 'pods', title: 'Start with a Pod', group: 'Building blocks', summary: 'A Pod groups containers that share a network and storage context. It is the smallest deployable unit you manage in Kubernetes.', idea: 'Start with one running unit before thinking about a whole cluster.', example: 'kubectl get pods', exercise: 'Draw one Pod with two containers. Mark the resources they share.' },
