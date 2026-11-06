@@ -6,7 +6,7 @@ lessonSlug: gc-foundations
 module: Garbage Collection
 order: 220
 sourceByte: byte-022
-draft: true
+draft: false
 prerequisites: [reentrant-lock-aqs, gc-roots-reachability, gc-reclamation-strategies]
 jdk: JDK 25 · HotSpot garbage collection foundations
 ---

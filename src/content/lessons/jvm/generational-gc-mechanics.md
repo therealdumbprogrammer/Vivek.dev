@@ -6,7 +6,7 @@ lessonSlug: generational-gc-mechanics
 module: Garbage Collection
 order: 230
 sourceByte: byte-023
-draft: true
+draft: false
 prerequisites: [gc-foundations, generational-gc, write-barriers-card-tables]
 jdk: JDK 25 · HotSpot G1 and generational GC mechanics
 ---

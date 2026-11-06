@@ -6,7 +6,7 @@ lessonSlug: jit-compilation-under-cpu-pressure
 module: HotSpot Internals
 order: 570
 sourceByte: byte-057
-draft: false
+draft: true
 prerequisites:
   - deoptimization-in-production
 jdk: JDK 25 · HotSpot tiered compilation and JFR

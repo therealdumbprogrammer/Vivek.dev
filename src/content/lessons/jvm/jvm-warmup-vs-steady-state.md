@@ -6,7 +6,7 @@ lessonSlug: jvm-warmup-vs-steady-state
 module: HotSpot Internals
 order: 580
 sourceByte: byte-058
-draft: false
+draft: true
 prerequisites:
   - jit-compilation-under-cpu-pressure
 jdk: JDK 25 · Runtime warm-up and performance measurement

@@ -1,18 +1,21 @@
 ---
 import { render } from 'astro:content';
 import LearningLayout from '../../../layouts/LearningLayout.astro';
-import { getTracks, lessonUrl } from '../../../data/learning';
+import { getTracks, lessonUrl, lessonNumber } from '../../../data/learning';
 export async function getStaticPaths() { return (await getTracks()).flatMap(track => track.lessons.map((lesson,index) => ({params:{track:track.slug,lesson:lesson.slug},props:{track,lesson,index}}))); }
 const {track,lesson,index} = Astro.props;
-const previous = track.lessons[index-1];
-const next = track.lessons[index+1];
+const number = lessonNumber(lesson);
+const previousCandidate = track.lessons[index-1];
+const nextCandidate = track.lessons[index+1];
+const previous = previousCandidate && lessonNumber(previousCandidate) === number - 1 ? previousCandidate : undefined;
+const next = nextCandidate && lessonNumber(nextCandidate) === number + 1 ? nextCandidate : undefined;
 const rendered = lesson.entry ? await render(lesson.entry) : undefined;
 const Content = rendered?.Content;
 const readingMinutes = lesson.entry ? Math.max(1, Math.ceil((lesson.entry.body ?? "").split(/\s+/).length / 210)) : 2;
 const toc = lesson.placeholder ? [] : rendered ? rendered.headings.filter(h => h.depth === 2).map(h => ({id: h.slug, title: h.text})) : [{id:'mental-model',title:'The mental model'},{id:'example',title:'A small example'},{id:'try-it',title:'Think it through'},{id:'takeaway',title:'Takeaway'}];
 ---
 <LearningLayout track={track} current={lesson.slug} title={lesson.title} toc={toc}>
-  <p class="track-label text-sm font-semibold uppercase tracking-wide">{lesson.group} · Lesson {index+1} of {track.lessons.length}</p>
+  <p class="track-label text-sm font-semibold uppercase tracking-wide">{lesson.group} · Lesson {number}</p>
   <h1 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">{lesson.title}</h1>
   <p class="mt-6 text-lg leading-8 text-slate-600">{lesson.summary}</p>
   <p class="mt-5 text-xs text-slate-500">{lesson.placeholder ? 'Planned lesson' : lesson.entry ? `${readingMinutes} min read · ${lesson.entry.data.jdk}` : 'Sample content for layout review · 2 min read'}</p>
@@ -36,8 +39,8 @@ const toc = lesson.placeholder ? [] : rendered ? rendered.headings.filter(h => h
     </>}
   </article>}
   <nav aria-label="Lesson navigation" class="mt-12 grid gap-4 border-t border-slate-200 pt-6 sm:grid-cols-2">
-    <a class="rounded-lg border border-slate-200 bg-white p-4 hover:border-blue-400" href={previous ? lessonUrl(track.slug,previous.slug) : `/courses/${track.slug}`}><span class="block text-xs text-slate-500">← {previous ? 'Previous lesson' : 'Back to overview'}</span><span class="mt-2 block text-sm font-semibold">{previous?.title ?? track.title}</span></a>
-    <a class="rounded-lg border border-slate-200 bg-white p-4 text-right hover:border-blue-400" href={next ? lessonUrl(track.slug,next.slug) : '/courses'}><span class="block text-xs text-slate-500">{next ? 'Next lesson' : 'End of preview'} →</span><span class="mt-2 block text-sm font-semibold">{next?.title ?? 'Explore all learning'}</span></a>
+    <a class="rounded-lg border border-slate-200 bg-white p-4 hover:border-blue-400" href={previous ? lessonUrl(track.slug,previous.slug) : `/courses/${track.slug}`}><span class="block text-xs text-slate-500">← {previous ? 'Previous lesson' : 'Course overview'}</span><span class="mt-2 block text-sm font-semibold">{previous?.title ?? track.title}</span></a>
+    <a class="rounded-lg border border-slate-200 bg-white p-4 text-right hover:border-blue-400" href={next ? lessonUrl(track.slug,next.slug) : `/courses/${track.slug}`}><span class="block text-xs text-slate-500">{next ? 'Next lesson' : 'Course overview'} →</span><span class="mt-2 block text-sm font-semibold">{next?.title ?? 'Browse available lessons'}</span></a>
   </nav>
 </LearningLayout>
 
