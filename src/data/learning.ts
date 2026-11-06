@@ -55,26 +55,27 @@ export interface Lesson {
   idea?: string; example?: string; exercise?: string;
 }
 export interface Track { slug: string; title: string; type: string; description: string; note: string; lessons: Lesson[]; }
+export const lessonNumber = (lesson: Pick<Lesson, 'order'>) => lesson.order / 10;
 // Every route and navigation consumer uses the same draft visibility rule.
 export async function getTracks(): Promise<Track[]> {
   const entries = await getCollection('lessons');
   const ids = new Set<string>();
   const routes = new Set<string>();
+  const positions = new Set<string>();
   for (const entry of entries) {
     const key = `${entry.data.course}/${entry.data.lessonSlug}`;
-    if (ids.has(entry.data.sourceByte) || routes.has(key)) throw new Error(`Duplicate lesson: ${key}`);
+    const position = `${entry.data.course}/${entry.data.order}`;
+    if (ids.has(entry.data.sourceByte) || routes.has(key) || positions.has(position)) throw new Error(`Duplicate lesson: ${key}`);
+    if (entry.data.order <= 0 || entry.data.order % 10 !== 0 || Number(entry.data.sourceByte.slice(5)) !== entry.data.order / 10) throw new Error(`Invalid lesson number: ${key}`);
     if (!sampleTracks.some(t => t.slug === entry.data.course)) throw new Error(`Unknown course: ${entry.data.course}`);
-    ids.add(entry.data.sourceByte); routes.add(key);
+    ids.add(entry.data.sourceByte); routes.add(key); positions.add(position);
   }
   return sampleTracks.filter(track => !track.hidden).map(track => {
     const authored = entries.filter(e => e.data.course === track.slug);
-    const firstDraftOrder = import.meta.env.DEV
-      ? Number.POSITIVE_INFINITY
-      : Math.min(...authored.filter(e => e.data.draft).map(e => e.data.order), Number.POSITIVE_INFINITY);
-    const samples: Lesson[] = track.lessons
+    // Sample previews are local-only; production contains authored, non-draft lessons.
+    const samples: Lesson[] = import.meta.env.DEV ? track.lessons
       .map((l, i) => ({...l, order: (i + 3) * 10, draft: false}))
-      .filter(l => !authored.some(e => e.data.lessonSlug === l.slug))
-      .filter(l => l.order < firstDraftOrder);
+      .filter(l => !authored.some(e => e.data.lessonSlug === l.slug)) : [];
     const real: Lesson[] = authored.filter(e => import.meta.env.DEV || !e.data.draft)
       .map(entry => ({slug: entry.data.lessonSlug, title: entry.data.title,
         group: entry.data.module, summary: entry.data.summary, order: entry.data.order,
@@ -85,16 +86,18 @@ export async function getTracks(): Promise<Track[]> {
 export function trackCount(track: Track) {
   const draft = track.lessons.filter(l => l.draft).length;
   const sample = track.lessons.filter(l => !l.entry).length;
-  return `${track.lessons.length} lessons${draft ? ` · ${draft} draft` : sample === track.lessons.length ? ' · sample content' : ''}`;
+  return import.meta.env.DEV
+    ? `${track.lessons.length} lessons${draft ? ` · ${draft} draft` : sample === track.lessons.length ? ' · sample content' : ''}`
+    : `${track.lessons.length} available lessons`;
 }
 
 // Preserve course order and global lesson numbers while grouping by module metadata.
 export function getLessonSections(track: Track) {
   const sections: { name: string; lessons: { lesson: Lesson; number: number }[] }[] = [];
-  track.lessons.forEach((lesson, index) => {
+  track.lessons.forEach((lesson) => {
     let section = sections.find(section => section.name === lesson.group);
     if (!section) { section = { name: lesson.group, lessons: [] }; sections.push(section); }
-    section.lessons.push({ lesson, number: index + 1 });
+    section.lessons.push({ lesson, number: lessonNumber(lesson) });
   });
   return sections;
 }
