@@ -6,7 +6,7 @@ lessonSlug: g1-internals
 module: Garbage Collection
 order: 240
 sourceByte: byte-024
-draft: true
+draft: false
 prerequisites: [generational-gc-mechanics]
 jdk: JDK 25 · HotSpot G1
 ---

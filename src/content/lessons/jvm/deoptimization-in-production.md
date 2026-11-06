@@ -6,7 +6,7 @@ lessonSlug: deoptimization-in-production
 module: HotSpot Internals
 order: 560
 sourceByte: byte-056
-draft: false
+draft: true
 prerequisites:
   - safepoint-diagnostics
 jdk: JDK 25 · HotSpot C2 and JFR

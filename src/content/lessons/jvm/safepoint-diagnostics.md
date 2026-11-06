@@ -6,7 +6,7 @@ lessonSlug: safepoint-diagnostics
 module: HotSpot Internals
 order: 550
 sourceByte: byte-055
-draft: false
+draft: true
 prerequisites:
   - native-memory-tracking-internals
 jdk: JDK 25 · HotSpot safepoints and JFR

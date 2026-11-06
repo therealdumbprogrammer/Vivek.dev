@@ -6,7 +6,7 @@ lessonSlug: native-memory-tracking-internals
 module: HotSpot Internals
 order: 540
 sourceByte: byte-054
-draft: false
+draft: true
 prerequisites:
   - jvm-rss-growth-stable-heap
 jdk: JDK 25 · HotSpot Native Memory Tracking

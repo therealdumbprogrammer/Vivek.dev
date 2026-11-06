@@ -6,7 +6,7 @@ lessonSlug: synchronization-internals
 module: Threads and Synchronization
 order: 200
 sourceByte: byte-020
-draft: true
+draft: false
 prerequisites: [platform-vs-virtual-threads]
 jdk: HotSpot · JDK 25 lightweight locking
 ---

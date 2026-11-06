@@ -6,7 +6,7 @@ lessonSlug: g1-satb
 module: Garbage Collection
 order: 250
 sourceByte: byte-025
-draft: true
+draft: false
 prerequisites: [g1-internals]
 jdk: JDK 25 · HotSpot G1
 ---
@@ -95,6 +95,6 @@ Start diagnosis with `-Xlog:gc*` to identify Concurrent Start, Concurrent Mark, 
 
 <figure><a href="/images/courses/jvm/g1-satb-complete.svg" aria-label="Open complete SATB model"><img src="/images/courses/jvm/g1-satb-complete.svg" alt="Concurrent Start establishes snapshot and TAMS state; overwritten old references enter SATB buffers; Concurrent Mark processes them; Remark finishes outstanding work; Cleanup prepares reclamation." width="900" height="450" /></a><figcaption>SATB connects the logical snapshot, mutator barriers, buffer work, and Remark into one cycle.</figcaption></figure>
 
-Continue to [Lesson 26](/courses/jvm/g1-failure-modes) for G1 failure modes: evacuation failure, humongous objects, marking that falls behind, Full GC, and the headroom that connects them.
+Lesson 26 will continue with G1 failure modes: evacuation failure, humongous objects, marking that falls behind, Full GC, and the headroom that connects them.
 
 <details class="lesson-sources"><summary>Sources and implementation boundaries</summary><p>Based on Daily JVM Byte #25 and its reviewed draft. Object names, timelines, and diagrams are illustrative; no GC workload was run. SATB, TAMS, and barrier details describe HotSpot G1 in JDK 25 rather than Java language guarantees or every collector. Exact barrier paths and phase costs depend on runtime state and configuration.</p><ul><li><a href="https://docs.oracle.com/en/java/javase/25/gctuning/garbage-first-g1-garbage-collector1.html">JDK 25 G1 collector guide: SATB, cycle, Remark, and evacuation</a></li><li><a href="https://docs.oracle.com/en/java/javase/25/gctuning/garbage-first-garbage-collector-tuning.html">JDK 25 G1 tuning and marking guidance</a></li><li><a href="https://github.com/openjdk/jdk/blob/jdk-25%2B36/src/hotspot/share/gc/g1/g1BarrierSet.cpp">OpenJDK 25 G1 barrier implementation</a></li><li><a href="https://github.com/openjdk/jdk/blob/jdk-25%2B36/src/hotspot/share/gc/g1/g1ConcurrentMark.cpp">OpenJDK 25 G1 concurrent marking implementation</a></li></ul></details>
